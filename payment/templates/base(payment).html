@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zxx" class="js">
+{% load static %}
+<head>
+    <base href="../../">
+    <meta charset="utf-8">
+    <meta name="author" content="Softnio">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="A powerful and conceptual apps base dashboard template that especially build for developers and programmers.">
+    <!-- Fav Icon  -->
+    <link rel="shortcut icon" href="./images/favicon.png">
+    <!-- Page Title  -->
+    <title>My Profile | DashLite Admin Template</title>
+    <!-- StyleSheets  -->
+    <link rel="stylesheet" href="{% static 'assets-2/assets/css/dashlite.css' %}">
+    <link id="skin-default" rel="stylesheet" href="{% static 'assets-2/assets/css/theme.css' %}">
+
+    <link rel="stylesheet" href="{% static 'assets/css/dashlite.css' %}">
+    <link id="skin-default" rel="stylesheet" href="{% static 'assets/css/theme.css' %}">
+</head>
+
+<body class="nk-body bg-lighter npc-general has-sidebar ">
+    <div class="nk-app-root">
+        {% block scripts %}{% endblock %}
+        {% block content %}{% endblock %}
+    </div><!-- .modal -->
+    <!-- JavaScript -->
+    <script src="{% static 'assets-2/assets/js/bundle.js' %}"></script>
+    <script src="{% static 'assets-2/assets/js/scripts.js' %}"></script>
+
+    <script src="{% static 'assets/js/bundle.js' %}"></script>
+    <script src="{% static 'assets/js/scripts.js' %}"></script>
+</body>
+</html>

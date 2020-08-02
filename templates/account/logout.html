@@ -1,0 +1,28 @@
+{% extends 'base-2.html' %}
+{% load static %}
+{% block content %}
+
+<main>
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col-md-6 col-lg-7 fullscreen-md d-flex justify-content-center align-items-center overlay gradient gradient-purple-navy alpha-7 image-background cover" style="background-image:url(https://picsum.photos/1920/1200/?random&gravity=south)">
+                <div class="content">
+                    <h2 class="display-4 display-md-3 text-contrast mt-4 mt-md-0">Welcome to <span class="bold d-block">Noterio</span></h2>
+                    <p class="lead text-contrast">You have been logged out</p>
+                    <hr class="mt-md-6 w-25">
+                    <div class="d-flex flex-column">
+                        <p class="small bold text-contrast">Or sign in with</p>
+                        <nav class="nav mb-4"><a class="btn btn-rounded btn-outline-secondary brand-facebook mr-2" href="#"><i class="fab fa-facebook-f"></i></a> <a class="btn btn-rounded btn-outline-secondary brand-twitter mr-2" href="#"><i class="fab fa-twitter"></i></a> <a class="btn btn-rounded btn-outline-secondary brand-linkedin" href="#"><i class="fab fa-linkedin-in"></i></a></nav>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 col-lg-4 mx-auto">
+                <div class="login-form mt-5 mt-md-0"><a href="{% url 'home' %}"><img src="{% static 'logo/Noterio-logo.png' %}" class="logo img-responsive mb-4 mb-md-6" alt=""></a>
+                    <h1 class="text-darker bold">You have been logged out</h1>
+                    <p class="text-secondary mt-0 mb-4 mb-md-6">Log In Again<a href="{% url 'logout' %}" class="text-primary bold">Login here</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main><!-- themeforest:js -->
+{% endblock %}

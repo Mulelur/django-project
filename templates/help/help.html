@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <main>
+        <!-- ./Page header -->
+        <header class="page header text-contrast overlay alpha-8 image-background cover gradient gradient-purple-blue" style="background-image: url('img/bg/waves.jpg')">
+            <div class="divider-shape">
+                <!-- waves divider --> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none" class="shape-waves" style="left: 0; transform: rotate3d(0,1,0,180deg);">
+                    <path class="shape-fill shape-fill-light" d="M790.5,93.1c-59.3-5.3-116.8-18-192.6-50c-29.6-12.7-76.9-31-100.5-35.9c-23.6-4.9-52.6-7.8-75.5-5.3c-10.2,1.1-22.6,1.4-50.1,7.4c-27.2,6.3-58.2,16.6-79.4,24.7c-41.3,15.9-94.9,21.9-134,22.6C72,58.2,0,25.8,0,25.8V100h1000V65.3c0,0-51.5,19.4-106.2,25.7C839.5,97,814.1,95.2,790.5,93.1z" /></svg></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h1 class="regular display-4 text-contrast mb-4">Help</h1>
+                        <p class="lead text-contrast">Hello, {{ user.username }} How can we help you with Today?</p>
+                    </div>
+                </div>
+            </div>
+        </header><!-- ./FAQs -->
+        <section class="section">
+            <div class="container">
+                <div class="row ">
+                    <div class="col">
+                        {% include 'help/support.html' %}
+                    </div>
+                </div>
+            </div>
+        </section><!-- ./FAQs - Other channels -->
+        <section class="section bg-light">
+            <div class="container bring-to-front py-0">
+                <div class="row gap-y align-items-center text-center text-lg-left">
+                    <div class="col-md-6">
+                        <div class="shadow card">
+                            <div class="card-body"><i data-feather="send" width="36" height="36" class="stroke-primary"></i> <a href="javascript:;" class="mt-4 text-primary d-flex align-items-center">
+                                    <h4 class="mr-3">Documentation</h4><i class="fas fa-long-arrow-alt-right"></i>
+                                </a>
+                                <p class="mt-4">Asperiores, consequuntur fugit minima natus optio quisquam sint sunt? Earum harum in laudantium nobis obcaecati odio, praesentium, quis sequi soluta vel veniam.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="shadow card">
+                            <div class="card-body"><i data-feather="message-circle" width="36" height="36" class="text-info"></i> <a href="contact.html" class="mt-4 text-info d-flex align-items-center">
+                                    <h4 class="mr-3">Contact Us</h4><i class="fas fa-long-arrow-alt-right"></i>
+                                </a>
+                                <p class="mt-4">Consequuntur eos ex exercitationem ipsum, nobis nostrum porro praesentium quaerat quidem quis ratione recusandae reprehenderit, saepe soluta temporibus voluptate.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section><!-- ./CTA - Create Account -->
+        <section class="section bg-contrast edge top-left b-b">
+            <div class="container pt-5">
+                <div class="d-flex align-items-center flex-column flex-md-row">
+                    <div class="text-center text-md-left">
+                        <p class="light mb-0 text-primary lead">Ready to get started?</p>
+                        <h2 class="mt-0">Create an account now</h2>
+                    </div><a href="register.html" class="btn btn-primary btn-rounded mt-3 mt-md-0 ml-md-auto">Create DashCore account</a>
+                </div>
+            </div>
+        </section><!-- ./Footer - Simple -->
+    </main><!-- themeforest:js -->
+{% endblock %}

@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <main>
+        <!-- ./Page header -->
+        <header class="page header bg-primary text-contrast overlay overlay-primary alpha-8 gradient--gradient-purple-blue" style="background-image: url('{% static 'img/bg/waves.jpg' %}')">
+            <div class="container pb-8">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h1 class="regular text-contrast display-4 mb-4">Pick your perfect package</h1>
+                        <p class="lead text-contrast">All packages include a 10-day free trial with all our Power features</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <section class="block bg-contrast">
+            <div class="container py-4">
+                <div class="text-center">
+                    <div class="btn-group btn-group-toggle pricing-table-basis" data-toggle="buttons"><label class="btn btn-info active"><input type="radio" name="pricing-value" value="monthly" autocomplete="off" checked="checked"> Monthly basis</label> <label class="btn btn-info"><input type="radio" name="pricing-value" value="yearly" autocomplete="off"> Annual basis</label></div>
+                    <p>(Save up to 30% off on annual plans)</p>
+                </div>
+                <div class="row">
+                    {% if plan %}
+                        {% for p in plan %}
+                            <div class="col-md-4 mt-5">
+                                <div class="card text-center">
+                                    <div class="pricing card-header{% if forloop.counter == 2 %}bg-primary-gradient text-contrast{% else %}bg-light-gradient {% endif %}d-flex align-items-center flex-column">
+                                        <h4 class="">{{ p.title }}</h4>
+                                        <div class="pricing-value"><span class="price bold odometer" data-monthly-price="10" data-yearly-price="07">{{ p.price }}</span></div>
+                                        <p>{{ p.description }}</p>
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item strike-through">{{ p.feture_1 }}</li>
+                                        <li class="list-group-item strike-through">{{ p.feture_2 }}</li>
+                                        <li class="list-group-item strike-through">{{ p.feture_3 }}</li>
+                                        <li class="list-group-item">{{ p.feture_4 }}</li>
+                                        <li class="list-group-item">{{ p.feture_5 }}</li>
+                                    </ul>
+                                    <div class="card-body"><a href="{% url 'buy' %}" class="btn btn-outline-{% if forloop.count == 2 %}primary{% else %}secondary{% endif %}">Buy now</a></div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </section><!-- ./Pricing Table -->
+        <section class="pricing block bg-contrast">
+            <div class="container py-4">
+                <div class="section-heading text-center">
+                    <h2>Not ready to buy?</h2>
+                </div>
+                <div class="border">
+                    <div class="row py-5">
+                        <div class="col-sm-5 mx-auto">
+                            <h4>You can give DashCore a try !!!</h4>
+                            <ul class="list mt-4">
+                                <li><i class="font-regular icon lnr-magic-wand"></i>Lorem ipsum dolor sit amet</li>
+                                <li><i class="font-regular icon lnr-database"></i>Adipisci blanditiis consequuntur debitis</li>
+                                <li><i class="font-regular icon lnr-heart"></i>Alias aliquam eaque nisi non</li>
+                                <li><i class="font-regular icon lnr-layers"></i>Doloribus, inventore, quo! Amet culpa debitis</li>
+                                <li><i class="font-regular icon lnr-history"></i>Minus modi nisi repellat reprehenderit!</li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-5 mx-auto text-center">
+                            <h4>Start using DashCore for free</h4>
+                            <p class="pricing-value"><span class="price font-xl">0</span></p><!-- <a class="btn btn-lg btn-success">Get started NOW</a> --> <a href="{% url 'buy' %}" class="btn btn-rounded btn-primary py-3 px-5">Get started NOW</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="container">
+                <div class="section-heading text-center">
+                    <h2>All our plans include</h2>
+                    <p class="lead text-secondary">Get access to a ton of features out of the box</p>
+                </div>
+                <div class="row gap-y text-center text-md-left">
+                    <div class="col-md-4"><i data-feather="headphones" width="36" height="36" class="stroke-info mr-2 m-0"></i>
+                        <h5 class="bold my-3">First class support</h5>
+                        <p class="my-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci atque beatae dicta dolores hic porro quam voluptatibus.</p>
+                    </div>
+                    <div class="col-md-4"><i data-feather="box" width="36" height="36" class="stroke-info mr-2 m-0"></i>
+                        <h5 class="bold my-3">Code snippets</h5>
+                        <p class="my-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci atque beatae dicta dolores hic porro quam voluptatibus.</p>
+                    </div>
+                    <div class="col-md-4"><i data-feather="headphones" width="36" height="36" class="stroke-info mr-2 m-0"></i>
+                        <h5 class="bold my-3">Full documentation</h5>
+                        <p class="my-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci atque beatae dicta dolores hic porro quam voluptatibus.</p>
+                    </div>
+                    <div class="col-md-4"><i data-feather="lock" width="36" height="36" class="stroke-info mr-2 m-0"></i>
+                        <h5 class="bold my-3">Total control of your code</h5>
+                        <p class="my-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci atque beatae dicta dolores hic porro quam voluptatibus.</p>
+                    </div>
+                    <div class="col-md-4"><i data-feather="airplay" width="36" height="36" class="stroke-info mr-2 m-0"></i>
+                        <h5 class="bold my-3">Responsive design</h5>
+                        <p class="my-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci atque beatae dicta dolores hic porro quam voluptatibus.</p>
+                    </div>
+                    <div class="col-md-4"><i data-feather="monitor" width="36" height="36" class="stroke-info mr-2 m-0"></i>
+                        <h5 class="bold my-3">Browser support</h5>
+                        <p class="my-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci atque beatae dicta dolores hic porro quam voluptatibus.</p>
+                    </div>
+                </div>
+            </div>
+        </section><!-- ./FAQs -->
+        <section class="section">
+            <div class="container bring-to-front">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h2>Do you have <span class="bold">questions</span></h2>
+                        <p class="lead">Not sure how this template can help you? Wonder why you need to buy our theme?</p>
+                        <p class="text-muted">Here are the answers to some of the most common questions we hear from our appreciated customers</p>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="accordion accordion-clean" id="common-faqs-accordion">
+                            <div class="card mb-3">
+                                <div class="card-header"><a href="#" class="card-title btn" data-toggle="collapse" data-target="#q1"><i class="fas fa-angle-down angle"></i> What does the package include?</a></div>
+                                <div id="q1" class="collapse show" data-parent="#common-faqs-accordion">
+                                    <div class="card-body">When you buy Dashcore, you get all you see in the demo but the images. We include SASS files for styling, complete JS files with comments, all HTML variations. Besides we include all mobile PSD mockups.</div>
+                                </div>
+                            </div>
+                            <div class="card mb-3">
+                                <div class="card-header"><a href="#" class="card-title btn" data-toggle="collapse" data-target="#q2"><i class="fas fa-angle-down angle"></i> What is the typical response time for a support question?</a></div>
+                                <div id="q2" class="collapse" data-parent="#common-faqs-accordion">
+                                    <div class="card-body">Since you report us a support question we try to make our best to find out what is going on, depending on the case it could take more or les time, however a standard time could be minutes or hours.</div>
+                                </div>
+                            </div>
+                            <div class="card mb-3">
+                                <div class="card-header"><a href="#" class="card-title btn" data-toggle="collapse" data-target="#q3"><i class="fas fa-angle-down angle"></i> What do I need to know to customize this template?</a></div>
+                                <div id="q3" class="collapse" data-parent="#common-faqs-accordion">
+                                    <div class="card-body">Our documentation give you all you need to customize your copy. However you will need some basic web design knowledge (HTML, Javascript and CSS)</div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header"><a href="#" class="card-title btn" data-toggle="collapse" data-target="#q4"><i class="fas fa-angle-down angle"></i> Can I suggest a new feature?</a></div>
+                                <div id="q4" class="collapse" data-parent="#common-faqs-accordion">
+                                    <div class="card-body">Definitely <span class="bold">Yes</span>, you can contact us to let us know your needs. If your suggestion represents any value to both we can include it as a part of the theme or you can request a custom build by an extra cost. Please note it could take some time in order for the feature to be implemented.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section><!-- ./CTA - Create Account -->
+        <section class="section bg-light edge top-left b-b">
+            <div class="container pt-5">
+                <div class="d-flex align-items-center flex-column flex-md-row">
+                    <div class="text-center text-md-left">
+                        <p class="light mb-0 text-primary lead">Ready to get started?</p>
+                        <h2 class="mt-0">Create an account now</h2>
+                    </div><a href="{% url 'register' %}" class="btn btn-primary btn-rounded mt-3 mt-md-0 ml-md-auto">Create DashCore account</a>
+                </div>
+            </div>
+        </section><!-- ./Footer - Four Columns -->
+{% endblock %}

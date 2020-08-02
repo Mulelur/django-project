@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge" /><![endif]-->
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width,initial-scale=1"><!-- Place favicon.ico in the root directory -->
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="icon" href="{% static 'logo/Noterio-f-icon.png' %}">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,300,400,700,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Caveat" rel="stylesheet">
+    <title>Noterio - Premium Software & Startup HTML</title><!-- themeforest:css -->
+    <link rel="stylesheet" href="{% static 'css/all.css' %}">
+    <link rel="stylesheet" href="{% static 'css/aos.css' %}">
+    <link rel="stylesheet" href="{% static 'css/cookieconsent.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'css/odometer-theme-minimal.css' %}">
+    <link rel="stylesheet" href="{% static 'css/prism-okaidia.css' %}">
+    <link rel="stylesheet" href="{% static 'css/simplebar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/smart_wizard.css' %}">
+    <link rel="stylesheet" href="{% static 'css/swiper.css' %}">
+    <link rel="stylesheet" href="{% static 'css/theme.css' %}">
+    <link rel="stylesheet" href="{% static 'css/rtl.css' %}"><!-- endinject -->
+</head>
+
+<body>
+    <!--[if lt IE 8]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+    <!-- Making stripe menu -->
+             <!-- ./Main navigation -->
+{% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-icon alert-{{ message.tags }}" role="alert"><i class="icon fas fa-check"></i>
+                {{ message }}
+            </div>
+        {% endfor %}
+{% endif %}       
+{% block content %}{% endblock %}
+
+<script src="{% static 'js/01.cookie-consent-util.js' %}"></script>
+<script src="{% static 'js/02.1.cookie-consent-themes.js' %}"></script>
+<script src="{% static 'js/02.2.cookie-consent-custom-css.js' %}"></script>
+<script src="{% static 'js/02.3.cookie-consent-informational.js' %}"></script>
+<script src="{% static 'js/02.4.cookie-consent-opt-out.js' %}"></script>
+<script src="{% static 'js/02.5.cookie-consent-opt-in.js' %}"></script>
+<script src="{% static 'js/02.6.cookie-consent-location.js' %}"></script>
+<script src="{% static 'js/card.js' %}"></script>
+<script src="{% static 'js/counterup2.js' %}"></script>
+<script src="{% static 'js/index.js' %}"></script>
+<script src="{% static 'js/noframework.waypoints.js' %}"></script>
+<script src="{% static 'js/odometer.min.js' %}"></script>
+<script src="{% static 'js/prism.js' %}"></script>
+<script src="{% static 'js/simplebar.js' %}"></script>
+<script src="{% static 'js/swiper.js' %}"></script>
+<script src="{% static 'js/popper.js' %}"></script>
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/jquery.easing.min.js' %}"></script>
+<script src="{% static 'js/jquery.validate.js' %}"></script>
+<script src="{% static 'js/jquery.smartWizard.js' %}"></script>
+<script src="{% static 'js/plugins/jquery.animatebar.js' %}"></script>
+<script src="{% static 'js/feather.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<script src="{% static 'js/aos.js' %}"></script>
+<script src="{% static 'js/typed.js' %}"></script>
+<script src="{% static 'js/jquery.magnific-popup.js' %}"></script>
+<script src="{% static 'js/cookieconsent.min.js' %}"></script>
+<script src="{% static 'js/common-script.js' %}"></script>
+<script src="{% static 'js/forms.js' %}"></script>
+<script src="{% static 'js/stripe-bubbles.js' %}"></script>
+<script src="{% static 'js/stripe-menu.js' %}"></script>
+<script src="{% static 'js/cc.js' %}"></script>
+<script src="{% static 'js/pricing.js' %}"></script>
+<script src="{% static 'js/svg.js' %}"></script>
+<script src="{% static 'js/site.js' %}"></script>
+<script src="{% static 'js/03.demo.js' %}"></script><!-- endinject -->
+</body>
+
+</html>
