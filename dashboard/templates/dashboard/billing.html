@@ -30,12 +30,10 @@
                     <div class="card-inner">
                         <div class="between-center flex-wrap flex-md-nowrap g-3">
                             <div class="nk-block-text">
-                                <h6>Enterpise Plan - <span class="text-base">R {{ billing.get_monthly_ammount }} / Yearly</span></h6>
+                                <h6>{{ billing.plan }} Plan - <span class="text-base">{% if billing.billed_monthly %}R {{ billing.get_monthly_ammount }} / Monthly{% else %}R {{ billing.ammount }} / Yearly {% endif %}</span></h6>
                                 <p class="text-soft">Unlimited access with priority support, 99.95% uptime, powerfull features and more...</p>
                             </div>
-                            <div class="nk-block-actions flex-shrink-0">
-                                <a href="#" class="btn btn-primary">Change Plan</a>
-                            </div>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalForm">Change Plan</button>
                         </div>
                     </div><!-- .nk-card-inner -->
                     <div class="card-inner">
@@ -62,7 +60,7 @@
                 <div class="nk-block-head-content">
                     <h5 class="nk-block-title">Billing Cycle</h5>
                     <div class="nk-block-des">
-                        <p>Your subscription renews on {{ billing.get_next_billing_monthly }} <span class="fs-13px text-soft">(2 months 17 days remaining).</span></p>
+                        <p>Your subscription renews on {{ billing.get_next_billing }} <span class="fs-13px text-soft">({{ billing.get_day }} remaining).</span></p>
                     </div>
                 </div>
             </div><!-- Nk-Block-head -->
@@ -73,14 +71,14 @@
                             <div class="nk-block-text">
                                 <h6>Yearly Subscription</h6>
                                 <ul class="list-inline list-col2 text-soft">
-                                    <li>Next payment: <strong class="text-base">$599.00 USD</strong> on <strong class="text-base">Jan 28, 2020</strong></li>
+                                    <li>Next payment: <strong class="text-base">R {{ billing.ammount }}</strong> on <strong class="text-base">{{ billing.get_next_billing }}</strong></li>
                                     <li>Last payment made: Jan 28, 2019</li>
                                 </ul>
                             </div>
                             <div class="nk-block-actions">
                                 <ul class="align-center gx-3">
                                     <li class="order-md-last">
-                                        <a href="#" class="link link-primary">Switch Billing Cycle</a>
+                                        <a href="#" data-toggle="modal" data-target="#SwitchBillingCycle" class="link link-primary">Switch Billing Cycle</a>
                                     </li>
                                 </ul>
                             </div>
@@ -90,6 +88,7 @@
             </div><!-- .card -->
             <!--  Another Sub Section -->
             {% endif %}
+            {% include 'buy/part/buying/_change-plan.html' %}
         </div><!-- .nk-block -->
     </div>
 </div>

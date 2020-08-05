@@ -1,12 +1,11 @@
 from django.forms import ModelForm
-from accounts.models import Profile
 from django.contrib.auth.models import User
 from .models import Plan, Request, Billing
 
 class PlanModelForm(ModelForm):
     class Meta: 
         model = Plan
-        fields =  ['plan', 'free_trial',]  
+        fields =  ['plan',]  
 
 class RequestModelForm(ModelForm):
     class Meta:
@@ -16,6 +15,29 @@ class RequestModelForm(ModelForm):
 class BillingModelForm(ModelForm):
     class Meta:
         model = Billing
-        fields = '__all__'
+        fields = ['plan', 'billed_monthly', 'free_trial']
+
+class AoutoRenewOnForm(ModelForm):
+    class Meta:
+        model = Billing
+        fields = ['auto_renew',]    
+
+class ChangePlanForm(ModelForm):
+    class Meta:
+        model = Billing
+        fields = ['plan', 'billed_monthly']      
+
+
+class SwitchBillingCycleForm(ModelForm):
+    class Meta:
+        model = Billing
+        fields = ['billed_monthly']         
+
+
+
+class BillingUpDateStateForm(ModelForm):
+    class Meta:
+        model = Billing
+        fields = ['is_active']
 
 

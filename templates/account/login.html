@@ -1,4 +1,7 @@
-{% extends 'base-5(buy).html' %}
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load account socialaccount %}
 {% load crispy_forms_tags %}
 {% load static %}
 {% block content %}   
@@ -23,32 +26,48 @@
                             </div>
                             <div class="nk-block-head">
                                 <div class="nk-block-head-content">
-                                    <h5 class="nk-block-title">Sign-In</h5>
-                                    <div class="nk-block-des">
-                                        <p>Access the DashLite panel using your email and passcode.</p>
-                                    </div>
+                                    <h5 class="nk-block-title">{% trans "Sign In" %}</h5>
                                 </div>
                             </div><!-- .nk-block-head -->
-                            <form  method="POST">
-                                {% csrf_token %} 
+                              <form class="login" method="POST" action="{% url 'account_login' %}">
+                                {% csrf_token %}
                                 <div class="form-group">
-                                 
-                                    {{ form|crispy }}
-                                </div>
+                                {{ form|crispy }}
+                                {% if redirect_field_value %}
+                                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                                {% endif %}
+                              </div>
                                 <div class="form-group">
-                                    <div class="form-group d-flex align-items-center justify-content-between"><a href="{% url 'password_reset' %}" class="text-warning small">Forgot your password?</a></div>
-                                    <button class="btn btn-lg btn-primary btn-block">Sign in</button>
+                                    <div class="secondaryAction form-group d-flex align-items-center justify-content-between"><a href="{% url 'account_reset_password' %}" class="text-warning small">{% trans "Forgot Password?" %}</a></div>
+                                    <button class="btn btn-lg btn-primary btn-block">{% trans "Sign In" %}</button>
                                 </div>
                             </form><!-- form -->
-                            <div class="form-note-s2 pt-4"> New on our platform? <a href="{% url 'register' %}">Create an account</a>
-                            </div>
+
                             <div class="text-center pt-4 pb-3">
                                 <h6 class="overline-title overline-title-sap"><span>OR</span></h6>
                             </div>
-                            <ul class="nav justify-center gx-4">
-                                <li class="nav-item"><a class="nav-link" href="#">Facebook</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#">Google</a></li>
-                            </ul>
+                                {% get_providers as socialaccount_providers %}
+
+                                {% if socialaccount_providers %}
+                                <p>{% blocktrans with site.name as site_name %}Please sign in with one
+                                of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
+                                for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
+
+                                <div class="socialaccount_ballot">
+
+                                  <ul class="socialaccount_providers nav justify-center gx-4">
+                                    <li class="nav-item">{% include "socialaccount/snippets/provider_list.html" with process="login" %}</li>
+                                  </ul>
+                                </div>
+
+                                {% include "socialaccount/snippets/login_extra.html" %}
+
+                                {% else %}
+                                <div class="form-note-s2 pt-4">
+                                  <p>{% blocktrans %}If you have not created an account yet, then please
+                                    <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>    
+                                </div>
+                                {% endif %}
                             <div class="text-center mt-5">
                                 <span class="fw-500">I don't have an account? <a href="#">Try 15 days free</a></span>
                             </div>

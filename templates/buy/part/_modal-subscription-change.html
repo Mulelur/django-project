@@ -1,0 +1,70 @@
+   <!-- @@Modal - Subscription Change @s -->
+   <div class="modal fade" tabindex="-1" id="subscription-change">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <a href="#" class="close" data-dismiss="modal" aria-label="Close"><em class="icon ni ni-cross"></em></a>
+            <div class="modal-body modal-body-md">
+                <div class="sp-package text-center">
+                    <div class="sp-package-head">
+                        <h4 class="title">Change Subscription</h4>
+                        <p class="text-soft">This change will become effective on Jan 14, 2020 on your account.</p>
+                    </div>
+                    <ul class="sp-package-plan nav nav-switch nav-tabs">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Yearly</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Monthly</a>
+                        </li>
+                    </ul>
+                    <ul class="sp-package-list">
+                        <li class="sp-package-item">
+                            <input class="sp-package-choose" type="radio" name="subscription-pack-plan" id="pack-plan-entprise" checked="">
+                            <label class="sp-package-desc" for="pack-plan-entprise">
+                                <span class="sp-package-info">
+                                    <span class="sp-package-title title">{{ get_billing.plan }} Plan <span class="badge badge-primary badge-pill">Current</span></span>
+                                    <span class="sp-package-detail">Unlimited Access / R {{ get_billing.ammount }} / Year</span>
+                                </span>
+                                <span class="sp-package-price">
+                                    <span class="sp-package-amount yearly">
+                                        <span class="amount">R {{ get_billing.ammount }}.00</span>
+                                        <span class="text-soft">Yearly</span>
+                                    </span>
+                                    <span class="sp-package-amount monthly d-none">
+                                        <span class="amount">$99.00</span>
+                                        <span class="text-soft">Monthly</span>
+                                    </span>
+                                </span>
+                            </label>
+                        </li>
+                        {% for p in plan %}
+                        <li class="sp-package-item">
+                            <input class="sp-package-choose" type="radio" name="subscription-pack-plan" id="pack-plan-pro">
+                            <label class="sp-package-desc" for="pack-plan-pro">
+                                <span class="sp-package-info">
+                                    <span class="sp-package-title title">{{ p.plan }} Plan</span>
+                                    <span class="sp-package-detail">  $249.00 USD / Year</span>
+                                </span>
+                                <span class="sp-package-price">
+                                    <span class="sp-package-amount yearly">
+                                        <span class="amount">$299.00</span>
+                                        <span class="text-soft">Yearly</span>
+                                    </span>
+                                    <span class="sp-package-amount monthly d-none">
+                                        <span class="amount">$49.00</span>
+                                        <span class="text-soft">Monthly</span>
+                                    </span>
+                                </span>
+                            </label>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    <div class="sp-package-action">
+                        <a href="#" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#subscription-confirmed">Change Plan</a>
+                        <a href="#" class="btn btn-dim btn-danger" data-dismiss="modal" data-toggle="modal" data-target="#subscription-cancel">Cancel Plan</a>
+                    </div>
+                </div>
+            </div>
+        </div><!-- .modal-content -->
+    </div><!-- .modal-dialog -->
+</div><!-- .modal -->

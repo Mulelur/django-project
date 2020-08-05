@@ -13,6 +13,8 @@
     <!-- StyleSheets  -->
     <link rel="stylesheet" href="{% static 'assets/css/dashlite.css' %}">
     <link id="skin-default" rel="stylesheet" href="{% static 'assets/css/theme.css' %}">
+    <link href="{% static 'assets/css/wizard-6.css' %}" rel="stylesheet" type="text/css">
+
 </head>
 <body class="nk-body npc-subscription has-aside ui-clean ">
   <div class="nk-app-root">
@@ -63,7 +65,7 @@
                                     </div>
                                     <div class="dropdown-inner">
                                         <ul class="link-list">
-                                            <li><a href="{% url 'logout' %}"><em class="icon ni ni-signout"></em><span>Sign out</span></a></li>
+                                            <li><a href="{% url 'account_logout' %}"><em class="icon ni ni-signout"></em><span>Sign out</span></a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -221,33 +223,32 @@
                             <a href="#" class="toggle" data-target="sideNav"><em class="icon ni ni-cross"></em></a>
                         </div><!-- .nk-aside-close -->
                     </div><!-- .nk-aside -->
-{% block content %} {% endblock %}
-</div>
-</div>
+                    {% block content %} {% endblock %}
+                    </div>
+                    <!-- content @e -->
+                </div>
+                    <!-- wrap @e -->
+                </div>
+                    <!-- footer @s -->
+                <div class="nk-footer">
+                <div class="container wide-xl">
+                    <div class="nk-footer-wrap g-2">
+                        <div class="nk-footer-copyright"> &copy; 2020 DashLite. Template by <a href="#">Softnio</a>
+                        </div>
+                        <div class="nk-footer-links">
+                            <ul class="nav nav-sm">
+                                <li class="nav-item"><a class="nav-link" href="#">Terms</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#">Privacy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- footer @e -->
         </div>
-        <!-- content @e -->
-        </div>
-        <!-- wrap @e -->
-      </div>
-          <!-- footer @s -->
-    <div class="nk-footer">
-      <div class="container wide-xl">
-          <div class="nk-footer-wrap g-2">
-              <div class="nk-footer-copyright"> &copy; 2020 DashLite. Template by <a href="#">Softnio</a>
-              </div>
-              <div class="nk-footer-links">
-                  <ul class="nav nav-sm">
-                      <li class="nav-item"><a class="nav-link" href="#">Terms</a></li>
-                      <li class="nav-item"><a class="nav-link" href="#">Privacy</a></li>
-                  </ul>
-              </div>
-          </div>
-      </div>
-  </div>
-  <!-- footer @e -->
-</div>
       <!-- main @e -->
   </div>
+</div>
   <!-- app-root @e -->
   <!-- JavaScript -->
   <script src="{% static  'assets/js/bundle.js' %}"></script>

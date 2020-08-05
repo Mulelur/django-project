@@ -7,7 +7,7 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('home.urls')),
-    path('account/', include('accounts.urls')),
+    # path('account/', include('accounts.urls')),
     path('profile/', include('profiles.urls')),
     path('help/', include('help.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
@@ -15,6 +15,8 @@ urlpatterns = [
     path('dashboard/', include('dashboard.urls')),
     path('payment/', include('payment.urls')),
     path('contact/', include('contact.urls')),
+    path('accounts/', include('allauth.urls')),
+    path('projects/', include('projects.urls')),
 ]
 
 if (settings.DEBUG):

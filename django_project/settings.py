@@ -25,10 +25,11 @@ SECRET_KEY = 'u!@ula@p=e62+4=s@hy)*1%=x!g8t#5a_465(i1#aq@$id^pco'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['45.33.55.212']
+ALLOWED_HOSTS = ['45.33.55.212','127.0.0.1' ]
 
 
 # Application definition
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -38,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'home.apps.HomeConfig',
-    'accounts.apps.AccountsConfig',
     'ckeditor',
     'ckeditor_uploader',
     'crispy_forms',
@@ -48,8 +48,29 @@ INSTALLED_APPS = [
     'dashboard.apps.DashboardConfig',
     'payment.apps.PaymentConfig',
     'stripe',
+
+    'django.contrib.sites',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 ]
 CKEDITOR_UPLOAD_PATH = 'upload/'
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -77,6 +98,16 @@ TEMPLATES = [
             ],
         },
     },
+]
+
+AUTHENTICATION_BACKENDS = [
+
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+
 ]
 
 WSGI_APPLICATION = 'django_project.wsgi.application'
@@ -141,7 +172,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-LOGIN_REDIRECT_URL ='home'
+LOGIN_REDIRECT_URL ='home:home'
 
 LOGIN_URL = 'login'
 
@@ -154,3 +185,10 @@ else:
     # live keys
     STRIPE_PUBLISHABLE_KEY = 'YOUR STRIPE LIVE PUB KEY'
     STRIPE_SECRET_KEY = 'YOUR STRIPE LIVE SECRET KEY'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'nofees202@gmail.com'
+EMAIL_HOST_PASSWORD = 'Rotondwa2+'    

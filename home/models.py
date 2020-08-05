@@ -22,4 +22,19 @@ class Plan(models.Model):
 
     
     def get_plan_total(self):
-        return dev([price for p in self.price.all()])    
+        return dev([price for p in self.price.all()])  
+
+
+class PhoneThumbnail(models.Model):
+    title = models.CharField(max_length=100)
+    phone_image = models.ImageField(upload_to='home_inamge_th')
+    
+    def __str__(self):
+        return self.title
+
+class DesktopThumbnail(models.Model):
+    title = models.CharField(max_length=100)
+    desktop_image = models.ImageField(upload_to='home_desktop_th')
+
+    def __str__(self):
+        return self.title

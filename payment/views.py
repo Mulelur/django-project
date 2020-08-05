@@ -1,64 +1,76 @@
-from django.conf import settings
-from django.shortcuts import render, get_object_or_404 
+from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse
+from django.http import JsonResponse
+from buy.models import Billing, Transaction
+from .extras import generate_billing_id
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+
 import stripe
 
-API_KEY = settings.STRIPE_SECRET_KEY 
+stripe.api_key = ''
 
-def payment(request, **kwargs):
-        
-    return render(request, 'payment/payment.html', context)
+# Create your views here.
+def get_user_billing(request):
+    # get order for the correct user
+    user = get_object_or_404(User, username=request.user.username)
+    billing_user = Billing.objects.filter(User=user, is_active=True)
+    if billing_user.exists():
+        # get the only billing_user in the list of filtered orders
+        return billing_user[0]
+    return 0
 
-def payment(request, **kwargs):
-    client_token = generate_client_token()
-    existing_order = get_user_pending_order(request)
-    publishKey = settings.STRIPE_PUBLISHABLE_KEY
+
+def payment(request):
+
+	return render(request, 'payment/payment.html')
+
+
+def charge(request):
+    user = get_object_or_404(User, username=request.user.username)
+    billing = Billing.objects.filter(User=user)
+
     if request.method == 'POST':
         token = request.POST.get('stripeToken', False)
-        if token:
-            try:
-                charge = stripe.Charge.create(
-                    amount=100*existing_order.get_cart_total(),
-                    currency='usd',
-                    description='Example charge',
-                    source=token,
-                )
+        user_billing = get_user_billing(request)
 
-                return redirect(reverse('update_records',
-                        kwargs={
-                            'token': token
-                        })
-                    )
-            except stripe.CardError as e:
-                message.info(request, "Your card has been declined.")
-        else:
-            result = transact({
-                'amount': existing_order.get_cart_total(),
-                'payment_method_nonce': request.POST['payment_method_nonce'],
-                'options': {
-                    "submit_for_settlement": True
-                }
-            })
+        customer = stripe.Customer.create(
+            email=user_billing.User.email,
+            name=user_billing.User.username,
+            source=token
+        )
+        charge = stripe.Charge.create(
+            customer=customer,
+            amount=100*user_billing.ammount,
+            currency='zar',
+            description=user_billing.plan
+        )
 
-            if result.is_success or result.transaction:
-                return redirect(reverse('update_records',
-                        kwargs={
-                            'token': result.transaction.id
-                        })
-                    )
-            else:
-                for x in result.errors.deep_errors:
-                    messages.info(request, x)
-                return redirect(reverse('payment'))
+    return redirect(reverse('update_records', kwargs={'token': token}))
+
+@login_required()
+def update_transaction_records(request, token):
+    user = get_object_or_404(User, username=request.user.username)
+    user_billing = get_user_billing(request)
+    # create a transaction
+    transaction = Transaction(user=user,
+                            token=token,
+                            billing_id=generate_billing_id(),
+                            amount=user_billing.get_monthly_ammount(),
+                            success=True)
+    # save the transcation (otherwise doesn't exist)
+    transaction.save()
+
+
+    # send an email to the customer
+    # look at tutorial on how to send emails with sendgrid
+    return redirect(reverse('dashboard'))
+
+def password_verification(request):
+    user = get_object_or_404(User, username=request.user.username)
+    if request.method == 'POST':
+        password = request.POST['password']
+        if password == user.password:
+            return redirect('canclell')
             
-    context = {
-        'order': existing_order,
-        'client_token': client_token,
-        'STRIPE_PUBLISHABLE_KEY': publishKey
-    }
-
-    return render(request, 'payment/payment.html', context)
-
-
-    
-
-    
+    return redirect('subscriptions-detail', id=user.id)        

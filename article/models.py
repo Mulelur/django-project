@@ -18,6 +18,23 @@ class Article(models.Model):
     def __str__(self):
         return self.title
 
+class FAQsCategory(models.Model):
+    title = models.CharField(max_length=70)
+    slug = models.SlugField(unique=True, blank=True)
+
+    def __str__(self):
+        return self.title
+
+class FAQ(models.Model):     
+    title = models.CharField(max_length=100)
+    category = models.ForeignKey(FAQsCategory, on_delete=models.CASCADE)
+    text = RichTextUploadingField(blank=True)
+    date = models.DateTimeField(auto_now=True, blank=True)
+    slug = models.SlugField(blank=True, unique=True)
+
+    def __str__(self):
+        return self.title   
+
 
 
 

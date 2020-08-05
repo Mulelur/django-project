@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from accounts.models import Address
+from .models import Address
 from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
 
@@ -45,4 +45,4 @@ class UserChangeDashboardForm(UserChangeForm):
 class UserChangeAddressForm(ModelForm):
     class Meta:
         model = Address
-        fields = '__all__'    
+        fields = '__all__' 

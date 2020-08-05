@@ -1,0 +1,66 @@
+{% load crispy_forms_tags %}
+  <!-- Modal Form -->
+  <div class="modal fade" tabindex="-1" id="modalForm">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Change Plan</h5>
+                <a href="#" class="close" data-dismiss="modal" aria-label="Close">
+                    <em class="icon ni ni-cross"></em>
+                </a>
+            </div>
+            <div class="modal-body">
+                <form action="{% url 'update_billing' %}" method="POST" class="form-validate is-alter">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{ form | crispy }}
+                        <a class="" data-container="body" 
+                            data-toggle="popover" data-placement="top" 
+                            data-content="if you check the billed monthly you will be chaegered on a monthly base. ">
+                            <span text-primary><em class="icon ni ni-info"></em></span>
+                        </a>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-lg btn-primary">Save Informations</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer bg-light">
+                <span class="sub-text">Change Plan</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+  <!-- Modal Form -->
+  <div class="modal fade" tabindex="-1" id="SwitchBillingCycle">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Switch Billing Cycle</h5>
+                <a href="#" class="close" data-dismiss="modal" aria-label="Close">
+                    <em class="icon ni ni-cross"></em>
+                </a>
+            </div>
+            <div class="modal-body">
+                <form action="{% url 'switch_billing_cycle' %}" method="POST" class="form-validate is-alter">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{ form1 | crispy }}
+                        <a class="" data-container="body" 
+                            data-toggle="popover" data-placement="top" 
+                            data-content="if you check the billed monthly you will be chaegered on a monthly base. ">
+                            <span text-primary><em class="icon ni ni-info"></em></span>
+                        </a>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-lg btn-primary">Save Informations</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer bg-light">
+                <span class="sub-text">Switch Billing Cycle</span>
+            </div>
+        </div>
+    </div>
+</div>

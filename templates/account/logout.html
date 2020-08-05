@@ -1,28 +1,146 @@
-{% extends 'base-2.html' %}
-{% load static %}
-{% block content %}
+{% extends "account/base.html" %}
 
-<main>
-    <div class="container-fluid">
-        <div class="row align-items-center">
-            <div class="col-md-6 col-lg-7 fullscreen-md d-flex justify-content-center align-items-center overlay gradient gradient-purple-navy alpha-7 image-background cover" style="background-image:url(https://picsum.photos/1920/1200/?random&gravity=south)">
-                <div class="content">
-                    <h2 class="display-4 display-md-3 text-contrast mt-4 mt-md-0">Welcome to <span class="bold d-block">Noterio</span></h2>
-                    <p class="lead text-contrast">You have been logged out</p>
-                    <hr class="mt-md-6 w-25">
-                    <div class="d-flex flex-column">
-                        <p class="small bold text-contrast">Or sign in with</p>
-                        <nav class="nav mb-4"><a class="btn btn-rounded btn-outline-secondary brand-facebook mr-2" href="#"><i class="fab fa-facebook-f"></i></a> <a class="btn btn-rounded btn-outline-secondary brand-twitter mr-2" href="#"><i class="fab fa-twitter"></i></a> <a class="btn btn-rounded btn-outline-secondary brand-linkedin" href="#"><i class="fab fa-linkedin-in"></i></a></nav>
-                    </div>
-                </div>
+{% load i18n %}
+
+{% block head_title %}{% trans "Sign Out" %}{% endblock %}
+{% load static %}
+{% block content %}   
+<div class="nk-app-root">
+    <!-- main @s -->
+    <div class="nk-main ">
+        <!-- wrap @s -->
+        <div class="nk-wrap nk-wrap-nosidebar">
+            <!-- content @s -->
+            <div class="nk-content ">
+                <div class="nk-split nk-split-page nk-split-md">
+                    <div class="nk-split-content nk-block-area nk-block-area-column nk-auth-container bg-white">
+                        <div class="absolute-top-right d-lg-none p-3 p-sm-5">
+                            <a href="#" class="toggle btn-white btn btn-icon btn-light" data-target="athPromo"><em class="icon ni ni-info"></em></a>
+                        </div>
+                        <div class="nk-block nk-block-middle nk-auth-body">
+                            <div class="brand-logo pb-5">
+                                <a href="html/index.html" class="logo-link">
+                                    <img class="logo-light logo-img logo-img-lg" src="{% static 'logo/Noterio-logo.png' %}" srcset="./images/logo2x.png 2x" alt="logo">
+                                    <img class="logo-dark logo-img logo-img-lg" src="{% static 'logo/Noterio-logo.png' %}" srcset="./images/logo-dark2x.png 2x" alt="logo-dark">
+                                </a>
+                            </div>
+                            <div class="nk-block-head">
+                                <div class="nk-block-head-content">
+                                    <h5 class="nk-block-title">{% trans "Sign Out" %}</h5>
+                                    <div class="nk-block-des">
+                                      <p>{% trans 'Are you sure you want to sign out?' %}</p>                                    </div>
+                                </div>
+                            </div><!-- .nk-block-head -->
+                            <div class="form-group">
+                                  <form method="post" action="{% url 'account_logout' %}">
+                                    {% csrf_token %}
+                                    {% if redirect_field_value %}
+                                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                                    {% endif %}
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-lg btn-primary btn-block">{% trans 'Sign Out' %}</button>
+                                </div>
+                            </form><!-- form -->
+                        </div><!-- .nk-block -->
+                        <div class="nk-block nk-auth-footer">
+                            <div class="nk-block-between">
+                                <ul class="nav nav-sm">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Terms & Condition</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Privacy Policy</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Help</a>
+                                    </li>
+                                    <li class="nav-item dropup">
+                                        <a class="dropdown-toggle dropdown-indicator has-indicator nav-link" data-toggle="dropdown" data-offset="0,10"><small>English</small></a>
+                                        <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
+                                            <ul class="language-list">
+                                                <li>
+                                                    <a href="#" class="language-item">
+                                                        <img src="./images/flags/english.png" alt="" class="language-flag">
+                                                        <span class="language-name">English</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="language-item">
+                                                        <img src="./images/flags/spanish.png" alt="" class="language-flag">
+                                                        <span class="language-name">Español</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="language-item">
+                                                        <img src="./images/flags/french.png" alt="" class="language-flag">
+                                                        <span class="language-name">Français</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="language-item">
+                                                        <img src="./images/flags/turkey.png" alt="" class="language-flag">
+                                                        <span class="language-name">Türkçe</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul><!-- .nav -->
+                            </div>
+                            <div class="mt-3">
+                                <p>&copy; 2019 DashLite. All Rights Reserved.</p>
+                            </div>
+                        </div><!-- .nk-block -->
+                    </div><!-- .nk-split-content -->
+                    <div class="nk-split-content nk-split-stretch bg-lighter d-flex toggle-break-lg toggle-slide toggle-slide-right" data-content="athPromo" data-toggle-screen="lg" data-toggle-overlay="true">
+                        <div class="slider-wrap w-100 w-max-550px p-3 p-sm-5 m-auto">
+                            <div class="slider-init" data-slick='{"dots":true, "arrows":false}'>
+                                <div class="slider-item">
+                                    <div class="nk-feature nk-feature-center">
+                                        <div class="nk-feature-img">
+                                            <img class="round" src="https://picsum.photos/1920/1200/?random&gravity=south" srcset="./images/slides/promo-a2x.png 2x" alt="">
+                                        </div>
+                                        <div class="nk-feature-content py-4 p-sm-5">
+                                            <h4>Dashlite</h4>
+                                            <p>You can start to create your products easily with its user-friendly design & most completed responsive layout.</p>
+                                        </div>
+                                    </div>
+                                </div><!-- .slider-item -->
+                                <div class="slider-item">
+                                    <div class="nk-feature nk-feature-center">
+                                        <div class="nk-feature-img">
+                                            <img class="round" src="https://picsum.photos/1920/1200/?random&gravity=south" srcset="./images/slides/promo-b2x.png 2x" alt="">
+                                        </div>
+                                        <div class="nk-feature-content py-4 p-sm-5">
+                                            <h4>Dashlite</h4>
+                                            <p>You can start to create your products easily with its user-friendly design & most completed responsive layout.</p>
+                                        </div>
+                                    </div>
+                                </div><!-- .slider-item -->
+                                <div class="slider-item">
+                                    <div class="nk-feature nk-feature-center">
+                                        <div class="nk-feature-img">
+                                            <img class="round" src="./images/slides/promo-c.png" srcset="./images/slides/promo-c2x.png 2x" alt="">
+                                        </div>
+                                        <div class="nk-feature-content py-4 p-sm-5">
+                                            <h4>Dashlite</h4>
+                                            <p>You can start to create your products easily with its user-friendly design & most completed responsive layout.</p>
+                                        </div>
+                                    </div>
+                                </div><!-- .slider-item -->
+                            </div><!-- .slider-init -->
+                            <div class="slider-dots"></div>
+                            <div class="slider-arrows"></div>
+                        </div><!-- .slider-wrap -->
+                    </div><!-- .nk-split-content -->
+                </div><!-- .nk-split -->
             </div>
-            <div class="col-md-5 col-lg-4 mx-auto">
-                <div class="login-form mt-5 mt-md-0"><a href="{% url 'home' %}"><img src="{% static 'logo/Noterio-logo.png' %}" class="logo img-responsive mb-4 mb-md-6" alt=""></a>
-                    <h1 class="text-darker bold">You have been logged out</h1>
-                    <p class="text-secondary mt-0 mb-4 mb-md-6">Log In Again<a href="{% url 'logout' %}" class="text-primary bold">Login here</a></p>
-                </div>
-            </div>
+            <!-- wrap @e -->
         </div>
+        <!-- content @e -->
     </div>
-</main><!-- themeforest:js -->
+    <!-- main @e -->
+</div>
+ 
 {% endblock %}
