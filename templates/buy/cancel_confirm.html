@@ -1,0 +1,31 @@
+{% extends 'base-5(buy).html' %}
+{% load static %}
+{% block content %}
+<div class="nk-content ">
+    <div class="container-fluid">
+        <div class="nk-content-inner">
+            <div class="nk-content-body">
+                <div class="nk-block">
+                    <div class="modal-dialog modal-md">
+                        <div class="modal-content">
+                            <div class="modal-body modal-body-md text-center">
+                                <div class="nk-modal">
+                                    <em class="nk-modal-icon icon icon-circle icon-circle-xxl ni ni-check bg-success"></em>
+                                    <h4 class="nk-modal-title">Cancletion Successfully!</h4>
+                                    <div class="nk-modal-text">
+                                        <p>It will effect at the end of your current billing cycle on <strong>{% if billing.billed_monthly %}{{ billing.get_next_billing }}{% else %}{{ billing.get_next_billing_yearly }}{% endif %}</strong>. We sent you a confirmation email <strong>(this may take up to 3 hours to receive)</strong>.</p>
+                                        <p class="sub-text-sm"><a href="#">Click here</a> to learn more about subscription plan.</p>
+                                    </div>
+                                    <div class="nk-modal-action-lg">
+                                        <a href="{% url 'subscriptions' %}" class="btn btn-mw btn-light" data-dismiss="modal">Return To Subscription</a>
+                                    </div>
+                                </div>
+                            </div><!-- .modal-body -->
+                        </div><!-- .modal-content -->
+                    </div>
+                </div><!-- .nk-block -->
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

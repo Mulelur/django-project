@@ -1,8 +1,8 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Address
 from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
+from buy.models import Billing
 
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()
@@ -39,10 +39,38 @@ class UserChangeDashboardForm(UserChangeForm):
     phone = forms.CharField(max_length=20)
     class Meta:
         model = User
-        fields = [ 'first_name', 'last_name', 'username','email', 'date_of_birth', 'phone']
+        fields = [ 'first_name', 'last_name',]
     
 
 class UserChangeAddressForm(ModelForm):
     class Meta:
-        model = Address
+        model = Billing
         fields = '__all__' 
+
+class ChangeNamesForm(UserChangeForm):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name']
+
+class ChangeUsernameForm(UserChangeForm):
+    class Meta:
+        model = User
+        fields = ['username',]  
+        
+              
+class ChangeEmailForm(UserChangeDashboardForm):
+    class Meta:
+        model = User
+        fields = ['email',] 
+
+              
+class ChangeDateBirthForm(UserChangeDashboardForm):
+    class Meta:
+        model = User
+        fields = ['date_of_birth',] 
+
+              
+class ChangePhoneForm(UserChangeDashboardForm):
+    class Meta:
+        model = User
+        fields = ['phone',] 

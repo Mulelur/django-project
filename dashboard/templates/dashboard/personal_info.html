@@ -126,7 +126,7 @@
                 </ul><!-- .nav-tabs -->
                 <div class="tab-content">
                         <div class="tab-pane active" id="personal">
-                            <form method="POST">
+                            <form method="POST" action="{% url 'usernameform_view' %}">
                                 {% csrf_token %}
                             <!-- <div class="row gy-4">
                                 <div class="col-md-6">
@@ -171,7 +171,7 @@
                                 </div>
                             </div> -->
                             <div class="">
-                                {{ form|crispy }}
+                                {{ usernameform|crispy }}
                                 <div class="col-12">
                                     <ul class="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
                                         <li>

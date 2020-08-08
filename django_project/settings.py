@@ -174,7 +174,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL ='home:home'
 
-LOGIN_URL = 'login'
+LOGIN_URL = 'account_login'
 
 if DEBUG:
     # test keys

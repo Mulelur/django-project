@@ -7,17 +7,9 @@
                 <h4 class="nk-modal-title title">Cancel Your Subscription</h4>
                 <p><strong>Are you sure you want to cancel your subscription?</strong></p>
                 <p>If you cancel, you'll lose your all demand. But you can re-subscription your favourite plan any time.</p>
-                <form action="{% url 'password-verification' %}" method="POST">
+                <form action="{% url 'cancel-subscription' %}" method="POST">
                     {% csrf_token %}
-                    <div class="form-group">
-                        <label class="form-label">Enter your password to confirm cancellation</label>
-                        <div class="form-control-wrap">
-                            <input name="password" type="password" class="form-control" placeholder="*********">
-                        </div>
-                        <div class="form-note">
-                            <span>You'll receieve confirmation email once successfully cancel your plan.</span>
-                        </div>
-                    </div>
+                 
                     <ul class="align-center flex-wrap g-3">
                         <li>
                             <button class="btn btn-primary" type="submit">Cancel Subscription</button>
@@ -26,7 +18,6 @@
                             <a href="#" class="btn btn-light" data-dismiss="modal">Never mind, don't cancel</a>
                         </li>
                     </ul>
-
                 </form>
             </div>
         </div><!-- .modal-content -->

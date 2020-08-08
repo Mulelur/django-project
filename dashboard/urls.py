@@ -14,7 +14,8 @@ from .views import (
  faqs,
  contact,
  invoices_print,
- subscriptions_detail
+ subscriptions_detail,
+ usernameform_View
  )
 
 urlpatterns = [
@@ -33,5 +34,6 @@ urlpatterns = [
     path('support/', support, name='support'),
     path('faqs/', faqs, name='faqs'),
     path('contact/', contact, name='contact'),
+    path('usernameform/', usernameform_View, name='usernameform_view')
 
 ]

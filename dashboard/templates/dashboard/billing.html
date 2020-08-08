@@ -1,5 +1,6 @@
 {% extends 'base-3(dashboard).html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 {% block content %}
 <div class="nk-content-body">
     <div class="nk-content-wrap">
@@ -45,8 +46,10 @@
                                 <ul class="align-center gx-3">
                                     <li>
                                         <div class="custom-control custom-control-right custom-switch">
-                                            <input type="checkbox" class="custom-control-input" id="auto-renewal">
-                                            <label class="custom-control-label" for="auto-renewal">Auto Renewal</label>
+                                            <form action="{% url 'auto-renew-toggel' %}">
+                                                {% csrf_token %}
+                                                {{ auto_form|crispy }}
+                                            </form>    
                                         </div>
                                     </li>
                                 </ul>
@@ -60,7 +63,7 @@
                 <div class="nk-block-head-content">
                     <h5 class="nk-block-title">Billing Cycle</h5>
                     <div class="nk-block-des">
-                        <p>Your subscription renews on {{ billing.get_next_billing }} <span class="fs-13px text-soft">({{ billing.get_day }} remaining).</span></p>
+                        <p>Your subscription renews on {% if billing.billed_monthly %}{{ billing.get_next_billing }}{% else %}{{ billing.get_next_billing_yearly }}{% endif %} <span class="fs-13px text-soft">({{ billing.get_day }} remaining).</span></p>
                     </div>
                 </div>
             </div><!-- Nk-Block-head -->
@@ -71,7 +74,7 @@
                             <div class="nk-block-text">
                                 <h6>Yearly Subscription</h6>
                                 <ul class="list-inline list-col2 text-soft">
-                                    <li>Next payment: <strong class="text-base">R {{ billing.ammount }}</strong> on <strong class="text-base">{{ billing.get_next_billing }}</strong></li>
+                                    <li>Next payment: <strong class="text-base">R {{ billing.ammount }}</strong> on <strong class="text-base">{% if billing.billed_monthly %}{{ billing.get_next_billing }}{% else %}{{ billing.get_next_billing_yearly }}{% endif %}</strong></li>
                                     <li>Last payment made: Jan 28, 2019</li>
                                 </ul>
                             </div>

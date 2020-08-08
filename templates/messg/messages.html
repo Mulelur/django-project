@@ -1,0 +1,120 @@
+{% if messages %}
+
+ 	<style type="text/css">
+ 		div.messages{
+ 			background-color: #ff6b6b;
+ 			color: #f7fff7;
+ 		}
+ 		ul.messages{
+ 			list-style-type: none;
+ 		}
+ 	</style>
+
+    <div class='messages'>
+
+    <ul class="messages">
+    {% for message in messages %}
+    <li id="ms" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{% if "html_safe" in message.tags %}{{ message|safe }}{% else %}{{ message }}{% endif %}</li>
+    {% endfor %}
+    </ul>
+
+    </div>
+{% endif %}
+<script>
+    "use strict";
+    !(function (e) {
+      e(".eg-swal-default").on("click", function (e) {
+        Swal.fire("A Simple sweet alert Content"), e.preventDefault();
+      }),
+        e("#ms").on("load", function (e) {
+          Swal.fire("Good job!", "{% if "html_safe" in message.tags %}{{ message|safe }}{% else %}{{ message }}{% endif %}", "success"),
+            e.preventDefault();
+        }),
+        e(".eg-swal-info").on("click", function (e) {
+          Swal.fire("Good job!", "You clicked the button!", "info"),
+            e.preventDefault();
+        }),
+        e(".eg-swal-warning").on("click", function (e) {
+          Swal.fire("Good job!", "You clicked the button!", "warning"),
+            e.preventDefault();
+        }),
+        e(".eg-swal-error").on("click", function (e) {
+          Swal.fire("Good job!", "You clicked the button!", "error"),
+            e.preventDefault();
+        }),
+        e(".eg-swal-question").on("click", function (e) {
+          Swal.fire("Good job!", "You clicked the button!", "question"),
+            e.preventDefault();
+        }),
+        e(".eg-swal-av2").on("click", function (e) {
+          Swal.fire({
+            title: "<strong>HTML <u>example</u></strong>",
+            icon: "info",
+            html:
+              'You can use <b>bold text</b>, <a href="//sweetalert2.github.io">links</a> and other HTML tags',
+            showCloseButton: !0,
+            showCancelButton: !0,
+            focusConfirm: !1,
+            confirmButtonText: '<i class="fa fa-thumbs-up"></i> Great!',
+            confirmButtonAriaLabel: "Thumbs up, great!",
+            cancelButtonText: '<i class="fa fa-thumbs-down"></i>',
+            cancelButtonAriaLabel: "Thumbs down",
+          }),
+            e.preventDefault();
+        }),
+        e(".eg-swal-av2").on("click", function (e) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Your work has been saved",
+            showConfirmButton: !1,
+            timer: 1500,
+          }),
+            e.preventDefault();
+        }),
+        e(".eg-swal-av3").on("click", function (e) {
+          Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: !0,
+            confirmButtonText: "Yes, delete it!",
+          }).then(function (e) {
+            e.value &&
+              Swal.fire("Deleted!", "Your file has been deleted.", "success");
+          }),
+            e.preventDefault();
+        }),
+        e(".eg-swal-av6").on("click", function (e) {
+          Swal.fire({
+            title: "Submit your Github username",
+            input: "text",
+            inputAttributes: { autocapitalize: "off" },
+            showCancelButton: !0,
+            confirmButtonText: "Look up",
+            showLoaderOnConfirm: !0,
+            preConfirm: function (e) {
+              return fetch("//api.github.com/users/".concat(e))
+                .then(function (e) {
+                  if (!e.ok) throw new Error(e.statusText);
+                  return e.json();
+                })
+                .catch(function (e) {
+                  Swal.showValidationMessage("Request failed: ".concat(e));
+                });
+            },
+            allowOutsideClick: function () {
+              return !Swal.isLoading();
+            },
+          }).then(function (e) {
+            e.value &&
+              Swal.fire({
+                title: "".concat(e.value.login, "'s avatar"),
+                imageUrl: e.value.avatar_url,
+                imageWidth: "120px",
+              });
+          }),
+            e.preventDefault();
+        });
+    })((NioApp, jQuery));
+</script>

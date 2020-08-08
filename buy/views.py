@@ -3,7 +3,7 @@ from .models import Billing, Request, Plan
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import PlanModelForm, RequestModelForm, ChangePlanForm, BillingUpDateStateForm, BillingModelForm, AoutoRenewOnForm, SwitchBillingCycleForm
+from .forms import PlanModelForm, BillingInfoAbbreseForm, RequestModelForm, ChangePlanForm, BillingUpDateStateForm, BillingModelForm, AoutoRenewOnForm, SwitchBillingCycleForm
 from payment.views import get_user_billing
 
 def buyView(request):
@@ -31,11 +31,13 @@ def buyingPlanView(request):
     user = get_object_or_404(User, username=request.user.username)
     billing = Billing.objects.filter(User=user)
     if billing:
-        billing = Billing.objects.get(User=user)
+        try:
+            billing = Billing.objects.get(User=user, is_active=True)
+        except:
+            billing = Billing.objects.filter(User=user).first()
         form = BillingModelForm(request.POST or None, instance=billing)
         if form.is_valid():
             form.save()
-            
             return redirect('buy-request')
     else:
         form = BillingModelForm(request.POST or None)
@@ -55,7 +57,7 @@ def buyingPlanView(request):
                     obj.ammount = '2940'
                 else: 
                     obj.ammount = '6594'
-            obj.user = request.user
+            obj.user = user
             obj.save()  
 
             return redirect('buy-request')        
@@ -68,6 +70,25 @@ def buyingPlanView(request):
     }
 
     return render(request, template, context)
+
+def billingInfoView(request):
+    user = get_object_or_404(User, username=request.user.username)
+    billing = Billing.objects.get(User=user, is_active=True)
+    form = BillingInfoAbbreseForm(request.POST or None, instance=billing)
+    if form.is_valid():
+        obj = form.save(commit=False)
+        obj.user = user
+        obj.save()        
+        return redirect('buy-payment')
+
+    template = 'buy/billing.html'
+
+    context = {
+        'billing': billing,
+        'form': form
+    }
+
+    return render(request, template, context)  
 
 @login_required
 def buyingFreePlanView(request, username):
@@ -97,7 +118,7 @@ def buyingRequestView(request):
         obj = form.save(commit=False)
         obj.user = request.user
         obj.save()        
-        return redirect('buy-payment')
+        return redirect('billon-info')
 
     template = 'buy/buy-request.html'
 
@@ -110,7 +131,10 @@ def buyingRequestView(request):
 @login_required
 def buyingPaymentView(request):
     user = get_object_or_404(User, username=request.user.username)
-    billing = Billing.objects.get(User=user)
+    try:
+        billing = Billing.objects.get(User=user, is_active=True)
+    except:
+        billing = Billing.objects.filter(User=user).first()
     template = 'buy/buy-payment.html'
 
     context = {
@@ -122,15 +146,9 @@ def buyingPaymentView(request):
 def auto_renew_toggel(request):
     user = get_object_or_404(User, username=request.user.username)
     billing = Billing.objects.get(User=user)
-
     form = AoutoRenewOnForm(request.POST or None, instance=billing)
     if form.is_valid():
-        obj = form.save(commit=False)
-        if obj.auto_renew:
-            obj.auto_renew = False
-        else:
-            obj.auto_renew = True
-        obj.save()        
+        form.save()
         return redirect('subscriptions')
 
     return redirect('subscriptions')  
@@ -174,3 +192,44 @@ def update_billing(request):
     return redirect('billing')
 
 
+def rewnew_billing(request, id):
+    user = get_object_or_404(User, username=request.user.username)
+    billing = Billing.objects.get(User=request.user, id=id)
+    obj=billing
+    obj.is_active = True
+    obj.user = user
+    obj.save()
+
+    return redirect('rewnew_confirm')
+
+
+def billing_cancel_view(request):
+    user = get_object_or_404(User, username=request.user.username)
+    get_billing = Billing.objects.get(User=request.user, is_active=True)
+    billing = Billing.objects.filter(User=user)
+    form = BillingUpDateStateForm(request.POST or None, instance=get_billing)
+    if form.is_valid():
+        obj = form.save(commit=False)
+        obj.is_active = False
+        obj.user = user
+        obj.save()
+
+        return redirect('cancel_confirm')
+
+def thank_you(request):
+    template = 'buy/thank_you.html'
+    return render(request, template)
+
+def cancel_confirm(request):
+    template = 'buy/cancel_confirm.html'
+    user = get_object_or_404(User, username=request.user.username)
+    billing = Billing.objects.filter(User=user).first()
+    context = {'billing': billing}
+    return render(request, template, context)
+
+def rewnew_confirm(request):
+    template = 'buy/rewnew_confirm.html'
+    user = get_object_or_404(User, username=request.user.username)
+    billing = Billing.objects.filter(User=user).first()
+    context = {'billing': billing}
+    return render(request, template, context)    

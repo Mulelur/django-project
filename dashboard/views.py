@@ -1,22 +1,33 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from buy.models import Billing, Transaction, Plan
 from django.contrib.auth.models import User
 from payment.views import get_user_billing
-from buy.forms import ChangePlanForm, SwitchBillingCycleForm
+from buy.forms import ChangePlanForm, SwitchBillingCycleForm, AoutoRenewOnForm
 from article.models import FAQ, Category, FAQsCategory
-from .models import WebSite, Address
-from .forms import UserRegisterForm, UserChangeRegisterForm, UserChangeDashboardForm, UserChangeAddressForm, PasswordChangeForm
+from .models import WebSite
+from .forms import (UserRegisterForm,
+                     UserChangeRegisterForm,
+                     UserChangeDashboardForm,
+                     UserChangeAddressForm,
+                     PasswordChangeForm,
+                     ChangeNamesForm,
+                     ChangeUsernameForm,
+                     ChangeUsernameForm)
 
 @login_required
 def dashboard(request):
     template = 'dashboard/index.html'
     user = get_object_or_404(User, username=request.user)
     website = WebSite.objects.all()
+    billing = Billing.objects.filter(User=user)
+    transaction = Transaction.objects.filter(user=user)
     if website:
         website = WebSite.objects.get(user=request.user)
     context = {
-        'website': website
+        'website': website,
+        'billing': billing,
+        'transaction': transaction
     }
     
     return render(request, template, context)
@@ -24,33 +35,33 @@ def dashboard(request):
 @login_required
 def personal_info(request):
     template = 'dashboard/personal_info.html'
+    user = get_object_or_404(User, username=request.user.username)
     profile = get_object_or_404(User, username=request.user)
-    user = User.objects.all()
-    if user:
-        form = UserChangeDashboardForm(request.POST or None, instance=profile)
-        if form.is_valid():
-            form.save()
-    else:
-        form = UserChangeDashboardForm(request.POST or None)
-        if form.is_valid():
-            form.save()
-    address = Address.objects.filter(user=request.user)
-    if address:
-        addressform = UserChangeAddressForm(request.POST or None, instance=address)
-        if addressform.is_valid():
-            addressform.save()
 
-    else:
-        addressform = UserChangeAddressForm(request.POST or None)
-        if addressform.is_valid():
-            addressform.save()
+    addressform = UserChangeAddressForm(request.POST or None)
+    nameform = ChangeNamesForm(request.POST or None, instance=user)
+    usernameform = ChangeUsernameForm(request.POST or None)
+
+   
+
+
     context = {
-        'form': form,
         'profile': profile,
-        'aform': addressform
+        'aform': addressform,
+        'nameform': nameform,
+        'usernameform': usernameform
     }
       
-    return render(request, template, context)    
+    return render(request, template, context)  
+
+def usernameform_View(request):
+    user = get_object_or_404(User, username=request.user.username)
+    usernameform = ChangeUsernameForm(request.POST or None, instance=user)
+    if usernameform.is_valid:
+        usernameform.save()
+        return redirect('personal_info')
+
+
 
 def billing(request):
     template = 'dashboard/billing.html'
@@ -58,6 +69,8 @@ def billing(request):
     billing = Billing.objects.get(User=user, is_active=True)
     form = ChangePlanForm(instance=billing)
     form1 = SwitchBillingCycleForm(request.POST or None, instance=billing)
+    auto_form = SwitchBillingCycleForm(request.POST or None, instance=billing)
+
 
     # if billing.is_active:
 
@@ -65,7 +78,8 @@ def billing(request):
     context = {
         'billing': billing,
         'form': form,
-        'form1': form1
+        'form1': form1,
+        'auto_form': auto_form
     }
     
     return render(request, template, context) 
@@ -94,9 +108,12 @@ def subscriptions(request):
     template = 'dashboard/subscriptions.html'
     user = get_object_or_404(User, username=request.user.username)
     billing = Billing.objects.filter(User=user)[:5]
-    get_billing = Billing.objects.get(User=user, is_active=True)
+    try:
+        get_billing = Billing.objects.get(User=user, is_active=True)
+    except:
+        get_billing = Billing.objects.filter(User=user).first()
     user_billing = get_user_billing(request)
-    plan = Plan.objects.exclude(plan=user_billing.plan)
+    # plan = Plan.objects.exclude(plan=user_billing.plan)
 
     form = ChangePlanForm(request.POST or None)
     if form.is_valid():
@@ -122,7 +139,7 @@ def subscriptions(request):
     context = {
         'billing': billing,
         'get_billing': get_billing,
-        'plan': plan,
+        # 'plan': plan,
         'form': form
     }
     
@@ -228,3 +245,4 @@ def contact(request):
     context = {}
     
     return render(request, template, context)
+
