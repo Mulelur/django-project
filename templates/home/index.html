@@ -23,8 +23,7 @@
             <span class="d-block light font-md">Best website billder In 2020</span>
           </h1>
           <p class="lead">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab dolore
-            excepturi explicabo.
+            Stand out online with a professional website, online store, or portfolio. With Squarespace, you can turn any idea into a reality.
           </p>
           <div class="nav mt-5 align-items-center">
             <a
@@ -297,7 +296,7 @@
         <div class="row gap-y align-items-center">
             <div class="col-md-6 col-lg-5 mr-lg-auto">
                 <div class="center-xy op-1">
-                    <div class="shape shape-background rounded-circle shadow-lg bg-info" style="width: 600px; height: 600px;" data-aos="zoom-in"></div>
+                    <div style="z-index: 95;" class="shape shape-background rounded-circle shadow-lg bg-info" style="width: 600px; height: 600px;" data-aos="zoom-in"></div>
                 </div>
                 <div class="device-twin align-items-center">
                     <div class="mockup absolute" data-aos="fade-left">
@@ -496,7 +495,7 @@
             >Register Account</a
           >
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-6" style="z-index: 300;">
           <div class="icons-wrapper position-relative">
             <div
               class="floating icon icon-xl bg-contrast rounded-circle p-3 shadow m-0 absolute d-flex justify-content-center align-items-center"
@@ -604,7 +603,7 @@
                 <div class="swiper-slide">
                   <figure
                     class="m-0 image-background cover"
-                    style="background-image: url(img/testimonials/3.jpg);"
+                    style="background-image: url({% static 'img/testimonials/3.jpg' %});"
                   >
                     <img
                       src="{% static 'img/testimonials/3.jpg"
