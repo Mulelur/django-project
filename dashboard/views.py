@@ -222,8 +222,13 @@ def invoices_print(request, id):
 
 def support(request):
     template = 'dashboard/support.html'
+    category = Category.objects.all()
+    article_sulg = Category__article_category__slug
 
-    context = {}
+    context = {
+        'category': category,
+        'article_sulg': article_sulg
+    }
     
     return render(request, template, context)
 

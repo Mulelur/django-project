@@ -9,6 +9,7 @@ urlpatterns = [
     path('', include('home.urls')),
     # path('account/', include('accounts.urls')),
     path('profile/', include('profiles.urls')),
+    path('article/', include('article.urls')),
     path('help/', include('help.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('buy/', include('buy.urls')),
