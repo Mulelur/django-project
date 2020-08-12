@@ -113,7 +113,8 @@ class Billing(models.Model):
         tdelta = datetime.timedelta(days=30)
         month = self.staterd + tdelta
         today = datetime.date.today()
-        return month - today
+        day = month - today
+        return day.days
 
     def get_monthly_ammount(self):
         return self.ammount

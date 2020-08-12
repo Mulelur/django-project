@@ -14,10 +14,35 @@
                             </div>
                         </div>
                     </div><!-- .nk-block-head -->
+                    {% if website %}
+                    <div class="nk-block">
+                        <div class="card card-custom-s1 card-bordered">
+                            <div class="card-inner card-inner-lg h-100">
+                                <div class="align-center flex-wrap flex-md-nowrap g-3 h-100">
+                                    <div class="nk-block-content">
+                                        <div class="nk-block-content-head">
+                                            <h4>My website</h4>
+                                        </div>
+                                        {% if website %}
+                                        <div class="nk-block-content-head">
+                                            <div class="nk-wg1">
+                                                <div class="nk-wg1-block">
+                                                    <a href="{{ website.domain. }}"><img src="" alt="">{{ website.name }}</a>
+                                                </div>
+                                            </div>    
+                                        </div>
+                                        {% endif %}
+                                        <a href="{{ website.domain }}/admin" class="btn btn-lg btn-primary">Go To Website</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- .card -->
+                    </div><!-- .nk-block -->
+                    {% else %}
                     <div class="nk-block">
                         <div class="card card-custom-s1 card-bordered">
                             <div class="row no-gutters">
-                                <div class="col-lg-4">
+                                <div class="col-lg-12">
                                     <div class="card-inner-group">
                                         <div class="card-inner">
                                             <h5>Let’s Finish Your Website</h5>
@@ -46,34 +71,10 @@
                                         </div>
                                     </div>
                                 </div><!-- .col -->
-                                <div class="col-lg-8">
-                                    <div class="card-inner card-inner-lg h-100">
-                                        <div class="align-center flex-wrap flex-md-nowrap g-3 h-100">
-                                            <div class="nk-block-content">
-                                                <div class="nk-block-content-head">
-                                                    <h4>My website</h4>
-                                                </div>
-                                                <p>Onece your website is ready it will apiare here and you will recive an email.</p>
-                                                {% if website %}
-                                                <div class="nk-block-content-head">
-                                                    <div class="nk-wg1">
-                                                        <div class="nk-wg1-block">
-                                                            <a href="{{ website.domain. }}"><img src="" alt="">{{ website.name }}</a>
-                                                        </div>
-                                                        <div class="nk-wg1-action">
-                                                            <a href="{{ website.domain }}/admin" class="link"><span>Manage Your WebSites</span><em class="icon ni ni-chevron-right"></em></a>
-                                                        </div>
-                                                    </div>    
-                                                </div>
-                                                {% endif %}
-                                                <a href="{{ website.domain. }}" class="btn btn-lg btn-primary">Go To Website</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div><!-- .col -->
                             </div><!-- .row -->
                         </div><!-- .card -->
                     </div><!-- .nk-block -->
+                    {% endif %}
                 </div>
             </div>
         </div>

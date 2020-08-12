@@ -72,6 +72,7 @@ def billing(request):
     form = ChangePlanForm(instance=billing)
     form1 = SwitchBillingCycleForm(request.POST or None, instance=billing)
     auto_form = SwitchBillingCycleForm(request.POST or None, instance=billing)
+    last_transaction = Transaction.objects.filter(user=user)[0]
 
 
     # if billing.is_active:
@@ -81,7 +82,8 @@ def billing(request):
         'billing': billing,
         'form': form,
         'form1': form1,
-        'auto_form': auto_form
+        'auto_form': auto_form,
+        'last_transaction': last_transaction
     }
     
     return render(request, template, context) 
@@ -116,7 +118,7 @@ def subscriptions(request):
         get_billing = Billing.objects.filter(User=user).first()
     user_billing = get_user_billing(request)
     # plan = Plan.objects.exclude(plan=user_billing.plan)
-
+    form_renew = AoutoRenewOnForm(instance=get_billing)
     form = ChangePlanForm(request.POST or None)
     if form.is_valid():
         obj = form.save(commit=False)
@@ -142,7 +144,8 @@ def subscriptions(request):
         'billing': billing,
         'get_billing': get_billing,
         # 'plan': plan,
-        'form': form
+        'form': form,
+        'form_renew': form_renew
     }
     
     return render(request, template, context)

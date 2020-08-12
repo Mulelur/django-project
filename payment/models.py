@@ -48,18 +48,6 @@ class UserProfile(models.Model):
         max_length=64,
     )
 
-    # store one time paypal payment reference for this user
-    paypal_order_id = models.CharField(
-        max_length=64,
-        blank=True,
-        null=True
-    )
-    # store paypal subscription reference for this user
-    paypal_subscription_id = models.CharField(
-        max_length=64,
-        blank=True,
-        null=True
-    )
 
     def __str__(self):
         return f"UserProfile(username={self.user.username})"

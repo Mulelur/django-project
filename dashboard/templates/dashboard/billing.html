@@ -63,7 +63,7 @@
                 <div class="nk-block-head-content">
                     <h5 class="nk-block-title">Billing Cycle</h5>
                     <div class="nk-block-des">
-                        <p>Your subscription renews on {% if billing.billed_monthly %}{{ billing.get_next_billing }}{% else %}{{ billing.get_next_billing_yearly }}{% endif %} <span class="fs-13px text-soft">({{ billing.get_day }} remaining).</span></p>
+                        <p>Your subscription renews on {% if billing.billed_monthly %}{{ billing.get_next_billing }}{% else %}{{ billing.get_next_billing_yearly }}{% endif %} <span class="fs-13px text-soft">({{ billing.get_day }} days remaining).</span></p>
                     </div>
                 </div>
             </div><!-- Nk-Block-head -->
@@ -75,7 +75,7 @@
                                 <h6>Yearly Subscription</h6>
                                 <ul class="list-inline list-col2 text-soft">
                                     <li>Next payment: <strong class="text-base">R {{ billing.ammount }}</strong> on <strong class="text-base">{% if billing.billed_monthly %}{{ billing.get_next_billing }}{% else %}{{ billing.get_next_billing_yearly }}{% endif %}</strong></li>
-                                    <li>Last payment made: Jan 28, 2019</li>
+                                    <li>Last payment made: {{ last_transaction.timestamp }}</li>
                                 </ul>
                             </div>
                             <div class="nk-block-actions">

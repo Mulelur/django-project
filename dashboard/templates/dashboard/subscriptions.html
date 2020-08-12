@@ -35,11 +35,10 @@
                                                 </div>
                                             </div>
                                             <div class="col-xl-3 col-sm-4">
-                                                <div class="sp-plan-opt">
-                                                        <div class="custom-control custom-switch">
-                                                            <a class="custom-control-label text-soft" for="auto-plan-p1" href="{% url 'auto-renew-toggel' %}">Auto Renew</a>                                                            
-                                                        </div>
-                                                </div>
+                                                <form action="{% url 'auto-renew-toggel' %}" method="POST">
+                                                    {% csrf_token %}
+                                                    {{ form_renew }}
+                                                </form>
                                             </div>
                                         </div>
                                     </div><!-- .sp-plan-info -->
@@ -99,9 +98,7 @@
                                                     <div class="custom-control custom-switch">
                                                         <form action="{% url 'auto-renew-toggel' %}" method="POST">
                                                             {% csrf_token %}
-                                                            <input type="submit" class="custom-control-input" id="auto-plan-p1" checked>
-                                                            <label class="custom-control-label text-soft" for="auto-plan-p1">Auto Renew</label>
-                                                        </form>
+                                                            {{ form_renew }}                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
