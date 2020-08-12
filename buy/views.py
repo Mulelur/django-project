@@ -29,17 +29,15 @@ def buyView(request):
 @login_required
 def buyingPlanView(request):
     user = get_object_or_404(User, username=request.user.username)
-    billing = Billing.objects.filter(User=user)
-    if billing:
-        try:
-            billing = Billing.objects.get(User=user, is_active=True)
-        except:
-            billing = Billing.objects.filter(User=user).first()
+    user_id = get_object_or_404(User, id=request.user.id)
+    try:
+        billing = Billing.objects.get(User=user, is_active=True)
         form = BillingModelForm(request.POST or None, instance=billing)
         if form.is_valid():
             form.save()
             return redirect('buy-request')
-    else:
+    except:
+        billing = Billing.objects.filter(User=user_id).first()
         form = BillingModelForm(request.POST or None)
         if form.is_valid():
             obj = form.save(commit=False)
@@ -57,8 +55,8 @@ def buyingPlanView(request):
                     obj.ammount = '2940'
                 else: 
                     obj.ammount = '6594'
-            obj.user = user
-            obj.save()  
+                    obj.user = request.user
+                    obj.save()  
 
             return redirect('buy-request')        
 
@@ -73,11 +71,13 @@ def buyingPlanView(request):
 
 def billingInfoView(request):
     user = get_object_or_404(User, username=request.user.username)
-    billing = Billing.objects.get(User=user, is_active=True)
+    try:
+        billing = Billing.objects.get(User=user, is_active=True)
+    except:
+        billing, created = Billing.objects.get_or_create(User=user)    
     form = BillingInfoAbbreseForm(request.POST or None, instance=billing)
     if form.is_valid():
         obj = form.save(commit=False)
-        obj.user = user
         obj.save()        
         return redirect('buy-payment')
 
@@ -195,12 +195,15 @@ def update_billing(request):
 def rewnew_billing(request, id):
     user = get_object_or_404(User, username=request.user.username)
     billing = Billing.objects.get(User=request.user, id=id)
-    obj=billing
-    obj.is_active = True
-    obj.user = user
-    obj.save()
-
-    return redirect('rewnew_confirm')
+    try:
+        obj=billing
+        obj.is_active = True
+        obj.user = user
+        obj.save()
+        return redirect('rewnew_confirm')
+    except:
+        messages.info(request, "you can not renwe a plan wiht a active one")
+    return redirect('subscriptions')
 
 
 def billing_cancel_view(request):

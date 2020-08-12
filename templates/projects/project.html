@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<header class="header section text-contrast overlay overlay-primary alpha-7 parallax cover" style="background-image: url(img/bg/sunrise.jpg);">
+<header class="header section text-contrast overlay overlay-primary alpha-7 parallax cover" style="background-image: url({% static 'img/bg/sunrise.jpg' %});">
     <div class="container-fluid pb-9">
         <div class="row text-center">
-            <div class="col-12 col-lg-6 mx-auto"><img src="img/logo-light.png" alt="">
+            <div class="col-12 col-lg-6 mx-auto"><img src="{% static 'img/logo-light.png' %}" alt="">
                 <h1 class="text-contrast bold display-4 display-md-3 text-capitalize mt-5">Meet DashCore</h1>
                 <p class="lead bold">Powerful Responsive SaaS, Startup & Software Template</p>
             </div>

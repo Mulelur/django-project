@@ -19,11 +19,13 @@ from .forms import (UserRegisterForm,
 def dashboard(request):
     template = 'dashboard/index.html'
     user = get_object_or_404(User, username=request.user)
-    website = WebSite.objects.all()
-    billing = Billing.objects.filter(User=user)
     transaction = Transaction.objects.filter(user=user)
-    if website:
+    try:
         website = WebSite.objects.get(user=request.user)
+        billing = Billing.objects.get(User=user, is_active=True)
+    except:
+        website = WebSite.objects.filter(user=user)
+        billing = Billing.objects.filter(User=user, is_active=True) 
     context = {
         'website': website,
         'billing': billing,
@@ -149,15 +151,16 @@ def subscriptions_detail(request, id):
     template = 'dashboard/subscriptions-detail.html'
     user = get_object_or_404(User, username=request.user.username)
     billing = Billing.objects.filter(User=user)
-    get_billing = Billing.objects.get(User=user, is_active=True)
+    try:
+        get_billing = Billing.objects.get(User=user, is_active=True)
+    except:
+        get_billing = Billing.objects.get(User=user, id=id)   
     user_billing = get_user_billing(request)
-    plan = Plan.objects.exclude(plan=user_billing.plan)
     transaction = Transaction.objects.filter(user=user)[:4]
 
     context = {
         'billing': billing,
         'get_billing': get_billing,
-        'plan': plan,
         'transaction': transaction
     }
     

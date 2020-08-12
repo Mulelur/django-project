@@ -71,11 +71,11 @@
                 return data.datasets[tooltipItem.datasetIndex]['data'][tooltipItem['index']] + ' ' + _get_data.dataUnit;
               }
             },
-            backgroundColor: '#eff6ff',
+            backgroundColor: '#1c2b46',
             titleFontSize: 11,
-            titleFontColor: '#6783b8',
+            titleFontColor: '#fff',
             titleMarginBottom: 4,
-            bodyFontColor: '#9eaecf',
+            bodyFontColor: '#fff',
             bodyFontSize: 10,
             bodySpacing: 3,
             yPadding: 8,
@@ -166,11 +166,11 @@
                 return data.datasets[tooltipItem.datasetIndex]['data'][tooltipItem['index']] + ' ' + _get_data.dataUnit;
               }
             },
-            backgroundColor: '#eff6ff',
+            backgroundColor: '#1c2b46',
             titleFontSize: 13,
-            titleFontColor: '#6783b8',
+            titleFontColor: '#fff',
             titleMarginBottom: 6,
-            bodyFontColor: '#9eaecf',
+            bodyFontColor: '#fff',
             bodyFontSize: 12,
             bodySpacing: 4,
             yPadding: 10,
@@ -292,11 +292,11 @@
                 return data.datasets[tooltipItem.datasetIndex]['data'][tooltipItem['index']] + ' ' + _get_data.dataUnit;
               }
             },
-            backgroundColor: '#eff6ff',
+            backgroundColor: '#1c2b46',
             titleFontSize: 13,
-            titleFontColor: '#6783b8',
+            titleFontColor: '#fff',
             titleMarginBottom: 6,
-            bodyFontColor: '#9eaecf',
+            bodyFontColor: '#fff',
             bodyFontSize: 12,
             bodySpacing: 4,
             yPadding: 10,
@@ -393,11 +393,11 @@
                 return data.datasets[tooltipItem.datasetIndex]['data'][tooltipItem['index']] + ' ' + data.datasets[tooltipItem.datasetIndex]['label'];
               }
             },
-            backgroundColor: '#eff6ff',
+            backgroundColor: '#1c2b46',
             titleFontSize: 13,
-            titleFontColor: '#6783b8',
+            titleFontColor: '#fff',
             titleMarginBottom: 6,
-            bodyFontColor: '#9eaecf',
+            bodyFontColor: '#fff',
             bodyFontSize: 12,
             bodySpacing: 4,
             yPadding: 10,
@@ -527,11 +527,11 @@
                 return data['labels'][tooltipItem['index']] + ' ' + data.datasets[tooltipItem.datasetIndex]['data'][tooltipItem['index']];
               }
             },
-            backgroundColor: '#eff6ff',
+            backgroundColor: '#1c2b46',
             titleFontSize: 11,
-            titleFontColor: '#6783b8',
+            titleFontColor: '#fff',
             titleMarginBottom: 4,
-            bodyFontColor: '#9eaecf',
+            bodyFontColor: '#fff',
             bodyFontSize: 10,
             bodySpacing: 3,
             yPadding: 8,
@@ -629,11 +629,11 @@
                 return data.datasets[tooltipItem.datasetIndex]['data'][tooltipItem['index']] + ' ' + _get_data.dataUnit;
               }
             },
-            backgroundColor: '#eff6ff',
+            backgroundColor: '#1c2b46',
             titleFontSize: 13,
-            titleFontColor: '#6783b8',
+            titleFontColor: '#fff',
             titleMarginBottom: 6,
-            bodyFontColor: '#9eaecf',
+            bodyFontColor: '#fff',
             bodyFontSize: 12,
             bodySpacing: 4,
             yPadding: 10,
@@ -758,11 +758,11 @@
                 return data.datasets[tooltipItem.datasetIndex]['data'][tooltipItem['index']] + ' ' + data.datasets[tooltipItem.datasetIndex]['label'];
               }
             },
-            backgroundColor: '#eff6ff',
+            backgroundColor: '#1c2b46',
             titleFontSize: 13,
-            titleFontColor: '#6783b8',
+            titleFontColor: '#fff',
             titleMarginBottom: 6,
-            bodyFontColor: '#9eaecf',
+            bodyFontColor: '#fff',
             bodyFontSize: 12,
             bodySpacing: 4,
             yPadding: 10,

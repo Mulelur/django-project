@@ -299,13 +299,11 @@
                 return data.datasets[tooltipItem.datasetIndex]['data'][tooltipItem['index']] + ' ' + _get_data.dataUnit;
               }
             },
-            backgroundColor: '#fff',
-            borderColor: '#eff6ff',
-            borderWidth: 2,
+            backgroundColor: '#1c2b46',
             titleFontSize: 13,
-            titleFontColor: '#6783b8',
+            titleFontColor: '#fff',
             titleMarginBottom: 6,
-            bodyFontColor: '#9eaecf',
+            bodyFontColor: '#fff',
             bodyFontSize: 12,
             bodySpacing: 4,
             yPadding: 10,
@@ -467,11 +465,11 @@
                 return data.datasets[tooltipItem.datasetIndex]['data'][tooltipItem['index']];
               }
             },
-            backgroundColor: '#eff6ff',
+            backgroundColor: '#1c2b46',
             titleFontSize: 9,
-            titleFontColor: '#6783b8',
+            titleFontColor: '#fff',
             titleMarginBottom: 6,
-            bodyFontColor: '#9eaecf',
+            bodyFontColor: '#fff',
             bodyFontSize: 9,
             bodySpacing: 4,
             yPadding: 6,
@@ -580,11 +578,11 @@
                 return data.datasets[tooltipItem.datasetIndex]['data'][tooltipItem['index']];
               }
             },
-            backgroundColor: '#eff6ff',
+            backgroundColor: '#1c2b46',
             titleFontSize: 9,
-            titleFontColor: '#6783b8',
+            titleFontColor: '#fff',
             titleMarginBottom: 6,
-            bodyFontColor: '#9eaecf',
+            bodyFontColor: '#fff',
             bodyFontSize: 9,
             bodySpacing: 4,
             yPadding: 6,
@@ -710,13 +708,11 @@
                 return data.datasets[tooltipItem.datasetIndex]['data'][tooltipItem['index']];
               }
             },
-            backgroundColor: '#fff',
-            borderColor: '#eff6ff',
-            borderWidth: 2,
+            backgroundColor: '#1c2b46',
             titleFontSize: 13,
-            titleFontColor: '#6783b8',
+            titleFontColor: '#fff',
             titleMarginBottom: 6,
-            bodyFontColor: '#9eaecf',
+            bodyFontColor: '#fff',
             bodyFontSize: 12,
             bodySpacing: 4,
             yPadding: 10,

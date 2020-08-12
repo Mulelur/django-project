@@ -1,4 +1,4 @@
-{% extends 'base-3(dashboard).html' %}
+{% extends 'base(dashboard).html' %}
 {% load static %}
 {% block content %}
 <div class="nk-content-body">
@@ -9,13 +9,12 @@
                 <div class="nk-block-head-content">
                     <h2 class="nk-block-title fw-normal">{{ get_billing.plan }} Plan</h2>
                     <div class="nk-block-des">
-                        <p>Your subscription renews on {% if get_billing.billed_monthly %}{{ get_billing.get_next_billing }}{% else %}{{ get_billing.get_next_billing_yearly }}{% endif %} <span class="text-soft">({{ get_billing.get_day }} remaining)</span> <span class="text-primary"><em class="icon ni ni-info"></em></span></p>
+                        <p>{% if get_billing.free_trial %}Your Free Trial End's in{% else %}Your subscription renews on{% endif %} {% if get_billing.billed_monthly %}{{ get_billing.get_next_billing }}{% else %}{{ get_billing.get_next_billing_yearly }}{% endif %} <span class="text-soft">({{ get_billing.get_day }} remaining)</span> <span class="text-primary"><em class="icon ni ni-info"></em></span></p>
                     </div>
                 </div>
                 <div class="nk-block-head-content">
                     <ul class="nk-block-tools justify-content-md-end g-4 flex-wrap">
                         <li class="order-md-last">
-                            
                             <a href="#" class="btn btn-auto btn-dim btn-danger" data-toggle="modal" data-target="#subscription-cancel"><em class="icon ni ni-cross"></em><span>Cancel Subscription</span></a></li>
                         <li>
                             <div class="custom-control custom-switch">

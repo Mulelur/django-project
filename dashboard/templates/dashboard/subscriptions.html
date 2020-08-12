@@ -1,4 +1,4 @@
-{% extends 'base-3(dashboard).html' %}
+{% extends 'base(dashboard).html' %}
 {% load static %}
 {% block content %}
 <div class="nk-content-body">
@@ -60,21 +60,19 @@
                                 {% if b.is_active %}
                                 <div class="col-md-4">
                                     <div class="sp-plan-action card-inner">
-                                        <div class="sp-plan-btn">
-                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalForm">Change Plan</button>                                        </div>
+                                        <div class="sp-plan-btn pt-3">
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalForm">Change Plan</button>                
+                                        </div>
                                         <div class="sp-plan-note text-md-center">
-                                            <p>Next Billing on <span>{{ b.get_next_billing }}</span></p>
+                                            <p>{% if b.free_trial %}Your Free Trial End's{% else %}Next Billing{% endif %} on <span>{{ b.get_next_billing }}</span></p>
                                         </div>
                                     </div>
                                 </div><!-- .col -->
                                 {% else %}
                                 <div class="col-md-4">
                                     <div class="sp-plan-action card-inner">
-                                        <div class="sp-plan-btn">
+                                        <div class="sp-plan-btn pt-3">
                                             <a href="{% url 'rewnew_billing' id=b.id %}" class="btn btn-dim btn-white btn-outline-primary"><span>Renew Plan</span></a>
-                                        </div>
-                                        <div class="sp-plan-note text-md-center">
-                                            <p>You can renew the plan anytime.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -126,34 +124,37 @@
                                 {% if b.is_active %}
                                 <div class="col-md-4">
                                     <div class="sp-plan-action card-inner">
-                                        <div class="sp-plan-btn">
+                                        <div class="sp-plan-btn pt-3">
                                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalForm">Change Plan</button>                                        </div>
-                                        <div class="sp-plan-note text-md-center">
-                                            <p>Next Billing on <span>{{ b.get_next_billing }}</span></p>
-                                        </div>
+                                        <!-- <div class="sp-plan-note text-md-center">
+                                            <p>{% if b.free_trial %}your Free Trial{% else %}Next Billing{% endif %} on <span>{{ b.get_next_billing }}</span></p>
+                                        </div> -->
                                     </div>
                                 </div><!-- .col -->
                                 {% else %}
                                 <div class="col-md-4">
                                     <div class="sp-plan-action card-inner">
-                                        <div class="sp-plan-btn">
+                                        <div class="sp-plan-btn pt-3">
                                             <a href="{% url 'rewnew_billing' id=b.id %}" class="btn btn-dim btn-white btn-outline-primary"><span>Renew Plan</span></a>
                                         </div>
-                                        <div class="sp-plan-note text-md-center">
-                                            <p>You can renew the plan anytime.</p>
+                                        <div class="card-inner card-inner-md bg-light">
+                                            <div class="card-note">
+                                                <em class="icon ni ni-info-fill"></em>
+                                                <span>Traffic channels have beed generating the most traffics over past days.</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 {% endif %}
                             </div><!-- .row -->
                         </div><!-- .sp-plan -->
-                        {% include 'buy/part/buying/_change-plan.html' %}
                     </div><!-- .nk-block -->
                 {% endif %}
             {% endfor %}
         {% endif %}
     </div>
 </div>
+{% include 'buy/part/buying/_change-plan.html' %}
  <!-- @@Modal - Subscription Change @s -->
 
 <!-- @@Modal - Confirm Plan @s -->

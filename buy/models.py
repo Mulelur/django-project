@@ -71,8 +71,8 @@ class Billing(models.Model):
     User = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='billing_user')
     plan = models.ForeignKey(Plan, on_delete=models.SET_NULL, null=True)
     billed_monthly = models.BooleanField(default=True)
-    is_active = models.BooleanField(default=True, blank=True)
-    ammount = models.IntegerField()
+    is_active = models.BooleanField(default=True, blank=True, unique=True)
+    ammount = models.IntegerField(blank=True, null=True)
     free_trial = models.BooleanField(default=False, blank=True)
 
     staterd = models.DateField(auto_now_add=True)
@@ -84,7 +84,7 @@ class Billing(models.Model):
     addres_line_2 = models.CharField(max_length=200, blank=True)
     province_or_sate = models.CharField(max_length=200, blank=True)
     country = models.CharField(max_length=200, choices=COUNTRY, blank=True)
-    postal_code= models.IntegerField(blank=True)
+    postal_code= models.IntegerField(blank=True, null=True)
     city = models.CharField(max_length=100, blank=True)
 
     class Meta:
