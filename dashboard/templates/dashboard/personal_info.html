@@ -27,14 +27,14 @@
             </div><!-- .nk-block-head -->
             <div class="card card-bordered">
                 <div class="nk-data data-list">
-                    <div class="data-item" data-toggle="modal" data-target="#profile-edit">
+                    <div class="data-item" data-toggle="modal" data-target="#usernameform">
                         <div class="data-col">
-                            <span class="data-label">Full Name</span>
+                            <span class="data-label">Full Names</span>
                             <span class="data-value">{{ user.first_name }} {{ user.last_name }}</span>
                         </div>
                         <div class="data-col data-col-end"><span class="data-more"><em class="icon ni ni-forward-ios"></em></span></div>
                     </div><!-- .data-item -->
-                    <div class="data-item" data-toggle="modal" data-target="#profile-edit">
+                    <div class="data-item" data-toggle="modal" data-target="#User_usernameform">
                         <div class="data-col">
                             <span class="data-label">User Name</span>
                             <span class="data-value">{{ user.username }}</span>
@@ -48,24 +48,24 @@
                         </div>
                         <div class="data-col data-col-end"><span class="data-more disable"><em class="icon ni ni-lock-alt"></em></span></div>
                     </div><!-- .data-item -->
-                    <div class="data-item" data-toggle="modal" data-target="#profile-edit">
+                    <div class="data-item" data-toggle="modal" data-target="#UserPhoneForm">
                         <div class="data-col">
                             <span class="data-label">Phone Number</span>
                             <span class="data-value text-soft">{{ user.phone }}</span>
                         </div>
                         <div class="data-col data-col-end"><span class="data-more"><em class="icon ni ni-forward-ios"></em></span></div>
                     </div><!-- .data-item -->
-                    <div class="data-item" data-toggle="modal" data-target="#profile-edit">
+                    <div class="data-item" data-toggle="modal" data-target="#UserDateOfBirthForm">
                         <div class="data-col">
                             <span class="data-label">Date of Birth</span>
-                            <span class="data-value">29 Feb, 1986</span>
+                            <span class="data-value">{{ user.date_of_birth }}</span>
                         </div>
                         <div class="data-col data-col-end"><span class="data-more"><em class="icon ni ni-forward-ios"></em></span></div>
                     </div><!-- .data-item -->
-                    <div class="data-item" data-toggle="modal" data-target="#profile-edit">
+                    <div class="data-item" data-toggle="modal" data-target="#UserAddreseForm">
                         <div class="data-col">
                             <span class="data-label">Address</span>
-                            <span class="data-value">2337 Kildeer Drive,<br>Kentucky, Canada</span>
+                            <span class="data-value">{{ user.addres_line_1 }},{{ user.addres_line_2 }},<br>{{ user.city }}, {{ user.province_or_sate }}</span>
                         </div>
                         <div class="data-col data-col-end"><span class="data-more"><em class="icon ni ni-forward-ios"></em></span></div>
                     </div><!-- .data-item -->
@@ -206,4 +206,5 @@
         </div><!-- .modal-content -->
     </div><!-- .modal-dialog -->
 </div><!-- .modal -->
+{% include 'dashboard/modals/personal_info/_user.html' %}
 {% endblock %}

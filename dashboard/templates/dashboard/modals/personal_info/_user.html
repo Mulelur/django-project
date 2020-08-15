@@ -1,0 +1,136 @@
+{% load crispy_forms_tags %}
+<!-- Modal Content Code -->
+<div class="modal fade" tabindex="-1" id="usernameform">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <a href="#" class="close" data-dismiss="modal" aria-label="Close">
+                <em class="icon ni ni-cross"></em>
+            </a>
+            <div class="modal-header">
+                <h5 class="modal-title">Change User Full Names</h5>
+            </div>
+            <div class="modal-body">
+                <form action="{% url 'user_change_full_names' %}" method="POST">
+                <div class="form-group">
+                    {% csrf_token %}
+                    {{ nameform|crispy }}
+                </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary eg-toastr-default" value="UpDate">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer bg-light">
+                <span class="sub-text">Modal Footer Text</span>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Content for User Change Username -->
+<div class="modal fade" tabindex="-1" id="User_usernameform">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <a href="#" class="close" data-dismiss="modal" aria-label="Close">
+                <em class="icon ni ni-cross"></em>
+            </a>
+            <div class="modal-header">
+                <h5 class="modal-title">Change UserName</h5>
+            </div>
+            <div class="modal-body">
+                <form action="{% url 'user_chage_username' %}" method="POST">
+                <div class="form-group">
+                    {% csrf_token %}
+                    {{ usernameform|crispy }}
+                </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary eg-toastr-bottom-right" value="UpDate">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer bg-light">
+                <span class="sub-text">Modal Footer Text</span>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Content for User Change Phone -->
+<div class="modal fade" tabindex="-1" id="UserPhoneForm">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <a href="#" class="close" data-dismiss="modal" aria-label="Close">
+                <em class="icon ni ni-cross"></em>
+            </a>
+            <div class="modal-header">
+                <h5 class="modal-title">Change Update phone</h5>
+            </div>
+            <div class="modal-body">
+                <form action="{% url 'user_chage_phone' %}" method="POST">
+                <div class="form-group">
+                    {% csrf_token %}
+                    {{ userphoeform|crispy }}
+                </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary eg-toastr-success" value="UpDate">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer bg-light">
+                <span class="sub-text">Modal Footer Text</span>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Content for User Change Date of Birth -->
+<div class="modal fade" tabindex="-1" id="UserDateOfBirthForm">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <a href="#" class="close" data-dismiss="modal" aria-label="Close">
+                <em class="icon ni ni-cross"></em>
+            </a>
+            <div class="modal-header">
+                <h5 class="modal-title">Update Date of Birth</h5>
+            </div>
+            <div class="modal-body">
+                <form action="{% url 'user_chage_date_of_birth' %}" method="POST">
+                <div class="form-group">
+                    {% csrf_token %}
+                    {{ userDateOfBirthForm|crispy }}
+                </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary eg-toastr-with-titlee" value="UpDate">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer bg-light">
+                <span class="sub-text">Modal Footer Text</span>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Content for User Change Addrese -->
+<div class="modal fade" tabindex="-1" id="UserAddreseForm">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <a href="#" class="close" data-dismiss="modal" aria-label="Close">
+                <em class="icon ni ni-cross"></em>
+            </a>
+            <div class="modal-header">
+                <h5 class="modal-title">Update Addrese</h5>
+            </div>
+            <div class="modal-body">
+                <form action="{% url 'user_chage_addrese' %}" method="POST">
+                <div class="form-group">
+                    {% csrf_token %}
+                    {{ userAddreseForm|crispy }}
+                </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary" value="UpDate">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer bg-light">
+                <span class="sub-text">Modal Footer Text</span>
+            </div>
+        </div>
+    </div>
+</div>

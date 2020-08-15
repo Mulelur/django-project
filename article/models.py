@@ -1,5 +1,6 @@
 from django.db import models
 from ckeditor_uploader.fields import  RichTextUploadingField
+from django.contrib.auth.models import User
 
 class Category(models.Model):
     title = models.CharField(max_length=70)
@@ -15,6 +16,15 @@ class Article(models.Model):
     text = RichTextUploadingField(blank=True)
     date = models.DateTimeField(auto_now=True, blank=True)
     slug = models.SlugField(blank=True, unique=True)
+    author = models.ManyToManyField(User)
+
+    # feedback
+    good = models.IntegerField(blank=True, null=True, default='0')
+    fair = models.IntegerField(blank=True, null=True, default='0')
+    bad = models.IntegerField(blank=True, null=True, default='0')
+
+    class Meta:
+        ordering = ['-date']
 
     def __str__(self):
         return self.title

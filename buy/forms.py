@@ -42,7 +42,6 @@ class BillingUpDateStateForm(ModelForm):
 
 class BillingInfoAbbreseForm(ModelForm):
     class Meta:
-        model = Billing
-        fields = ['addres_line_1', 'addres_line_2', 'city','country', 'province_or_sate', 'postal_code']
-
+        model = User
+        fields = ['phone','date_of_birth','addres_line_1', 'addres_line_2', 'city','country', 'province_or_sate', 'postal_code']
 

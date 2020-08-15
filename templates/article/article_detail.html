@@ -1,0 +1,85 @@
+{% extends 'base(support).html' %}
+{% load static %}
+
+{% block content %}
+    {% block extrahead %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/blog_single_styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/blog_single_responsive.css' %}">
+    {% endblock %}
+
+<!-- Single Blog Post -->
+
+<div class="single_post m-0 p-0">
+    <div class="container">
+        <div class="nk-content ">
+            <div class="nk-content-body">
+                <div class="nk-content-wrap">
+                    <div class="nk-block-head nk-block-head-lg">
+                        <div class="nk-block-head-sub"><a class="back-to" href="{% url 'article:article_list' category_slug=categories.slug %}"><em class="icon ni ni-arrow-left"></em><span>{{ article.category }}</span></a></div>
+                        <div class="nk-block-between-md g-4">
+                            <div class="nk-block-head-content">
+                                <h2 class="nk-block-title fw-normal">{{ article.title }}</h2>
+                            </div>
+                        </div>
+                    </div><!-- .nk-block-head -->
+                    <div class="nk-block">
+                        <div class="support-topic-details card card-bordered">
+                            <div class="card-inner">
+                                <div class="entry">
+                                <p>{{ article.text|safe }}</p>    
+                                </div><!-- .entry -->
+                                <div class="support-topic-meta">
+                                    <!-- <div class="support-topic-author">
+                                        <ul class="author-list is-grouped">
+                                            <li class="updated"><span class="text-soft fs-12px">Last updated {{ article.date }} ago</span></li>
+                                            <li data-toggle="tooltip" title="And 2 more"><span class="user-avatar bg-light text-dark">2</span></li>
+                                            {% for a in article.author.all %}
+                                            <li data-toggle="tooltip" title="Iliash Hossain"><a href="#"><span class="user-avatar bg-primary">IH</span></a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div> -->
+                                    <div class="support-topic-react">
+                                        <ul class="react-list">
+                                            <li class="title"><span>Was this page helpful?</span></li>
+                                            <li class="react-good"><a title="Good" data-toggle="tooltip" href="{% url 'article:good_feedback' article_slug=article.slug category_slug=categories.slug %}"><em class="icon ni ni-happyf-fill"></em></a></li>
+                                            <li class="react-ok"><a title="Fair" data-toggle="tooltip" href="{% url 'article:fair_feedback' article_slug=article.slug category_slug=categories.slug %}"><em class="icon ni ni-meh-fill"></em></a></li>
+                                            <li class="react-bad"><a title="Bad" data-toggle="tooltip" href="{% url 'article:bad_feedback' article_slug=article.slug category_slug=categories.slug %}"><em class="icon ni ni-sad-fill"></em></a></li>
+                                        </ul>
+                                    </div>
+                                </div><!-- .support-topic-meta -->
+                            </div>
+                        </div>
+                        <div class="support-topic-more card card-bordered">
+                            <a class="support-topic-block card-inner" href="{% url 'article:article_detail' category_slug=categories.slug article_slug=next_article.slug  %}">
+                                <div class="support-topic-context">
+                                    <div class="support-topic-title-sub">Next - {{ next_article.category.title }}</div>
+                                    <h5 class="support-topic-title title">{{ next_article.title }}</h5>
+                                </div>
+                                <div class="support-topic-action">
+                                    <em class="icon ni ni-chevron-right"></em>
+                                </div>
+                            </a>
+                        </div><!-- .support-topic-more -->
+                    </div><!-- .nk-block -->
+                </div>
+                <!-- footer @s -->
+                <div class="nk-footer">
+                    <div class="container wide-xl">
+                        <div class="nk-footer-wrap g-2">
+                            <div class="nk-footer-copyright"> &copy; 2020 DashLite. Template by <a href="#">Softnio</a>
+                            </div>
+                            <div class="nk-footer-links">
+                                <ul class="nav nav-sm">
+                                    <li class="nav-item"><a class="nav-link" href="#">Terms</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#">Privacy</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- footer @e -->
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

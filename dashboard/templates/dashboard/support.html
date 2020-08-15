@@ -1,4 +1,4 @@
-{% extends 'base-3(dashboard).html' %}
+{% extends 'base(dashboard).html' %}
 {% load static %}
 {% block content %}
 <div class="nk-content-body">
@@ -9,38 +9,30 @@
                 <h2 class="nk-block-title fw-normal">Hi! How can we help?</h2>
                 <p>If you have any problem have a look in our knowledge base support.</p>
                 <div class="nk-search-box">
-                    <div class="form-group">
-                        <div class="form-control-wrap">
-                            <input type="text" class="form-control form-control-lg" placeholder="Search...">
-                            <button class="form-icon form-icon-right">
-                                <em class="icon ni ni-search"></em>
-                            </button>
-                        </div>
-                    </div>
+                    <form action="{% url 'article:search' %}" method="GET">
+                        <div class="form-group">
+                            <div class="form-control-wrap">
+                                <input name="q" type="text" class="form-control form-control-lg" placeholder="Search...">
+                                <button class="form-icon form-icon-right" type="submit">
+                                    <em class="icon ni ni-search"></em>
+                                </button>
+                            </div>
+                        </div>    
+                    </form>
                 </div>
-                <!-- <div class="nk-block-des">
-
-<ul class="list-inline">
-<li><a href="html/subscription/index.html">Home</a></li>
-<li><a href="html/subscription/tickets.html">Tickets</a></li>
-<li><a href="#">Terms & Policy</a></li>
-</ul>
-</div> -->
             </div>
         </div><!-- .nk-block-head -->
         <div class="nk-block">
-            {% if category %}
-                {% for c in category %}
+            {% if page_obj %}
+                {% for c in page_obj %}
                     <div class="support-topic-item card card-bordered">
-                        <a class="support-topic-block card-inner" href="{% url 'article:article_list' article_slug=c.category.slug %}">
-                            <div class="support-topic-context">
+                        <a class="support-topic-block card-inner" href="{% url 'article:article_list' category_slug=c.slug %}">
+                            <div class="support-topic-context data-item">
                                 <h5 class="support-topic-title title">{{ c.title }}</h5>
-                                <div class="support-topic-info">{{ c.sub_title }}.</div>
-                                <div class="support-topic-count">Here are  questions and answers.</div>
+                                <div class="data-col data-col-end"><span class="data-more"><em class="icon ni ni-forward-ios"></em></span></div>
                             </div>
-                            <div class="support-topic-action">
-                                <em class="icon ni ni-chevron-right"></em>
-                            </div>
+                            <div class="support-topic-info data-label">{{ c.sub_title }}</div>
+                            <div class="support-topic-count">Here are {{ c.article_category.all.count }} questions and answers.</div>
                         </a>
                     </div><!-- .support-topic-item -->
                 {% endfor %}
@@ -65,6 +57,32 @@
                 </div>
             </div><!-- .card -->
         </div><!-- .nk-block -->
+    </div>
+</div>
+  
+<div class="nk-block">
+    <div class="container pt-5">
+        <nav>
+            <ul class="pagination">
+                {% if page_obj.has_previous %}
+                <li class="page-item disabled"><a class="page-link" href="?page=1">First</a></li>
+                <li class="page-item"><a class="page-link"  href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+                {% endif %}
+                    <!-- <li class="page-item active" aria-current="page"><a class="page-link" href="#">{{ page_obj.number }}<span class="sr-only">(current)</span></a></li> -->
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                    <li class="page-item active"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                    <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                <!-- <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a></li> -->
+                {% if page_obj.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last</a></li>
+                {% endif %}
+            </ul>
+        </nav>
     </div>
 </div>
 {% endblock %}

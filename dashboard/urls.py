@@ -17,7 +17,12 @@ from .views import (
  subscriptions_detail,
  usernameform_View
  )
-
+from .userchangeviews import (
+    user_change_full_names,
+    user_chage_username,
+    user_chage_phone,
+    user_chage_date_of_birth,
+    user_chage_addrese)
 urlpatterns = [
     path('', dashboard, name='dashboard'),
     path('personal_info/', personal_info, name='personal-info'),
@@ -34,6 +39,10 @@ urlpatterns = [
     path('support/', support, name='support'),
     path('faqs/', faqs, name='faqs'),
     path('contact/', contact, name='contact'),
-    path('usernameform/', usernameform_View, name='usernameform_view')
-
+    path('usernameform/', usernameform_View, name='usernameform_view'),
+    path('full_names/', user_change_full_names, name='user_change_full_names'),
+    path('usernames/', user_chage_username, name='user_chage_username'),
+    path('user_chage_phone/', user_chage_phone, name='user_chage_phone'),
+    path('user_chage_date_of_birth/', user_chage_date_of_birth, name='user_chage_date_of_birth'),
+    path('user_chage_addrese/', user_chage_addrese, name='user_chage_addrese')
 ]

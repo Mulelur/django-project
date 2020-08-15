@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
 from buy.models import Billing
+from .models import Notification, NotificationSetting
 
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()
@@ -44,15 +45,15 @@ class UserChangeDashboardForm(UserChangeForm):
 
 class UserChangeAddressForm(ModelForm):
     class Meta:
-        model = Billing
-        fields = '__all__' 
+        model = User
+        fields = ['addres_line_1', 'addres_line_2', 'city','country', 'province_or_sate', 'postal_code']
 
-class ChangeNamesForm(UserChangeForm):
+class ChangeNamesForm(ModelForm):
     class Meta:
         model = User
         fields = ['first_name', 'last_name']
 
-class ChangeUsernameForm(UserChangeForm):
+class ChangeUsernameForm(ModelForm):
     class Meta:
         model = User
         fields = ['username',]  
@@ -64,13 +65,19 @@ class ChangeEmailForm(UserChangeDashboardForm):
         fields = ['email',] 
 
               
-class ChangeDateBirthForm(UserChangeDashboardForm):
+class ChangeDateBirthForm(ModelForm):
     class Meta:
         model = User
         fields = ['date_of_birth',] 
 
               
-class ChangePhoneForm(UserChangeDashboardForm):
+class ChangePhoneForm(ModelForm):
     class Meta:
         model = User
         fields = ['phone',] 
+
+class UserNotificationSettingsModelForm(ModelForm):
+    class  Meta:
+        model = NotificationSetting
+        fields = '__all__'
+

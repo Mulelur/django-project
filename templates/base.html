@@ -111,7 +111,7 @@
                                     {% if user.is_authenticated %}
                                     <li>
                                         <a target="_blank" href="{% url 'dashboard' %}">Dashboard</a></li>
-                                    <li><a target="_blank" href="login.html">Sing Out</a></li>
+                                    <li><a target="_blank" href="{% url 'account_logout' %}">Sing Out</a></li>
                                     {% else %}
                                     <li><a target="_blank" href="login.html">Login</a></li>
                                     <li><a target="_blank" href="register.html">Register</a></li>
@@ -164,15 +164,7 @@
     </div>
 </nav>
 
-{% if messages %}
-{% for message in messages %}
-<div class="alert alert-icon alert-{{ message.tags }} eg-toastr-top-rig" role="alert"><i class="icon fas fa-check"></i>
-            {{ message }}
-        </div>
-    {% endfor %}
-{% endif %}
 {% block content %}
-
 {% endblock %}
 
 <footer class="site-footer section block bg-contrast">

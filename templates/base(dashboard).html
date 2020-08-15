@@ -234,10 +234,11 @@
                 </div>
                 <!-- main header @e -->
                 <!-- content @s -->
-                <div class="nk-content ">
+                <div class="nk-content">
                     <div class="container-fluid">
                         <div class="nk-content-inner">
                             <div class="nk-content-body">
+                                {% include 'messg/messages.html' %}
                             {% block content %}{% endblock %}
                             </div>
                         </div>
@@ -268,8 +269,18 @@
     </div>
     <!-- app-root @e -->
     <!-- JavaScript -->
+    <script>
+        setTimeout(function(){
+            if ($('#msg').length > 0) {
+                $('#msg').remove();
+            }
+        }, 3000)
+    </script>
     <script src="{% static 'assets-2/assets/js/bundle.js' %}"></script>
     <script src="{% static 'assets-2/assets/js/scripts.js' %}"></script>
     <script src="{% static 'assets-2/assets/js/charts/chart-ecommerce.js' %}"></script>
+    <script src="{% static 'assets-2/assets/js/example-toast.js' %}"></script>
+    <!-- <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script> -->
+    
 </body>
 </html>

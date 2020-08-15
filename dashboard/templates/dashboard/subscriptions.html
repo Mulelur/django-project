@@ -23,6 +23,7 @@
             {% for b in billing %}
                     {% if b.billed_monthly %}
                     <!-- this is a billed monthly block -->
+
                     <div class="nk-block">
                         <div class="card card-bordered sp-plan">
                             <div class="row no-gutters">
@@ -63,7 +64,12 @@
                                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalForm">Change Plan</button>                
                                         </div>
                                         <div class="sp-plan-note text-md-center">
-                                            <p>{% if b.free_trial %}Your Free Trial End's{% else %}Next Billing{% endif %} on <span>{{ b.get_next_billing }}</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="align-end flex-sm-wrap g-4 flex-md-nowrap">
+                                        <div class="nk-sale-data">
+                                            <span class="sub-title"><p>{% if b.free_trial %}Your Free Trial End's{% else %}Next Billing{% endif %} on <span>{{ b.get_next_billing }}</span></p>
+                                        </span>
                                         </div>
                                     </div>
                                 </div><!-- .col -->

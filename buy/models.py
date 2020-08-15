@@ -78,15 +78,6 @@ class Billing(models.Model):
     staterd = models.DateField(auto_now_add=True)
     auto_renew = models.BooleanField(default=True, blank=True)
 
-    # addsers
-
-    addres_line_1 = models.CharField(max_length=200, blank=True)
-    addres_line_2 = models.CharField(max_length=200, blank=True)
-    province_or_sate = models.CharField(max_length=200, blank=True)
-    country = models.CharField(max_length=200, choices=COUNTRY, blank=True)
-    postal_code= models.IntegerField(blank=True, null=True)
-    city = models.CharField(max_length=100, blank=True)
-
     class Meta:
         ordering = ['-is_active']
 

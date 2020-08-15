@@ -2,10 +2,11 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from buy.models import Billing, Transaction, Plan
 from django.contrib.auth.models import User
+from django.core.paginator import Paginator
 from payment.views import get_user_billing
 from buy.forms import ChangePlanForm, SwitchBillingCycleForm, AoutoRenewOnForm
 from article.models import FAQ, Category, FAQsCategory
-from .models import WebSite
+from .models import WebSite, Notification
 from .forms import (UserRegisterForm,
                      UserChangeRegisterForm,
                      UserChangeDashboardForm,
@@ -13,7 +14,11 @@ from .forms import (UserRegisterForm,
                      PasswordChangeForm,
                      ChangeNamesForm,
                      ChangeUsernameForm,
-                     ChangeUsernameForm)
+                     ChangeUsernameForm,
+                     UserNotificationSettingsModelForm,
+                     ChangePhoneForm,
+                     ChangeDateBirthForm,
+                     UserChangeAddressForm)
 
 @login_required
 def dashboard(request):
@@ -43,7 +48,9 @@ def personal_info(request):
     addressform = UserChangeAddressForm(request.POST or None)
     nameform = ChangeNamesForm(request.POST or None, instance=user)
     usernameform = ChangeUsernameForm(request.POST or None)
-
+    userphoneform = ChangePhoneForm(instance=user)
+    userDateOfBirthForm = ChangeDateBirthForm(instance=user)
+    userAddreseForm = UserChangeAddressForm(instance=user)
    
 
 
@@ -51,7 +58,10 @@ def personal_info(request):
         'profile': profile,
         'aform': addressform,
         'nameform': nameform,
-        'usernameform': usernameform
+        'usernameform': usernameform,
+        'userphoeform': userphoneform,
+        'userDateOfBirthForm': userDateOfBirthForm,
+        'userAddreseForm': userAddreseForm
     }
       
     return render(request, template, context)  
@@ -103,8 +113,15 @@ def settings(request):
 
 def notification(request):
     template = 'dashboard/notification.html'
+    user = get_object_or_404(User, username=request.user)
+    notification = Notification.objects.get(user=user)
+    form = UserNotificationSettingsModelForm(request.POST or None, instance=notification)
+    if form.is_valid():
+        form.save()
 
-    context = {}
+    context = {
+        'form': form
+    }
     
     return render(request, template, context)      
 
@@ -174,8 +191,13 @@ def payment_hestory(request):
     user = get_object_or_404(User, username=request.user.username)
     transaction = Transaction.objects.filter(user=user)
 
+    paginator = Paginator(transaction, 10) 
+    query = request.GET.get('page')
+
+    page_obj = paginator.get_page(query)
     context = {
-        'transaction': transaction
+        'transaction': transaction,
+        'page_obj': page_obj
     }
     
     return render(request, template, context)
@@ -192,9 +214,13 @@ def invoices(request):
     template = 'dashboard/invoices.html'
     user = get_object_or_404(User, username=request.user.username)
     transaction = Transaction.objects.filter(user=user)
+    paginator = Paginator(transaction, 10) 
+    query = request.GET.get('page')
 
+    page_obj = paginator.get_page(query)
     context = {
-        'transaction': transaction
+        'transaction': transaction,
+        'page_obj':page_obj
     }
     
     return render(request, template, context) 
@@ -229,11 +255,14 @@ def invoices_print(request, id):
 def support(request):
     template = 'dashboard/support.html'
     category = Category.objects.all()
-    article_sulg = Category__article_category__slug
 
+    paginator = Paginator(category, 10) 
+    query = request.GET.get('page')
+
+    page_obj = paginator.get_page(query)
     context = {
         'category': category,
-        'article_sulg': article_sulg
+        'page_obj': page_obj
     }
     
     return render(request, template, context)
@@ -242,10 +271,16 @@ def faqs(request):
     template = 'dashboard/faqs.html'
     faqs = FAQ.objects.all()
     faqscategory = FAQsCategory.objects.all()
+    # pagination
+    paginator = Paginator(faqs, 10) 
+    query = request.GET.get('page')
+
+    page_obj = paginator.get_page(query)
 
     context = {
         'faqs': faqs,
-        'faqscategory': faqscategory
+        'faqscategory': faqscategory,
+        'page_obj': page_obj
     }
     
     return render(request, template, context)

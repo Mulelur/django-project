@@ -42,18 +42,18 @@ def buyingPlanView(request):
         if form.is_valid():
             obj = form.save(commit=False)
             if obj.billed_monthly:
-                if obj.plan == 'PRESONAL':
+                if obj.plan_id == 1:
                     obj.ammount = '175'
-                elif obj.plan == 'BUSINESS':
+                if obj.plan_id == 2:
                     obj.ammount = '350'
-                else: 
+                if obj.plan_id == 3: 
                     obj.ammount = '785'       
             else:
-                if obj.plan == 'PRESONAL':
+                if obj.plan_id == 1:
                     obj.ammount = '1470'
-                elif obj.plan == 'BUSINESS':
+                if obj.plan_id == 2:
                     obj.ammount = '2940'
-                else: 
+                if obj.plan_id == 3: 
                     obj.ammount = '6594'
                     obj.user = request.user
                     obj.save()  
@@ -174,16 +174,16 @@ def update_billing(request):
     if form.is_valid():
         obj = form.save(commit=False)
         if obj.billed_monthly:
-            if obj.plan_id == 2:
-                obj.ammount = 175
             if obj.plan_id == 1:
+                obj.ammount = 175
+            if obj.plan_id == 2:
                 obj.ammount = 350
             if obj.plan_id == 3: 
                 obj.ammount = 785       
         else:
-            if obj.plan_id == 2:
-                obj.ammount = 1470
             if obj.plan_id == 1:
+                obj.ammount = 1470
+            if obj.plan_id == 2:
                 obj.ammount = 2940
             if obj.plan_id == 3: 
                 obj.ammount = 6594
