@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from buy.models import Billing, Transaction, Plan
 from django.contrib.auth.models import User
+from django.contrib import messages
 from django.core.paginator import Paginator
 from payment.views import get_user_billing
 from buy.forms import ChangePlanForm, SwitchBillingCycleForm, AoutoRenewOnForm
@@ -25,11 +26,11 @@ def dashboard(request):
     template = 'dashboard/index.html'
     user = get_object_or_404(User, username=request.user)
     transaction = Transaction.objects.filter(user=user)
+    website = WebSite.objects.filter(user=request.user)
     try:
-        website = WebSite.objects.get(user=request.user)
         billing = Billing.objects.get(User=user, is_active=True)
     except:
-        website = WebSite.objects.filter(user=user)
+        messages.warning(request, 'You Canceld your Plan')
         billing = Billing.objects.filter(User=user, is_active=True) 
     context = {
         'website': website,
@@ -82,8 +83,11 @@ def billing(request):
     form = ChangePlanForm(instance=billing)
     form1 = SwitchBillingCycleForm(request.POST or None, instance=billing)
     auto_form = SwitchBillingCycleForm(request.POST or None, instance=billing)
-    last_transaction = Transaction.objects.filter(user=user)[0]
-
+    try:
+        last_transaction = Transaction.objects.filter(user=user)[0]
+    except:
+        last_transaction = None
+        messages.info(request, "No last transaction")
 
     # if billing.is_active:
 
@@ -114,10 +118,16 @@ def settings(request):
 def notification(request):
     template = 'dashboard/notification.html'
     user = get_object_or_404(User, username=request.user)
-    notification = Notification.objects.get(user=user)
-    form = UserNotificationSettingsModelForm(request.POST or None, instance=notification)
-    if form.is_valid():
-        form.save()
+    try:
+        notification = Notification.objects.get(user=user)
+        form = UserNotificationSettingsModelForm(request.POST or None, instance=notification)
+        if form.is_valid():
+            form.save()
+
+    except:
+        form = UserNotificationSettingsModelForm(request.POST or None)
+        if form.is_valid():
+            form.save()
 
     context = {
         'form': form

@@ -1,4 +1,5 @@
 from django.forms import ModelForm
+from django import forms
 from django.contrib.auth.models import User
 from .models import Plan, Request, Billing
 
@@ -43,5 +44,8 @@ class BillingUpDateStateForm(ModelForm):
 class BillingInfoAbbreseForm(ModelForm):
     class Meta:
         model = User
-        fields = ['phone','date_of_birth','addres_line_1', 'addres_line_2', 'city','country', 'province_or_sate', 'postal_code']
+        fields = ['phone','date_of_birth','addres_line_1', 'addres_line_2', 'city','country', 'province_or_sate', 'postal_code','currency']
 
+        widgets = {
+            'country': forms.Select(attrs={'class': 'form-select form-control form-control-lg', 'data-search': 'on'})
+        }

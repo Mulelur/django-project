@@ -105,11 +105,4 @@ def update_transaction_records(request, token):
     return redirect(reverse('thank_you'))
 
 
-def password_verification(request):
-    user = get_object_or_404(User, username=request.user.username)
-    if request.method == 'POST':
-        password = request.POST['password']
-        if password == user.password:
-            return redirect('canclell')
-            
-    return redirect('subscriptions-detail', id=user.id)        
+        

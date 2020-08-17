@@ -94,11 +94,13 @@
                 <form action="{% url 'user_chage_date_of_birth' %}" method="POST">
                 <div class="form-group">
                     {% csrf_token %}
-                    {{ userDateOfBirthForm|crispy }}
-                </div>
-                    <div class="form-group">
-                        <input type="submit" class="btn btn-primary eg-toastr-with-titlee" value="UpDate">
+                    <div class="form-control-wrap">
+                        {{ userDateOfBirthForm }}
                     </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary eg-toastr-with-titlee" value="UpDate">
+                </div>
                 </form>
             </div>
             <div class="modal-footer bg-light">

@@ -26,9 +26,11 @@
                                         {% if website %}
                                         <div class="nk-block-content-head">
                                             <div class="nk-wg1">
+                                                {% for w in website %}
                                                 <div class="nk-wg1-block">
-                                                    <a href="{{ website.domain. }}"><img src="" alt="">{{ website.name }}</a>
+                                                    <p ><img src="" alt="">{{ w.name }}</p>
                                                 </div>
+                                                {% endfor %}
                                             </div>    
                                         </div>
                                         {% endif %}
@@ -151,8 +153,8 @@
                 <div class="card-inner">
                     <div class="between-center flex-wrap flex-md-nowrap g-3">
                         <div class="nk-block-text">
-                            <h6>{{ billing.plan }} Plan - <span class="text-base">R {{ billing.ammount }} /{% if billing.billed_monthly %}Monthly{% else %}Yearly{% endif %}</span></h6>
-                            <p class="text-soft">Unlimited access with priority support, 99.95% uptime, powerfull features and more...</p>
+                            <h6>{{ billing.plan }} Plan - <span class="text-base">{{ user.currency }} {{ billing.ammount }} /{% if billing.billed_monthly %}Monthly{% else %}Yearly{% endif %}</span></h6>
+                            <p class="text-soft">priority support 24/7 uptime, powerfull features and more...</p>
                         </div>
                         <div class="nk-block-actions flex-shrink-0">
                             <a href="{% url 'subscriptions' %}" class="btn btn-primary">View Plan</a>
@@ -234,7 +236,7 @@
                         </td>
                         <td class="tb-tnx-amount">
                             <div class="tb-tnx-total">
-                                <span class="amount">R {{ t.amount }}</span>
+                                <span class="amount">{{ user.currency }} {{ t.amount }}</span>
                             </div>
                             <div class="tb-tnx-status">
                                 <span class="badge badge-dot badge-{% if t.success %}success{% else %}Danger{% endif %}">{% if t.success %}Complet{% else %}Canceld{% endif %}</span>

@@ -63,21 +63,29 @@
                                         <span class="nk-menu-text">Account Setting</span>
                                     </a>
                                 </li>
+                            </ul>
+                            <ul class="nk-menu">
                                 <li class="nk-menu-heading">
                                     <h6 class="overline-title">Others</h6>
                                 </li>
                                 <li class="nk-menu-item">
-                                    <ul class="nk-menu-sub">
-                                        <li class="nk-menu-item"><a href="{% url 'pricing' %}" class="nk-menu-link"><span class="nk-menu-text">Pricing</span></a></li>
-                                        <li class="nk-menu-item"><a href="{% url 'invoices' %}" class="nk-menu-link"><span class="nk-menu-text">Invoices <span class="count">(2)</span></span></a></li>
-                                    </ul>
-                                </li>
+                                    <a href="{% url 'pricing' %}" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-offer"></em></span>
+                                        <span class="nk-menu-text">Pricing</span>
+                                    </a>
+                                </li><!-- .nk-menu-item -->
+                                <li class="nk-menu-item">
+                                    <a href="{% url 'invoices' %}" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-property"></em></span>
+                                        <span class="nk-menu-text">Invoices</span>
+                                    </a>
+                                </li><!-- .nk-menu-item -->
                             </ul>
                             <!-- Menu -->
                         
                             <ul class="nk-menu">
                                 <li class="nk-menu-heading">
-                                    <span>Help Center</span>
+                                    <h6 class="overline-title">Help Center</h6>
                                 </li>
                                 <li class="nk-menu-item">
                                     <a href="{% url 'faqs' %}" class="nk-menu-link">
@@ -163,7 +171,7 @@
                                     </li>
                                     <li class="dropdown notification-dropdown">
                                         <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-toggle="dropdown">
-                                            <div class="icon-status icon-status-info"><em class="icon ni ni-bell"></em></div>
+                                            <div class="{% if get_notification.read %} {% else %}icon-status{% endif %} icon-status-info"><em class="icon ni ni-bell"></em></div>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-xl dropdown-menu-right">
                                             <div class="dropdown-head">
@@ -171,18 +179,28 @@
                                                 <a href="#">Mark All as Read</a>
                                             </div>
                                             <div class="dropdown-body">
-
                                                 <div class="nk-notification">
-                                                    <div class="nk-notification-item dropdown-inner">
-                                                        <div class="nk-notification-icon">
-                                                            <em class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
+                                                    {% if notification %}
+                                                        {% for n in notification %}
+                                                            <div class="nk-notification-item dropdown-inner">
+                                                                <div class="nk-notification-icon">
+                                                                    <a href="{% url 'remove_notification' id=n.id %}">
+                                                                        <em class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
+                                                                    </a>
+                                                                </div>    
+                                                                <div class="nk-notification-content">
+                                                                    <div class="nk-notification-text">{{ n.title }}<span>Widthdrawl</span></div>
+                                                                    <div class="nk-notification-time">{{ n.time }} hrs ago</div>
+                                                                </div>
+                                                            </div>
+                                                        {% endfor %}
+                                                        {% else %}
+                                                        <div class="nk-notification-item dropdown-inner">
+                                                            <div class="nk-notification-content">
+                                                                <p>No Notification</p>
+                                                            </div>    
                                                         </div>
-                                                        <div class="nk-notification-content">
-                                                            <div class="nk-notification-text">You have requested to <span>Widthdrawl</span></div>
-                                                            <div class="nk-notification-time">2 hrs ago</div>
-                                                        </div>
-                                                    </div>
-                                               
+                                                    {% endif %}
                                                 </div><!-- .nk-notification -->
                                             </div><!-- .nk-dropdown-body -->
                                             <div class="dropdown-foot center">

@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
 from buy.models import Billing
-from .models import Notification, NotificationSetting
+from .models import Notification
 
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()
@@ -70,6 +70,10 @@ class ChangeDateBirthForm(ModelForm):
         model = User
         fields = ['date_of_birth',] 
 
+        widgets = {
+            'date_of_birth': forms.DateInput(attrs={'class': 'form-control date-picker', 'data-date-format':'yyyy-mm-dd'})
+        }
+
               
 class ChangePhoneForm(ModelForm):
     class Meta:
@@ -78,6 +82,9 @@ class ChangePhoneForm(ModelForm):
 
 class UserNotificationSettingsModelForm(ModelForm):
     class  Meta:
-        model = NotificationSetting
-        fields = '__all__'
+        model = Notification
+        fields = ['unusual_activity', 'new_browser', 'sales_and_latest_news', 'features_and_updates', 'tips']
 
+        widgets = {
+            'unusual_activity': forms.CheckboxInput(attrs={'class': 'custom-control-label custom-control-label', 'for': 'customSwitch1', 'id': 'customSwitch1'})
+        }

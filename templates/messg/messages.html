@@ -2,8 +2,8 @@
   {% for message in messages %}
     <div class="alert alert-pro alert-{{ message.tags }}" id="msg" role="alert">
       <div class="alert-text">
-        <ul class="messages">
-          <li id="ms" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{% if "html_safe" in message.tags %}{{ message|safe }}{% else %}{{ message }}{% endif %}</li>
+          <ul class="messages">
+            <li id="ms" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{% if "html_safe" in message.tags %}{{ message|safe }}{% else %}{{ message }}{% endif %}</li>
           </ul>
         </div>
   </div>

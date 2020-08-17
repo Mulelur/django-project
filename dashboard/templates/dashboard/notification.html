@@ -1,5 +1,6 @@
 {% extends 'base(dashboard).html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 {% block content %}
 <div class="nk-content-body">
     <div class="nk-content-wrap">
@@ -35,20 +36,39 @@
             <div class="nk-block-content">
                 <div class="gy-3">
                     <div class="g-item">
-                        <div class="custom-control custom-switch">
-                            <form action="" method="POST">
-                                {% csrf_token %}
-                                <div>
-                                    {{ form }}
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            <div class="nk-block-content">
+                                <div class="gy-3">
+                                    <div class="g-item">
+                                        <div class="custom-control custom-switch">
+                                            <input type="checkbox" class="custom-control-input" checked id="latest-sale">
+                                            <label class="custom-control-label" for="latest-sale">Notify me by email about sales and latest news</label>
+                                        </div>
+                                    </div>
+                                    <div class="g-item">
+                                        <div class="custom-control custom-switch">
+                                            <input type="checkbox" class="custom-control-input" id="feature-update">
+                                            <label class="custom-control-label" for="feature-update">Email me about new features and updates</label>
+                                        </div>
+                                    </div>
+                                    <div class="g-item">
+                                        <div class="custom-control custom-switch">
+                                            <input type="checkbox" class="custom-control-input" checked id="account-tips">
+                                            <label class="custom-control-label" for="account-tips">Email me about tips on using account</label>
+                                        </div>
+                                    </div>
                                 </div>
-                            </form>    
+                                <div class="g-item pt-4">
+                                    <div class="custom-control custom-switch">
+                                        <input type="submit" class="btn btn-outline-primary" value="Update">
+                                    </div>
+                                </div>            
+                            </div><!-- .nk-block-content -->
                         </div>
+                        </form>    
                     </div>
-                    <div class="g-item">
-                        <div class="custom-control custom-switch">
-                            <input type="submit" class="btn btn-outline-primary" value="Update">
-                        </div>
-                    </div>
+                   
                 </div>
             </div><!-- .nk-block-content -->
         </div><!-- .nk-block -->

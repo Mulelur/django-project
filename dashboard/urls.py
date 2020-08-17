@@ -23,6 +23,8 @@ from .userchangeviews import (
     user_chage_phone,
     user_chage_date_of_birth,
     user_chage_addrese)
+
+from .notification import delete_notification_view
 urlpatterns = [
     path('', dashboard, name='dashboard'),
     path('personal_info/', personal_info, name='personal-info'),
@@ -44,5 +46,6 @@ urlpatterns = [
     path('usernames/', user_chage_username, name='user_chage_username'),
     path('user_chage_phone/', user_chage_phone, name='user_chage_phone'),
     path('user_chage_date_of_birth/', user_chage_date_of_birth, name='user_chage_date_of_birth'),
-    path('user_chage_addrese/', user_chage_addrese, name='user_chage_addrese')
+    path('user_chage_addrese/', user_chage_addrese, name='user_chage_addrese'),
+    path('remove_notification/<id>/', delete_notification_view, name='remove_notification')
 ]

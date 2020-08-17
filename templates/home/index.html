@@ -1,13 +1,6 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
 <main class="overflow-hidden">
   <div class="container">
-    {% if messages %}
-    {% for message in messages %}
-    <div class="alert bg-contrast  alert-dismissible fade show alert-thin alert-{{ message.tags }}" style="z-index: 100;" role="alert"><i class="icon fas fa-check"></i>
-                {{ message }}
-            </div>
-    {% endfor %}
-    {% endif %}
   </div>
   <!-- Integration Heading -->
   <!-- ./App Landing - page header -->
@@ -63,6 +56,13 @@
       </div>
     </div>
   </header>
+  {% if messages %}
+    {% for message in messages %}
+    <div class="alert bg-contrast  alert-dismissible fade show alert-thin alert-{{ message.tags }}" style="z-index: 100;" role="alert"><i class="icon fas fa-check"></i>
+                {{ message }}
+            </div>
+    {% endfor %}
+  {% endif %}
   <!-- ./Partners -->
   <!-- ./How it works -->
   <section id="features" class="section bg-contrast edge top-left">

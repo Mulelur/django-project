@@ -3,8 +3,14 @@ from django.db import models
 from django.contrib.auth.models import User, AbstractUser, AbstractBaseUser
 from buy.models import Plan, Request
 
+
+class Notification(models.Model):
+    user = models.OneToOneField(User, on_delete=models.SET_NULL, null=True, related_name='notification')
+    title = models.CharField(max_length=200)
+    time = models.TimeField(auto_now_add=True)
+    read = models.BooleanField(default=False)
+
     # User notification_settings 
-class NotificationSetting(models.Model):
 
     unusual_activity = models.BooleanField(blank=True, default=True)
     new_browser = models.BooleanField(blank=True, default=True)
@@ -13,12 +19,6 @@ class NotificationSetting(models.Model):
     features_and_updates = models.BooleanField(blank=True, default=True)
     tips = models.BooleanField(blank=True, default=True)
 
-class Notification(models.Model):
-    user = models.OneToOneField(User, on_delete=models.SET_NULL, null=True)
-    title = models.CharField(max_length=200)
-    time = models.TimeField()
-    read = models.BooleanField(default=False)
-    notification_settings = models.OneToOneField(NotificationSetting, on_delete=models.SET_NULL, null=True, default='')
 
     def __str__(self):
         return self.title
