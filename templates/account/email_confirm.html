@@ -7,25 +7,58 @@
 
 
 {% block content %}
-<h1>{% trans "Confirm E-mail Address" %}</h1>
 
-{% if confirmation %}
+
+
+<div class="nk-app-root">
+    <!-- main @s -->
+    <div class="nk-main ">
+        <!-- wrap @s -->
+        <div class="nk-wrap nk-wrap-nosidebar">
+            <!-- content @s -->
+            <div class="nk-content ">
+                {% if confirmation %}
 
 {% user_display confirmation.email_address.user as user_display %}
-
-<p>{% blocktrans with confirmation.email_address.email as email %}Please confirm that <a href="mailto:{{ email }}">{{ email }}</a> is an e-mail address for user {{ user_display }}.{% endblocktrans %}</p>
-
-<form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
-{% csrf_token %}
-    <button type="submit">{% trans 'Confirm' %}</button>
-</form>
-
+                <div class="nk-block nk-block-middle wide-xs mx-auto">
+                    <div class="nk-block-content  text-center">
+                        <h1 class="ff-base">{% trans "Confirm E-mail Address" %}</h1>  
+                        <p>{% blocktrans with confirmation.email_address.email as email %}Please confirm that <a href="mailto:{{ email }}">{{ email }}</a> is an e-mail address for user {{ user_display }}.{% endblocktrans %}</p>
+                        <form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
+                            {% csrf_token %}
+                                <button class="btn btn-primary" type="submit">{% trans 'Confirm' %}</button>
+                        </form>                     
+                    </div>
+                </div><!-- .nk-block -->
+            </div>
+            <!-- wrap @e -->
+        </div>
+        <!-- content @e -->
+    </div>
+    <!-- main @e -->
+</div>
 {% else %}
-
-{% url 'account_email' as email_url %}
-
-<p>{% blocktrans %}This e-mail confirmation link expired or is invalid. Please <a href="{{ email_url }}">issue a new e-mail confirmation request</a>.{% endblocktrans %}</p>
-
+<div class="nk-app-root">
+    <!-- main @s -->
+    <div class="nk-main ">
+        <!-- wrap @s -->
+        <div class="nk-wrap nk-wrap-nosidebar">
+            <!-- content @s -->
+            <div class="nk-content ">
+                <div class="nk-block nk-block-middle wide-xs mx-auto">
+                    <div class="nk-block-content  text-center">
+                        <h1 class="ff-base">{% trans "Verify Your E-mail Address" %}</h1> 
+                        {% url 'account_email' as email_url %}                      
+                        <p>{% blocktrans %}This e-mail confirmation link expired or is invalid. Please <a href="{{ email_url }}">issue a new e-mail confirmation request</a>.{% endblocktrans %}</p>                        <a href="{% url 'contact' %}" class="btn btn-lg btn-primary mt-2">Contact us</a>
+                    </div>
+                </div><!-- .nk-block -->
+            </div>
+            <!-- wrap @e -->
+        </div>
+        <!-- content @e -->
+    </div>
+    <!-- main @e -->
+</div>
 {% endif %}
 
 {% endblock %}

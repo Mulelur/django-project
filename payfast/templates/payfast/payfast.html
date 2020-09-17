@@ -1,0 +1,152 @@
+{% extends 'base-5(buy).html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="nk-content ">
+    <div class="container-fluid">
+        <div class="nk-content-inner">
+            <div class="nk-content-body">
+                <div class="nk-block">
+                    <div class="card">
+                        <div class="card-aside-wrap">
+                            <div class="card-inner card-inner-lg">
+                                <div class="nk-block-head nk-block-head-lg">
+                                    <div class="nk-block-between">
+                                        <div class="nk-block-head-content">
+                                            <h4 class="nk-block-title">Payment</h4>
+                                            <div class="nk-block-des">
+                                                <p>enter your account details here!!. <span class="text-soft"><em class="icon ni ni-info"></em></span></p>
+                                            </div>
+                                        </div>
+                                        <div class="nk-block-head-content align-self-start d-lg-none">
+                                            <a href="#" class="toggle btn btn-icon btn-trigger mt-n1" data-target="userAside"><em class="icon ni ni-menu-alt-r"></em></a>
+                                        </div>
+                                    </div>
+                                </div><!-- .nk-block-head -->
+                                <div class="nk-block card">
+                                    <div class="nk-content ">
+                                        <div class="container wide-xl">
+                                            <div class="nk-content-inner">
+                                                <div class="nk-content-body">
+                                                    <div class="nk-content-wrap">
+                                                        <div class="nk-block-head nk-block-head-lg">
+                                                            <div class="nk-block-between-md g-4">
+                                                                <div class="nk-block-head-content">
+                                                                    <h2 class="nk-block-title fw-normal">{{ billing.plan|title }} Plan</h2>
+                                                                </div>
+                                                            
+                                                            </div>
+                                                        </div><!-- .nk-block-head -->
+                                                        <div class="row">
+                                                            <div class="col-xl-8">
+                                                                <div class="card card-bordered">
+                                                                    <div class="card-inner-group">
+                                                                        <div class="card-inner">
+                                                                            <div class="sp-plan-head">
+                                                                                <h6 class="title">Plan Details</h6>
+                                                                            </div>
+                                                                            <div class="sp-plan-desc sp-plan-desc-mb">
+                                                                                <ul class="row gx-1">
+                                                                                    <li class="col-sm-4">
+                                                                                        <p><span class="text-soft">Price</span> R {{ billing.ammount }} /{% if billing.billed_monthly %}Month{% else %}Year{% endif %}</p>
+                                                                                    </li>
+                                                                                    <!-- <li class="col-sm-4">
+                                                                                        <p><span class="text-soft">Access</span> Unlimited</p>
+                                                                                    </li> -->
+                                                                                </ul>
+                                                                            </div>
+                                                                        </div><!-- .card-inner -->
+                                                                        <div class="card-inner">
+                                                                            <div class="sp-plan-payopt">
+                                                                                <div class="cc-pay">
+                                                                                    <h6 class="title">Pay With</h6>
+                                                                                    <ul class="cc-pay-method">
+                                                                                        {{ signature }}
+                                                                                <li class="cc-pay-dd dropdown">
+                {% if my_details %}
+                <form action="https://sandbox.payfast.co.za/eng/process" method="POST">                    {% csrf_token %}
+                    <input type="hidden" name="merchant_id" value="{{ my_details.merchant_id }}">
+                    <input type="hidden" name="merchant_key" value="{{ my_details.merchant_key }}">
+                    <input type="hidden" name="return_url" value="{{ my_details.return_url }}">
+                    <input type="hidden" name="cancel_url" value="{{ my_details.cancel_url }}">
+                    <input type="hidden" name="notify_url" value="{{ my_details.notify_url }}">
+
+
+                    <!-- Buyer Details -->
+                    <input type="hidden" name="name_first" value="John">
+                    <input type="hidden" name="name_last" value="Doe">
+                    <input type="hidden" name="email_address" value="john@doe.com">
+                    <input type="hidden" name="cell_number" value="0823456789">
+
+                    <!-- Transaction Details -->
+                    <input type="hidden" name="m_payment_id" value="{{ transaction_detail.m_payment_id }}">
+                    <input type="hidden" name="amount" value="{{ transaction_detail.amount }}">
+                    <input type="hidden" name="item_name" value="{{ transaction_detail.item_name }}">
+                    <input type="hidden" name="item_description" value="{{ transaction_detail.item_description }}">
+                    
+                    <!-- Set Payment Method -->
+
+                    <input type="hidden" name="subscription_type" value="{{ my_details.subscription_type }}">
+                    <input type="hidden" name="recurring_amount" value="{{ my_details.recurring_amount }}">
+                    <input type="hidden" name="frequency" value="{{ my_details.frequency }}">
+                    <input type="hidden" name="cycles" value="{{ my_details.cycles }}">
+
+                    <!-- <input type="hidden" name="signature" value="{{ signature }}"> -->
+                    <button class="btn btn-primary">Submit Payment</button>
+                </form>
+                {% endif %}
+                <form action="https://www.paygate.co.za/paysubs/process.trans" method="POST" >
+                    <input type="hidden" name="VERSION" value="21">
+                    <input type="hidden" name="PAYGATE_ID" value="10011072130">
+                    <input type="hidden" name="REFERENCE" value="Customer1">
+                    <input type="hidden" name="AMOUNT" value="3299">
+                    <input type="hidden" name="CURRENCY" value="ZAR">
+                    <input type="hidden" name="RETURN_URL" value="http://localhost">
+                    <input type="hidden" name="TRANSACTION_DATE" value="2018-06-30 18:30">
+                    <input type="hidden" name="SUBS_START_DATE" value="2018-07-01">
+                    <input type="hidden" name="SUBS_END_DATE" value="2019-06-30">
+                    <input type="hidden" name="SUBS_FREQUENCY" value="228">
+                    <input type="hidden" name="PROCESS_NOW" value="NO">
+                    <input type="hidden" name="PROCESS_NOW_AMOUNT" value="">
+                    <input type="hidden" name="CHECKSUM" value="f672dfced5732fd4c8dc58e2a4c6ce78">
+                    <button class="btn btn-primary">Submit Paymen t2</button>
+                </form>
+<div class="dropdown-menu dropdown-menu-auto">
+                                                                                                
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div><!-- .card-inner -->
+</div><!-- .card-inner-group -->
+</div><!-- .card -->
+</div><!-- .col -->
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div><!-- .nk-block-head -->
+</div><!-- .card-inner -->
+<div class="card-aside card-aside-left user-aside toggle-slide toggle-slide-left toggle-break-lg" data-content="userAside" data-toggle-screen="lg" data-toggle-overlay="true">
+<div class="card-inner-group">
+<div class="card-inner p-0">
+<ul class="link-list-menu">
+<li><a  href="{% url 'buy-plan' %}"><em class="icon ni ni-shield-star-fill"></em><span>Plan</span></a></li>
+<li><a href="{% url 'buy-request' %}"><em class="icon ni ni-file-text"></em><span>Request</span></a></li>
+<li><a href="{% url 'billon-info' %}"><em class="icon ni ni-cc-alt-fill"></em><span>Billing Info</span></a></li>
+<li><a class="active"  href="{% url 'buy-payment' %}"><em class="icon ni ni-cc-alt-fill"></em><span>Payment</span></a></li>
+</ul>
+</div><!-- .card-inner -->
+</div><!-- .card-inner-group -->
+</div><!-- card-aside -->
+</div><!-- card-aside-wrap -->
+</div><!-- .card -->
+</div><!-- .nk-block -->
+</div>
+</div>
+</div>
+</div>
+{% endblock %}

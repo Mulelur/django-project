@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="A powerful and conceptual apps base dashboard template that especially build for developers and programmers.">
     <!-- Fav Icon  -->
-    <link rel="shortcut icon" href="{% static 'logo/onebackspace.png' %}">
+    <link rel="shortcut icon" href="{{ logo.favor_icon.url }}">
     <!-- Page Title  -->
     <title>Subscription Dashboard | DashLite Admin Template</title>
     <!-- StyleSheets  -->
@@ -24,7 +24,7 @@
                     <div class="nk-sidebar-brand">
                         <a href="{% url 'home:home' %}" class="logo-link nk-sidebar-logo">
                             <img class="logo-light logo-img" src="./images/logo.png" srcset="./images/logo2x.png 2x" alt="logo">
-                            <img class="logo-dark logo-img" style="height: 40px;width: 260px; max-width: 250%;" src="{% static 'assets-2/assets/logo/Noterio-logo-dark.png' %}" srcset="{% static 'logo/Noterio-logo.png' %} 2x" alt="logo-dark">
+                            <img class="logo-dark logo-img" style="height: 60px;width: 260px; max-width: 250%;" src="{{ logo.dashboard_dark.url }}" srcset="{{ logo.dashboard_dark.url }} 2x" alt="logo-dark">
                         </a>
                     </div>
                     <div class="nk-menu-trigger mr-n2">
@@ -101,8 +101,8 @@
                                 </li><!-- .nk-menu-item -->
                                 <li class="nk-menu-item">
                                     <a href="{% url 'support' %}" class="nk-menu-link">
-                                        <span class="nk-menu-icon"><em class="icon ni ni-headphone"></em></span>
-                                        <span class="nk-menu-text">Support</span>
+                                        <span class="nk-menu-icon"><em class="icon ni ni-msg-circle"></em></span>
+                                        <span class="nk-menu-text">Help</span>
                                     </a>
                                 </li><!-- .nk-menu-item -->
                             
@@ -189,7 +189,7 @@
                                                                     </a>
                                                                 </div>    
                                                                 <div class="nk-notification-content">
-                                                                    <div class="nk-notification-text">{{ n.title }}<span>Widthdrawl</span></div>
+                                                                    <div class="nk-notification-text">{{ n.title }}</div>
                                                                     <div class="nk-notification-time">{{ n.time }} hrs ago</div>
                                                                 </div>
                                                             </div>
@@ -256,7 +256,7 @@
                     <div class="container-fluid">
                         <div class="nk-content-inner">
                             <div class="nk-content-body">
-                                {% include 'messg/messages.html' %}
+                            {% include 'messg/messages.html' %}
                             {% block content %}{% endblock %}
                             </div>
                         </div>
@@ -267,13 +267,13 @@
                 <div class="nk-footer">
                     <div class="container-fluid">
                         <div class="nk-footer-wrap">
-                            <div class="nk-footer-copyright"> &copy; 2020 OneBackspace.
+                            <div class="nk-footer-copyright"> &copy; 2020 Webeights.
                             </div>
                             <div class="nk-footer-links">
                                 <ul class="nav nav-sm">
                                     <li class="nav-item"><a class="nav-link" href="#">Terms</a></li>
                                     <li class="nav-item"><a class="nav-link" href="#">Privacy</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#">Help</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'help' %}">Help</a></li>
                                 </ul>
                             </div>
                         </div>

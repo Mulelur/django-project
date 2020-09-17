@@ -60,17 +60,17 @@
                             </div>
                         </div>
                     </div><!-- .nk-card-inner -->
-                    <!-- <div class="card-inner">
+                    <div class="card-inner">
                         <div class="between-center flex-wrap flex-md-nowrap g-3">
                             <div class="nk-block-text">
-                                <h6>2FA Authentication <span class="badge badge-success">Enabled</span></h6>
-                                <p>Secure your account with 2FA security. When it is activated you will need to enter not only your password, but also a special code using app. You can receive this code by in mobile app. </p>
+                                <h6>Change currency<span class="badge badge-success">{{ user.currency }}</span></h6>
+                                <p>Change the default currency</p>
                             </div>
                             <div class="nk-block-actions">
-                                <a href="#" class="btn btn-primary">Disable</a>
+                                <a href="#" data-toggle="modal" data-target="#change_currency_modalForm" class="btn btn-primary">Change currency</a>
                             </div>
                         </div>
-                    </div>.nk-card-inner -->
+                    </div>
                 </div><!-- .nk-card-inner-group -->
             </div><!-- .nk-card -->
         </div>
@@ -98,6 +98,33 @@
             </div>
             <div class="modal-footer bg-light">
                 <span class="sub-text">Change Password</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" tabindex="-1" id="change_currency_modalForm">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Change Currency</h5>
+              
+                <a href="#" class="close" data-dismiss="modal" aria-label="Close">
+                    <em class="icon ni ni-cross"></em>
+                </a>
+            </div>
+            <div class="modal-body">
+                <form action="{% url 'user_currency_change' %}" method="POST" class="form-validate is-alter">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{ currency_change_form | crispy }}
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-lg btn-primary">Change Currency</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer bg-light">
+                <span class="sub-text">Change Currency</span>
             </div>
         </div>
     </div>

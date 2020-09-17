@@ -38,3 +38,16 @@ class DesktopThumbnail(models.Model):
 
     def __str__(self):
         return self.title
+
+class Logo(models.Model):
+    favor_icon = models.ImageField(upload_to = 'favor icon', blank=True)
+    # logo used in home temlate
+    home_ligth = models.ImageField(upload_to = 'home_ligth logo', blank=True) 
+    # logo used in dashboard template
+    dashboard_ligth = models.ImageField(upload_to = 'dashboard_ligth logo', blank=True) 
+    # logo used in home temlate
+    home_dark = models.ImageField(upload_to = 'home_dark logo', blank=True) 
+    # logo used in dashboard template
+    dashboard_dark = models.ImageField(upload_to = 'dashboard_dark', blank=True)
+
+          

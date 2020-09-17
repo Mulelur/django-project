@@ -11,7 +11,7 @@ class PlanModelForm(ModelForm):
 class RequestModelForm(ModelForm):
     class Meta:
         model = Request
-        fields = ['type_of_webSite_you_want', 'a_short_description_of_your_website']
+        fields = ['store_name','type_of_webSite_you_want', 'a_short_description_of_your_website']
 
 class BillingModelForm(ModelForm):
     class Meta:
@@ -22,6 +22,10 @@ class AoutoRenewOnForm(ModelForm):
     class Meta:
         model = Billing
         fields = ['auto_renew',]    
+
+        widgets = {
+            'auto_renew': forms.CheckboxInput(attrs={'class': 'custom-control-input','checked' :'', 'id':'activity-log'})
+        }        
 
 class ChangePlanForm(ModelForm):
     class Meta:
@@ -47,5 +51,8 @@ class BillingInfoAbbreseForm(ModelForm):
         fields = ['phone','date_of_birth','addres_line_1', 'addres_line_2', 'city','country', 'province_or_sate', 'postal_code','currency']
 
         widgets = {
-            'country': forms.Select(attrs={'class': 'form-select form-control form-control-lg', 'data-search': 'on'})
+            'country': forms.Select(attrs={'class': 'form-select form-control form-control-lg', 'data-search': 'on'}),
+            'date_of_birth': forms.DateInput(attrs={'class': 'form-control date-picker', 'data-date-format':'yyyy-mm-dd'})
         }
+        
+            

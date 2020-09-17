@@ -32,29 +32,39 @@ ALLOWED_HOSTS = ['45.33.55.212','127.0.0.1' ]
 
 
 INSTALLED_APPS = [
+
+    # Default apps 
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+
+    # Created apps
+
     'home.apps.HomeConfig',
-    'ckeditor',
-    'ckeditor_uploader',
     'crispy_forms',
     'article',
     'help.apps.HelpConfig',
     'buy.apps.BuyConfig',
     'dashboard.apps.DashboardConfig',
     'payment.apps.PaymentConfig',
+    'payfast.apps.PayfastConfig',
+    'sendEmail.apps.SendemailConfig',
+    
+    # 3'D party apps
+
     'stripe',
-
-    'django.contrib.sites',
-
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'ckeditor',
+    'ckeditor_uploader',
+
 ]
 CKEDITOR_UPLOAD_PATH = 'upload/'
 
@@ -95,7 +105,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'dashboard.context_processors.extars'
+                'dashboard.context_processors.extars',
+                # 'payfast.context_processors.extars',
+                'home.context_processors.logo',
             ],
         },
     },
@@ -193,5 +205,22 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'nofees202@gmail.com'
 EMAIL_HOST_PASSWORD = 'Rotondwa2+'    
-
+# alluauth settings
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = 'buy-plan'
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS =1
 ACCOUNT_EMAIL_REQUIRED = True
+# ACCOUNT_EMAIL_VERIFICATION =True
+ACCOUNT_EMAIL_SUBJECT_PREFIX='webeigth'
+ACCOUNT_LOGIN_ATTEMPTS_LIMIT =10
+ACCOUNT_LOGOUT_REDIRECT_URL ='home:home'
+
+# PayFast
+
+RETURN_URL = ''
+CANCEL_URL = ''
+NOTIFY_URL = ''
+
+FREE_TRY = 30
+
+WEB_SITE_NAME = 'webegith'
+SITE_NAME = 'webegths'

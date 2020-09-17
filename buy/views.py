@@ -5,60 +5,29 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import PlanModelForm, BillingInfoAbbreseForm, RequestModelForm, ChangePlanForm, BillingUpDateStateForm, BillingModelForm, AoutoRenewOnForm, SwitchBillingCycleForm
 from payment.views import get_user_billing
+from django.core.mail import send_mail, EmailMultiAlternatives
+from django.conf import settings
+from django.template.loader import get_template
+from sendEmail.functions import send_mail
 
 def buyView(request):
     pass
 
-# def buyingRegisterView(request):
-#     form = UserRegisterForm(request.POST or None)
-#     if form.is_valid():
-#         form.save()
-#         messages.success(request, f'Your Account Has Benn Created!!')
-#         return redirect('buy-billing')
-
-#     billing = Billing.objects.all()
-#     template = 'buy/buy.html'
-
-#     context = {
-#         'billing': billing,
-#         'form': form
-#     }
-
-#     return render(request, template, context)
 
 @login_required
 def buyingPlanView(request):
     user = get_object_or_404(User, username=request.user.username)
     user_id = get_object_or_404(User, id=request.user.id)
-    try:
-        billing = Billing.objects.get(User=user, is_active=True)
-        form = BillingModelForm(request.POST or None, instance=billing)
-        if form.is_valid():
-            form.save()
-            return redirect('buy-request')
-    except:
-        billing = Billing.objects.filter(User=user_id).first()
-        form = BillingModelForm(request.POST or None)
-        if form.is_valid():
-            obj = form.save(commit=False)
-            if obj.billed_monthly:
-                if obj.plan_id == 1:
-                    obj.ammount = '175'
-                if obj.plan_id == 2:
-                    obj.ammount = '350'
-                if obj.plan_id == 3: 
-                    obj.ammount = '785'       
-            else:
-                if obj.plan_id == 1:
-                    obj.ammount = '1470'
-                if obj.plan_id == 2:
-                    obj.ammount = '2940'
-                if obj.plan_id == 3: 
-                    obj.ammount = '6594'
-                    obj.user = request.user
-                    obj.save()  
+    billing, created = Billing.objects.get_or_create(User=user, is_active=True)
 
-            return redirect('buy-request')        
+    form = BillingModelForm(request.POST or None, instance=billing)
+    if form.is_valid():
+        obj = form.save(commit=False)
+        obj.user = request.user
+        obj.save()  
+
+
+        return redirect('buy-request')        
 
     template = 'buy/buy-billing.html'
 
@@ -166,10 +135,7 @@ def switch_billing_cycle(request):
 def update_billing(request):
     user = get_object_or_404(User, username=request.user.username)
     billing = get_object_or_404(Billing, User=request.user, is_active=True)
-    # form = BillingUpDateStateForm(request.POST or None, instance = billing)
-    # obj = form.save(commit=False)
-    # obj.is_active = False
-    # obj.save()
+    
     form = ChangePlanForm(request.POST or None, instance=billing)
     if form.is_valid():
         obj = form.save(commit=False)
@@ -221,6 +187,20 @@ def billing_cancel_view(request):
 
 def thank_you(request):
     template = 'buy/thank_you.html'
+    user = get_object_or_404(User, username=request.user.username)
+
+    # Send Thank You Email  
+
+    # send_mail(user_email=user.email, user, 'Thank you', 'You  are reviceing this email besause you have selected a plan.', 'Thank You', 'buy/mail/thank_you.html')
+    
+    subject, from_email, to = 'Thank you', settings.EMAIL_HOST_USER, user.email
+    text_content = 'You  are reviceing this email besause you have selected a plan.'
+    html_content = ('<p>Thank You <strong>{}</strong> .</p>'.format(user.username))
+    msg = EmailMultiAlternatives(subject, text_content, settings.EMAIL_HOST_USER, [user.email])
+    html_template = get_template('buy/mail/thank_you.html').render()
+    msg.attach_alternative(html_template, "text/html")
+    msg.send()
+   
     return render(request, template)
 
 def cancel_confirm(request):
@@ -228,11 +208,28 @@ def cancel_confirm(request):
     user = get_object_or_404(User, username=request.user.username)
     billing = Billing.objects.filter(User=user).first()
     context = {'billing': billing}
+
+    subject, from_email, to = 'Cancel Confirmation', settings.EMAIL_HOST_USER, user.email
+    text_content = 'This is an important message.'
+    msg = EmailMultiAlternatives(subject, text_content, settings.EMAIL_HOST_USER, [user.email])
+    html_template = get_template('buy/mail/thank_you.html', {'user': user}).render()
+    msg.attach_alternative(html_template, "text/html")
+    msg.send()
+
     return render(request, template, context)
 
 def rewnew_confirm(request):
     template = 'buy/rewnew_confirm.html'
     user = get_object_or_404(User, username=request.user.username)
     billing = Billing.objects.filter(User=user).first()
+
     context = {'billing': billing}
+    
+    subject, from_email, to = 'Subcription Renwal', settings.EMAIL_HOST_USER, user.email
+    text_content = 'This is an important message.'
+    html_content = '<p>This is an <strong>important</strong> message.</p>'
+    msg = EmailMultiAlternatives(subject, text_content, settings.EMAIL_HOST_USER, [user.email])
+    html_template = get_template('buy/mail/thank_you.html').render()
+    msg.attach_alternative(html_template, "text/html")
+    msg.send()
     return render(request, template, context)    

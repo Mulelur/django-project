@@ -11,7 +11,7 @@ from .views import  (buyingPlanView,
                          cancel_confirm,
                          rewnew_confirm,
                          rewnew_billing)
-
+from payfast.views import cheackout_view
 urlpatterns = [
     # path('', buyingRegisterView, name='buy'),
     path('buying-plan/', buyingPlanView, name='buy-plan'),

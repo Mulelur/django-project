@@ -38,12 +38,12 @@ def create_plan(request):
             email=user_billing.User.email,
             name=user_billing.User.username,
             address={
-                "line1": user_billing.addres_line_2,
-                "city": user_billing.city,
-                "country": user_billing.country,
-                "line2": user_billing.addres_line_2,
-                "postal_code": user_billing.postal_code,
-                "state": user_billing.province_or_sate,
+                "line1": user_billing.User.addres_line_2,
+                "city": user_billing.User.city,
+                "country": user_billing.User.country,
+                "line2": user_billing.User.addres_line_2,
+                "postal_code": user_billing.User.postal_code,
+                "state": user_billing.User.province_or_sate,
             },
             source=token
         )
@@ -57,8 +57,8 @@ def create_plan(request):
             recurring_value="year", 
 
         price = stripe.Price.create(
-            unit_amount=user_billing.ammount*100,
-            currency=user_billing.country,
+            unit_amount=user_billing.amount*100,
+            currency=user_billing.User.country,
             recurring={"interval": "year"}, 
             product=product,
         )
@@ -93,7 +93,7 @@ def update_transaction_records(request, token):
                             # subscription_id=id,
                             token=token,
                             billing_id=generate_billing_id(),
-                            amount=user_billing.get_monthly_ammount(),
+                            amount=user_billing.get_monthly_amount(),
                             success=True,
                             status='active')
     # save the transcation (otherwise doesn't exist)

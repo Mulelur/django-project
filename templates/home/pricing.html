@@ -20,7 +20,7 @@
                     <p>(Save up to 30% off on annual plans)</p>
                 </div>
                 <div class="row">
-                    {% if plan %}
+                    {% if user %}
                         {% for p in plan %}
                             <div class="col-md-4 mt-5">
                                 <div class="card text-center">
@@ -36,7 +36,7 @@
                                         <li class="list-group-item">{{ p.feture_4 }}</li>
                                         <li class="list-group-item">{{ p.feture_5 }}</li>
                                     </ul>
-                                    <div class="card-body"><a href="{% url 'buy' %}" class="btn btn-outline-{% if forloop.count == 2 %}primary{% else %}secondary{% endif %}">Buy now</a></div>
+                                    <div class="card-body"><a href="#" class="btn btn-outline-{% if forloop.count == 2 %}primary{% else %}secondary{% endif %}">Buy now</a></div>
                                 </div>
                             </div>
                         {% endfor %}
@@ -62,8 +62,8 @@
                             </ul>
                         </div>
                         <div class="col-sm-5 mx-auto text-center">
-                            <h4>Start using DashCore for free</h4>
-                            <p class="pricing-value"><span class="price font-xl">0</span></p><!-- <a class="btn btn-lg btn-success">Get started NOW</a> --> <a href="{% url 'buy' %}" class="btn btn-rounded btn-primary py-3 px-5">Get started NOW</a>
+                            <h4>get your 30 day free trial Now !! </h4>
+                            <p class="pricing-value"><span class="price font-xl">0</span></p><!-- <a class="btn btn-lg btn-success">Get started NOW</a> --> <a href="#" class="btn btn-rounded btn-primary py-3 px-5">Get started NOW</a>
                         </div>
                     </div>
                 </div>
@@ -148,7 +148,7 @@
                     <div class="text-center text-md-left">
                         <p class="light mb-0 text-primary lead">Ready to get started?</p>
                         <h2 class="mt-0">Create an account now</h2>
-                    </div><a href="{% url 'register' %}" class="btn btn-primary btn-rounded mt-3 mt-md-0 ml-md-auto">Create DashCore account</a>
+                    </div><a href="#" class="btn btn-primary btn-rounded mt-3 mt-md-0 ml-md-auto">Create DashCore account</a>
                 </div>
             </div>
         </section><!-- ./Footer - Four Columns -->

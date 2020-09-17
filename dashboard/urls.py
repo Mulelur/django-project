@@ -22,7 +22,8 @@ from .userchangeviews import (
     user_chage_username,
     user_chage_phone,
     user_chage_date_of_birth,
-    user_chage_addrese)
+    user_chage_addrese,
+    user_currency_change)
 
 from .notification import delete_notification_view
 urlpatterns = [
@@ -47,5 +48,6 @@ urlpatterns = [
     path('user_chage_phone/', user_chage_phone, name='user_chage_phone'),
     path('user_chage_date_of_birth/', user_chage_date_of_birth, name='user_chage_date_of_birth'),
     path('user_chage_addrese/', user_chage_addrese, name='user_chage_addrese'),
-    path('remove_notification/<id>/', delete_notification_view, name='remove_notification')
+    path('remove_notification/<id>/', delete_notification_view, name='remove_notification'),
+    path('user_currency_change/', user_currency_change, name='user_currency_change')
 ]

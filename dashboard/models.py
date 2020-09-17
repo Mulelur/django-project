@@ -59,3 +59,28 @@ class Profile(models.Model):
         return f'{self.user.username} Profile'
 
 
+class BuildDashboard(models.Model):
+    bullid = models.BooleanField()
+
+    # def __str__():
+    #     return 'budlided dashboard'
+
+class TimeLine(models.Model):
+    STUTAS = (
+        ('complited','complited'),
+        ('current','current'),
+        ('next', 'next')
+    )
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    register = models.CharField(max_length=30, choices=STUTAS, default='next')
+    set_up_payment_method = models.CharField(max_length=30,choices=STUTAS, default='next')
+    website_creation = models.CharField(max_length=30, choices=STUTAS, default='next')
+    website_review = models.CharField(max_length=30, choices=STUTAS, default='next')
+    publish_website = models.CharField(max_length=30, choices=STUTAS, default='next')
+
+    completed = models.PositiveIntegerField(default=0)
+
+    def __str__(self):
+        return ('TimeLine for {}'.format(self.user.username))
+
+

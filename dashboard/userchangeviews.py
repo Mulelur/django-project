@@ -9,7 +9,8 @@ from .forms import  (UserChangeAddressForm,
                      ChangeUsernameForm,
                      ChangePhoneForm,
                      ChangeDateBirthForm,
-                     UserChangeAddressForm)
+                     UserChangeAddressForm,
+                     ChangeUserCurrency)
 
 
 def user_change_full_names(request):
@@ -66,3 +67,14 @@ def user_chage_addrese(request):
     else:
         messages.info(request, "could not Update Addrese")
         return redirect('personal-info')   
+
+def user_currency_change(request):
+    user = get_object_or_404(User, username=request.user)
+    form = ChangeUserCurrency(request.POST or None, instance=user)
+    if form.is_valid():
+        form.save()
+        messages.success(request, "currency changed")
+        return redirect('settings')
+    else:
+        messages.info(request, "currency changed")
+        return redirect('settings')

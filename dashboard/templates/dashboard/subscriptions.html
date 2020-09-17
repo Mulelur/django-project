@@ -38,7 +38,12 @@
                                             <div class="col-xl-3 col-sm-4">
                                                 <form action="{% url 'auto-renew-toggel' %}" method="POST">
                                                     {% csrf_token %}
-                                                    {{ form_renew }}
+                                                    
+                                                    <!-- <div class="custom-control custom-switch mr-n2">
+                                                        {{ form_renew.auto_renew }}
+                                                        <label class="custom-control-label" for="activity-log"></label>
+                                                    </div> -->
+                                                    
                                                 </form>
                                             </div>
                                         </div>
@@ -68,7 +73,7 @@
                                     </div>
                                     <div class="align-end flex-sm-wrap g-4 flex-md-nowrap">
                                         <div class="nk-sale-data">
-                                            <span class="sub-title"><p>{% if b.free_trial %}Your Free Trial End's{% else %}Next Billing{% endif %} on <span>{{ b.get_next_billing }}</span></p>
+                                            <span class="sub-title"><p>{% if b.free_trial %}{% else %}Next Billing  on {% endif %}<span>{{ b.get_next_billing }}</span></p>
                                         </span>
                                         </div>
                                     </div>
@@ -104,7 +109,12 @@
                                                     <div class="custom-control custom-switch">
                                                         <form action="{% url 'auto-renew-toggel' %}" method="POST">
                                                             {% csrf_token %}
-                                                            {{ form_renew }}                                                        </form>
+                                                            <div class="custom-control custom-switch mr-n2">
+                                                                <!-- <input type="checkbox" class="custom-control-input" checked="" id="activity-log"> -->
+                                                                {{ form_renew }} 
+                                                                <label class="custom-control-label" for="activity-log"></label>
+                                                            </div>
+                                                                                                                   </form>
                                                     </div>
                                                 </div>
                                             </div>
@@ -154,6 +164,12 @@
                     </div><!-- .nk-block -->
                 {% endif %}
             {% endfor %}
+            {% else %}
+            <div class="nk-block">
+                <h2>Opps... We did Not found any Subscriptions for You.</h2>
+                <p>this may be cosed by not compliting the payment or not chosseng a plan.</p>
+                <p>plase chosse a plan <a href="{% url 'buy-plan' %}">here </a>or contact us for <a href="{% url 'help' %}">Help</a>.</p>
+            </div>
         {% endif %}
     </div>
 </div>

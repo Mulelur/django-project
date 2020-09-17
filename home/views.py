@@ -4,16 +4,19 @@ from .models import Plan, DesktopThumbnail, PhoneThumbnail
 def homeView(request):
     desktop_imange = DesktopThumbnail.objects.all()
     phone_image = PhoneThumbnail.objects.all() 
-    if desktop_imange:
+    try:
         desktop_imange = DesktopThumbnail.objects.get(id='1')
-    if phone_image:
+    
         phone_image = PhoneThumbnail.objects.get(id='1')
-        
 
-    context = {
-        'desktop': desktop_imange,
-        'phone': phone_image
-    }
+        context = {
+            'desktop': desktop_imange,
+            'phone': phone_image
+        }
+    except:
+        ''
+        context = {}
+
     return render(request, 'home/index.html', context)
 
 def pricingView(request):

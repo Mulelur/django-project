@@ -19,7 +19,7 @@
                         </div>
                         <div class="nk-block nk-block-middle nk-auth-body">
                             <div class="brand-logo pb-5">
-                                <a href="html/index.html" class="logo-link">
+                                <a href="{% url 'home:home' %}" class="logo-link">
                                     <img class="logo-light logo-img logo-img-lg" src="{% static 'logo/Noterio-logo.png' %}" srcset="./images/logo2x.png 2x" alt="logo">
                                     <img class="logo-dark logo-img logo-img-lg" src="{% static 'logo/Noterio-logo.png' %}" srcset="./images/logo-dark2x.png 2x" alt="logo-dark">
                                 </a>
@@ -69,7 +69,7 @@
                                 </div>
                                 {% endif %}
                             <div class="text-center mt-5">
-                                <span class="fw-500">I don't have an account? <a href="#">Try 15 days free</a></span>
+                                <span class="fw-500">I don't have an account? {% if free_try %} <a href="#">Try {{ free_try }} days free</a>{% else %} <a href="">Sign Up Now!!</a> {% endif %}</span>
                             </div>
                         </div><!-- .nk-block -->
                         <div class="nk-block nk-auth-footer">

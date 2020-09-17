@@ -28,7 +28,7 @@
                                             <div class="nk-wg1">
                                                 {% for w in website %}
                                                 <div class="nk-wg1-block">
-                                                    <p ><img src="" alt="">{{ w.name }}</p>
+                                                    <p><img src="" alt="">{{ w.name }}</p>
                                                 </div>
                                                 {% endfor %}
                                             </div>    
@@ -63,7 +63,7 @@
                                             <div class="align-center gx-3">
                                                 <div class="flex-item">
                                                     <div class="progress progress-sm progress-pill w-80px">
-                                                        <div class="progress-bar" data-progress="35"></div>
+                                                        <div class="progress-bar" data-progress="75"></div>
                                                     </div>
                                                 </div>
                                                 <div class="flex-item">
@@ -164,7 +164,7 @@
                 <div class="card-inner">
                     <div class="between-center flex-wrap flex-md-nowrap g-3">
                         <div class="nk-block-text">
-                            <p>Learn more about our <a href="#">subscription options</a>.</p>
+                            <p>Learn more about our <a href="{% url 'article:article_detail' category_slug='subscription' article_slug='subscription options' %}">subscription options</a>.</p>
                         </div>
                     </div>
                 </div><!-- .nk-card-inner -->
@@ -245,8 +245,8 @@
                     </tr><!-- .tb-tnx-item -->
                     {% endfor %}
                     {% else %}
-                    <tr class="">
-                        <p>No Hestory</p>
+                    <tr>
+                        <p class="p-3">No Hestory</p>
                     </tr>
                     {% endif %}
                 </tbody>

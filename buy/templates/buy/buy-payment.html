@@ -48,7 +48,7 @@
                                                                             <div class="sp-plan-desc sp-plan-desc-mb">
                                                                                 <ul class="row gx-1">
                                                                                     <li class="col-sm-4">
-                                                                                        <p><span class="text-soft">Price</span> R {{ billing.ammount }} /{% if billing.billed_monthly %}Month{% else %}Year{% endif %}</p>
+                                                                                        <p><span class="text-soft">Price</span> R {{ billing.amount }} /{% if billing.billed_monthly %}Month{% else %}Year{% endif %}</p>
                                                                                     </li>
                                                                                     <!-- <li class="col-sm-4">
                                                                                         <p><span class="text-soft">Access</span> Unlimited</p>
@@ -59,7 +59,7 @@
                                                                         <div class="card-inner">
                                                                             <div class="sp-plan-payopt">
                                                                                 <div class="cc-pay">
-                                                                                    <h6 class="title">Pay With</h6>
+                                                                                    <h6 class="title">Pay With Paypal</h6>
                                                                                     <ul class="cc-pay-method">
                                                                                         <li class="cc-pay-dd dropdown">
                                                                                                 {% include 'payment/payment.html' %}
@@ -82,14 +82,32 @@
                                     
                                     </div>
                                 </div><!-- .nk-block-head -->
-                            </div><!-- .card-inner -->
+                            </div><!-- .card-inner -->       
                             <div class="card-aside card-aside-left user-aside toggle-slide toggle-slide-left toggle-break-lg" data-content="userAside" data-toggle-screen="lg" data-toggle-overlay="true">
                                 <div class="card-inner-group">
+                                    <div class="card-inner">
+                                        <div class="user-account-info py-0">
+                                            <a href="{% url 'home:home' %}">
+                                                <img src="{{ logo.dashboard_dark.url }}" height="70" alt="">
+                                            </a>
+                                        </div>
+                                    </div><!-- .card-inner -->
+                                    <div class="card-inner">
+                                        <div class="user-card">
+                                            <div class="user-avatar bg-primary">
+                                                <span>AB</span>
+                                            </div>
+                                            <div class="user-info">
+                                                <span class="lead-text">{{ user.username }}</span>
+                                                <span class="sub-text">{{ user.email }}</span>
+                                            </div>
+                                        </div>
+                                    </div><!-- .card-inner -->
                                     <div class="card-inner p-0">
                                         <ul class="link-list-menu">
                                             <li><a  href="{% url 'buy-plan' %}"><em class="icon ni ni-shield-star-fill"></em><span>Plan</span></a></li>
                                             <li><a href="{% url 'buy-request' %}"><em class="icon ni ni-file-text"></em><span>Request</span></a></li>
-                                            <li><a href="{% url 'billon-info' %}"><em class="icon ni ni-cc-alt-fill"></em><span>Billing Info</span></a></li>
+                                            <li><a href="{% url 'billon-info' %}"><em class="icon ni ni-cc"></em></em><span>Billing Info</span></a></li>
                                             <li><a class="active"  href="{% url 'buy-payment' %}"><em class="icon ni ni-cc-alt-fill"></em><span>Payment</span></a></li>
                                         </ul>
                                     </div><!-- .card-inner -->

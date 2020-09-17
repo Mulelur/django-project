@@ -7,10 +7,10 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width,initial-scale=1"><!-- Place favicon.ico in the root directory -->
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <link rel="icon" href="{% static 'logo/onebackspace.png' %}">
+    <link rel="icon" href="{{ logo.favor_icon.url }}">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,300,400,700,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Caveat" rel="stylesheet">
-    <title>Noterio - Premium Software & Startup HTML</title><!-- themeforest:css -->
+    <title>webeights - Premium Software & Startup HTML</title><!-- themeforest:css -->
     <link rel="stylesheet" href="{% static 'css/all.css' %}">
     <link rel="stylesheet" href="{% static 'css/aos.css' %}">
     <link rel="stylesheet" href="{% static 'css/cookieconsent.min.css' %}">
@@ -35,13 +35,13 @@
 <nav class="st-nav navbar main-nav navigation fixed-top" id="main-nav">
     <div class="container">
         <ul class="st-nav-menu nav navbar-nav">
-            <li class="st-nav-section nav-item"><a href="{% url 'home:home' %}" class="navbar-brand"><img src="{% static 'logo/Noterio-logo.png' %}" alt="Dashcore" class="logo logo-sticky d-block d-md-none"> <img src="{% static 'logo/1.png' %}" alt="Dashcore" class="logo d-none d-md-block"></a></li>
+            <li class="st-nav-section nav-item"><a href="{% url 'home:home' %}" class="navbar-brand"><img src="{{ logo.dashboard_dark.url }}" alt="webeights" class="logo logo-sticky d-block d-md-none"> <img src="{{ logo.dashboard_ligth.url }}" alt="webeights" class="logo d-none d-md-block"></a></li>
             <li class="st-nav-section st-nav-primary nav-item">
                 <a class="st-root-link nav-link" href="">Home </a>
                 <a class="st-root-link item-products st-has-dropdown nav-link" data-dropdown="blocks">Services </a>
                 <a class="st-root-link item-products st-has-dropdown nav-link" data-dropdown="pages">Custermaer Service </a>
                 <a class="st-root-link item-company st-has-dropdown nav-link" data-dropdown="components" href="{% url 'projects:projects' %}">Projects </a>
-                <a href="" class="st-root-link item-shop nav-link">Pracing</a>
+                <a href="{% url 'home:pricing' %}" class="st-root-link item-shop nav-link">Pracing</a>
             </li>
             {% if user.is_authenticated %}
             <li class="st-nav-section st-nav-secondary nav-item"><a class="btn btn-rounded btn-outline mr-3 px-3" href="{% url 'dashboard' %}" target="_blank"><i class="fas fa-sign-in-alt d-none d-md-inline mr-md-0 mr-lg-2"></i> <span class="d-md-none d-lg-inline">Dashboard</span> </a>
@@ -62,10 +62,11 @@
                             </div>
                         </div>
                         <div class="st-dropdown-content-group bg-light b-t">
-                            {% if user.is_authenticated %}<a href="{% url 'dashboard' %}">Dashboard<i class="fas fa-arrow-right"></i></a>
+                            {% if user.is_authenticated %}
+                            <a href="{% url 'dashboard' %}">Dashboard<i class="fas fa-arrow-right"></i></a>
                             {% else %}
-                            <a class="btn btn-rounded btn-outline mr-3 px-3" href="{% url 'account_login' %}" target="_blank"><i class="fas fa-sign-in-alt d-none d-md-inline mr-md-0 mr-lg-2"></i> <span class="d-md-none d-lg-inline">Login</span> </a><a class="btn btn-rounded btn-solid px-3" href="{% url 'account_login' %}" target="_blank"><i class="fas fa-user-plus d-none d-md-inline mr-md-0 mr-lg-2"></i> <span class="d-md-none d-lg-inline">Sing In</span></a>
-                            <a class="btn btn-rounded btn-outline mr-3 px-3" href="{% url 'account_login' %}" target="_blank"><i class="fas fa-sign-in-alt d-none d-md-inline mr-md-0 mr-lg-2"></i> <span class="d-md-none d-lg-inline">Login</span> </a><a class="btn btn-rounded btn-solid px-3" href="{% url 'account_signup' %}" target="_blank"><i class="fas fa-user-plus d-none d-md-inline mr-md-0 mr-lg-2"></i> <span class="d-md-none d-lg-inline">Sign Up</span></a>
+                            <a class="btn btn-rounded btn-outline my-3 px-3" href="{% url 'account_signup' %}" target="_blank"><i class="fas fa-sign-in-alt d-none d-md-inline mr-md-0 mr-lg-2"></i> <span class="d-md-none d-lg-inline">Sing Up</span> </a>
+                            <a class="btn btn-rounded btn-solid px-3" href="{% url 'account_login' %}" target="_blank"><i class="fas fa-user-plus d-none d-md-inline mr-md-0 mr-lg-2"></i> <span class="d-md-none d-lg-inline">Sing In</span></a>
                             {% endif %}
                         </div>
                     </div>
@@ -171,11 +172,11 @@
     <div class="container py-4">
         <div class="row align-items-center">
             <div class="col-md-5 text-center text-md-left">
-                <nav class="nav justify-content-center justify-content-md-start"><a class="nav-item nav-link" href="about.html">About</a> <a class="nav-item nav-link" href="#">Services</a> <a class="nav-item nav-link" href="blog/blog-grid.html">Blog</a><a class="nav-item nav-link" href="{% url 'help' %}">Help</a></nav>
+                <nav class="nav justify-content-center justify-content-md-start"><a class="nav-item nav-link" href="">About</a> <a class="nav-item nav-link" href="#">Services</a> <a class="nav-item nav-link" href="blog/blog-grid.html">Blog</a><a class="nav-item nav-link" href="{% url 'help' %}">Help</a></nav>
             </div>
-            <div class="col-md-2 text-center"><img src="{% static 'logo/Noterio-logo.png' %}" alt="" class="logo"></div>
+            <div class="col-md-2 text-center"><img src="{{ logo.dashboard_dark.url }}" alt="" class="logo"></div>
             <div class="col-md-5 text-center text-md-right">
-                <p class="mt-2 mb-0 text-secondary small">© 2018 Noterio. All Rights Reserved</p>
+                <p class="mt-2 mb-0 text-secondary small">© 2020 webeights. All Rights Reserved</p>
             </div>
         </div>
     </div>

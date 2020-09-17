@@ -19,7 +19,8 @@ from .forms import (UserRegisterForm,
                      UserNotificationSettingsModelForm,
                      ChangePhoneForm,
                      ChangeDateBirthForm,
-                     UserChangeAddressForm)
+                     UserChangeAddressForm,
+                     ChangeUserCurrency)
 
 @login_required
 def dashboard(request):
@@ -79,16 +80,18 @@ def usernameform_View(request):
 def billing(request):
     template = 'dashboard/billing.html'
     user = get_object_or_404(User, username=request.user.username)
-    billing = Billing.objects.get(User=user, is_active=True)
+    
+    try:
+        last_transaction = Transaction.objects.filter(user=user)[0]
+        billing = Billing.objects.get(User=user, is_active=True)
+    except:
+        last_transaction = None
+        billing = None
+        messages.info(request, "No last transaction")
+    
     form = ChangePlanForm(instance=billing)
     form1 = SwitchBillingCycleForm(request.POST or None, instance=billing)
     auto_form = SwitchBillingCycleForm(request.POST or None, instance=billing)
-    try:
-        last_transaction = Transaction.objects.filter(user=user)[0]
-    except:
-        last_transaction = None
-        messages.info(request, "No last transaction")
-
     # if billing.is_active:
 
 
@@ -106,11 +109,13 @@ def settings(request):
     template = 'dashboard/settings.html'
     user = get_object_or_404(User, username=request.user)
     form =  PasswordChangeForm(request.POST or None)
+    currency_change_form = ChangeUserCurrency(request.POST or None, instance=user)
     if form.is_valid():
         form.save()
 
     context = {
-        'form': form
+        'form': form,
+        'currency_change_form': currency_change_form
     }
     
     return render(request, template, context)  

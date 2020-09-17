@@ -18,6 +18,7 @@ urlpatterns = [
     path('contact/', include('contact.urls')),
     path('accounts/', include('allauth.urls')),
     path('projects/', include('projects.urls')),
+    path('payfast/', include('payfast.urls')),
 ]
 
 if (settings.DEBUG):

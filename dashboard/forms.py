@@ -88,3 +88,13 @@ class UserNotificationSettingsModelForm(ModelForm):
         widgets = {
             'unusual_activity': forms.CheckboxInput(attrs={'class': 'custom-control-label custom-control-label', 'for': 'customSwitch1', 'id': 'customSwitch1'})
         }
+
+class ChangeUserCurrency(ModelForm):
+
+    class Meta:
+        model = User
+        fields = ['currency',]
+
+        widgets = {
+            'currency': forms.Select(attrs={'class': 'form-select time-picker'})
+        }

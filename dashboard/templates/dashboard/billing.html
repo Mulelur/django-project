@@ -90,6 +90,9 @@
                 </div>
             </div><!-- .card -->
             <!--  Another Sub Section -->
+            {% else %}
+            <h2>Sorry!!! sems that you are curently not Subscrbed for any Plan.</h2>
+            <p>Plase <a href="{% url 'buy-plan' %}">select a Plan</a> and complete the payment proserce or <a href="{% url 'contact' %}">contact</a>  us for assetance</p>
             {% endif %}
             {% include 'buy/part/buying/_change-plan.html' %}
         </div><!-- .nk-block -->
