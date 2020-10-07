@@ -9,8 +9,14 @@
                     <div class="nk-block-head nk-block-head-lg wide-xs mx-auto">
                         <div class="nk-block-head-content text-center">
                             <h2 class="nk-block-title fw-normal">Hello, {{ user.username }}!</h2>
+                            {% if user.billing_user.first.free_trial %}
+                            <div class="example-alert mb-2">
+                                <div class="alert alert-fill alert-warning alert-icon">
+                                    <em class="icon ni ni-alert-circle"></em> Your Free trial <strong>Will expire on the</strong>{{ get_billing.get_next_billing }}({{ get_billing.get_day }} days remaining) <a href="#" class="alert-link">Pay Now</a> if auto renew is disabuled</div>
+                            </div>
+                            {% endif %}
                             <div class="nk-block-des">
-                                <p>Welcome to your <strong>Dashboard</strong>. You are few steps away from getting your website. Let’s start!</p>
+                                <p>Welcome to your <strong>Dashboard</strong>. You are few steps away from getting your website.</p>
                             </div>
                         </div>
                     </div><!-- .nk-block-head -->
@@ -48,22 +54,22 @@
                                     <div class="card-inner-group">
                                         <div class="card-inner">
                                             <h5>Let’s Finish Your Website</h5>
-                                            <p>Bulling a website takes about 1 to 3 day depending on the type of website</p>
+                                            <p>Bulling a website takes about 1 to 3 day depending on the type of a website</p>
                                         </div>
                                         <div class="card-inner">
                                             <ul class="list list-step">
-                                                <li class="list-step-done">Register</li>
-                                                <li class="list-step-done">Set up payment method</li>
-                                                <li class="list-step-current">Website Creation</li>
-                                                <li> Website Reviwe</li>
-                                                <li>Publish Website</li>
+                                                <li class="list-step-{% if timeline.register == 'complited' %}done{% elif timeline.register == 'current' %}current{% endif %}">Register</li>
+                                                <li class="list-step-{% if timeline.set_up_payment_method == 'complited' %}done{% elif timeline.set_up_payment_method == 'current' %}current{% endif %}">Set up payment method</li>
+                                                <li class="list-step-{% if timeline.website_creation == 'complited' %}done{% elif timeline.website_creation == 'current' %}current{% endif %}">Website Creation</li>
+                                                <li class="list-step-{% if timeline.website_review == 'complited' %}done{% elif timeline.website_review == 'current' %}current{% endif %}">Website Reviwe</li>
+                                                <li class="list-step-{% if timeline.publish_website == 'complited' %}done{% elif timeline.publish_website == 'current' %}current{% endif %}">Publish Website</li>
                                             </ul>
                                         </div>
                                         <div class="card-inner">
                                             <div class="align-center gx-3">
                                                 <div class="flex-item">
                                                     <div class="progress progress-sm progress-pill w-80px">
-                                                        <div class="progress-bar" data-progress="75"></div>
+                                                        <div class="progress-bar" data-progress="{{ timeline.completed }}"></div>
                                                     </div>
                                                 </div>
                                                 <div class="flex-item">

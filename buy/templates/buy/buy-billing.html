@@ -27,8 +27,25 @@
                                     <form action="{% url 'buy-plan' %}" method="POST">
                                         <div class="form-group">
                                             <div class="form-control-wrap">
-                                                {% csrf_token %}  
-                                                    {{ form|crispy }}
+                                                {% csrf_token %}
+                                                <div class="form-group">
+                                                    <div class="form-control-wrap">
+                                                        {{ form.plan }}
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="form-group">
+                                                    <div class="custom-control custom-switch mr-n2">
+                                                        {{ form.billed_monthly }}
+                                                        <label class="custom-control-label" for="activity-log-1">Billed monthly</label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="custom-control custom-switch mr-n2">
+                                                        {{ form.free_trial }} 
+                                                        <label class="custom-control-label" for="activity-log-2">Free trial</label>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div><div class="form-group">
                                             <div class="form-control-wrap">

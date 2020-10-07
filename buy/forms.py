@@ -18,6 +18,13 @@ class BillingModelForm(ModelForm):
         model = Billing
         fields = ['plan', 'billed_monthly', 'free_trial']
 
+        widgets = {
+            'billed_monthly': forms.CheckboxInput(attrs={'class': 'custom-control-input','checked' :'', 'id':'activity-log-1'}),
+            'free_trial': forms.CheckboxInput(attrs={'class': 'custom-control-input','checked' :'', 'id':'activity-log-2'}),
+            'plan' : forms.Select(attrs={'class': 'form-control'})
+        }
+        
+
 class AoutoRenewOnForm(ModelForm):
     class Meta:
         model = Billing

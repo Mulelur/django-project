@@ -19,6 +19,7 @@
         <!-- main @s -->
         <div class="nk-main ">
             <!-- sidebar @s -->
+            {% if user.is_authenticated %}
             <div class="nk-sidebar nk-sidebar-fixed is-light " data-content="sidebarMenu">
                 <div class="nk-sidebar-element nk-sidebar-head">
                     <div class="nk-sidebar-brand">
@@ -114,6 +115,7 @@
                     </div><!-- .nk-sidebar-content -->
                 </div><!-- .nk-sidebar-element -->
             </div>
+            {% endif %}
             <!-- sidebar @e -->
             <!-- wrap @s -->
             <div class="nk-wrap ">
@@ -129,85 +131,9 @@
                                     <img class="logo-dark logo-img" style="height: 80px;width: 160px; max-width: 250%;" src="{% static 'assets-2/assets/logo/Noterio-logo-dark.png' %}" srcset="{% static 'logo/Noterio-logo.png' %} 2x" alt="logo-dark">
                                 </a>
                             </div><!-- .nk-header-brand -->
+                            {% if user.is_authenticated %}
                             <div class="nk-header-tools">
                                 <ul class="nk-quick-nav">
-                                    <li class="dropdown chats-dropdown hide-mb-xs">
-                                        <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-toggle="dropdown">
-                                            <div class="icon-status icon-status-na"><em class="icon ni ni-comments"></em></div>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-xl dropdown-menu-right">
-                                            <div class="dropdown-head">
-                                                <span class="sub-title nk-dropdown-title">Recent Chats</span>
-                                                <a href="#">Setting</a>
-                                            </div>
-                                            <div class="dropdown-body">
-                                                <ul class="chat-list">
-                                                    <li class="chat-item">
-                                                        <a class="chat-link" href="html/apps-chats.html">
-                                                            <div class="chat-media user-avatar">
-                                                                <span>IH</span>
-                                                                <span class="status dot dot-lg dot-gray"></span>
-                                                            </div>
-                                                            <div class="chat-info">
-                                                                <div class="chat-from">
-                                                                    <div class="name">Iliash Hossain</div>
-                                                                    <span class="time">Now</span>
-                                                                </div>
-                                                                <div class="chat-context">
-                                                                    <div class="text">You: Please confrim if you got my last messages.</div>
-                                                                    <div class="status delivered">
-                                                                        <em class="icon ni ni-check-circle-fill"></em>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </a>
-                                                    </li><!-- .chat-item -->
-                                                </ul><!-- .chat-list -->
-                                            </div><!-- .nk-dropdown-body -->
-                                            <div class="dropdown-foot center">
-                                                <a href="html/apps-chats.html">View All</a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="dropdown notification-dropdown">
-                                        <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-toggle="dropdown">
-                                            <div class="{% if get_notification.read %} {% else %}icon-status{% endif %} icon-status-info"><em class="icon ni ni-bell"></em></div>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-xl dropdown-menu-right">
-                                            <div class="dropdown-head">
-                                                <span class="sub-title nk-dropdown-title">Notifications</span>
-                                                <a href="#">Mark All as Read</a>
-                                            </div>
-                                            <div class="dropdown-body">
-                                                <div class="nk-notification">
-                                                    {% if notification %}
-                                                        {% for n in notification %}
-                                                            <div class="nk-notification-item dropdown-inner">
-                                                                <div class="nk-notification-icon">
-                                                                    <a href="{% url 'remove_notification' id=n.id %}">
-                                                                        <em class="icon icon-circle bg-warning-dim ni ni-curve-down-right"></em>
-                                                                    </a>
-                                                                </div>    
-                                                                <div class="nk-notification-content">
-                                                                    <div class="nk-notification-text">{{ n.title }}</div>
-                                                                    <div class="nk-notification-time">{{ n.time }} hrs ago</div>
-                                                                </div>
-                                                            </div>
-                                                        {% endfor %}
-                                                        {% else %}
-                                                        <div class="nk-notification-item dropdown-inner">
-                                                            <div class="nk-notification-content">
-                                                                <p>No Notification</p>
-                                                            </div>    
-                                                        </div>
-                                                    {% endif %}
-                                                </div><!-- .nk-notification -->
-                                            </div><!-- .nk-dropdown-body -->
-                                            <div class="dropdown-foot center">
-                                                <a href="#">View All</a>
-                                            </div>
-                                        </div>
-                                    </li>
                                     <li class="dropdown user-dropdown">
                                         <a href="#" class="dropdown-toggle mr-n1" data-toggle="dropdown">
                                             <div class="user-toggle">
@@ -247,6 +173,8 @@
                                     </li>
                                 </ul>
                             </div>
+                            {% else %}                            
+                            {% endif %}
                         </div><!-- .nk-header-wrap -->
                     </div><!-- .container-fliud -->
                 </div>

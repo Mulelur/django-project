@@ -7,18 +7,15 @@ from .country import COUNTRY
 
 class Plan(models.Model):
     PLANS = (
-        ('PRESONAL(montly@195 pre-mouth)', '195'),
-        ('PRESONAL(yearly@175 pre-mouth)', '1470'),
-        ('BUSINESS(montly@412 pre-mouth)', '412'),
-        ('BUSINESS(yearly@366 pre-mouth)', '2940'),
-        ('ENTERPRICE(montly@899 pre-mouth)', '899'),
-        ('ENTERPRICE(yearly@720 pre-mouth)', '6594')
+        ('PRESONAL-yearly', 'PRESONAL-1470'),
+        ('PRESONAL-monthly', 'PRESONAL-195'),
+        ('BUSINESS-monthly', 'BUSINESS-412'),
+        ('BUSINESS-yearly', 'BUSINESS-2940'),
+        ('ENTERPRICE-monthly', 'ENTERPRICE-899'),
+        ('ENTERPRICE-yearly', 'ENTERPRICE-6594')
     )
     plan = models.CharField(max_length=100, choices=PLANS)
-    
-
-    # plan_price = models.IntegerChoices()
-    # price = models.IntegerChoices()    
+    price = models.IntegerField()    
     
     def __str__(self):
         return self.plan
@@ -76,7 +73,7 @@ class Billing(models.Model):
     #     ('business(R350)', 'business(R350)'),
     #     ('enterprice(R780)', 'enterprice(R780)')
     # )
-    User = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='billing_user')
+    User = models.OneToOneField(User, on_delete=models.SET_NULL, null=True, related_name='billing_user')
     plan = models.ForeignKey(Plan, on_delete=models.SET_NULL, null=True, help_text='select plan')
     billed_monthly = models.BooleanField(default=True)
     is_active = models.BooleanField(default=True, blank=True)

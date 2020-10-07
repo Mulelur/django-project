@@ -233,3 +233,9 @@ def rewnew_confirm(request):
     msg.attach_alternative(html_template, "text/html")
     msg.send()
     return render(request, template, context)    
+
+@login_required
+def get_started(request):
+    template = 'buy/get_started.html'
+    context = {}
+    return render(request, template, context)

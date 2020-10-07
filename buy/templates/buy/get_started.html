@@ -1,11 +1,10 @@
 {% extends "account/base.html" %}
-{% load crispy_forms_tags %}
-{% load static %}
+
 {% load i18n %}
 
-{% block head_title %}{% trans "Signup" %}{% endblock %}
-
-{% block content %}
+{% block head_title %}{% trans "Sign Out" %}{% endblock %}
+{% load static %}
+{% block content %}   
 <div class="nk-app-root">
     <!-- main @s -->
     <div class="nk-main ">
@@ -14,48 +13,32 @@
             <!-- content @s -->
             <div class="nk-content ">
                 <div class="nk-split nk-split-page nk-split-md">
-                    <div class="nk-split-content nk-block-area nk-block-area-column nk-auth-container bg-white w-lg-45">
+                    <div class="nk-split-content nk-block-area nk-block-area-column nk-auth-container bg-white">
                         <div class="absolute-top-right d-lg-none p-3 p-sm-5">
-                            <a href="#" class="toggle btn btn-white btn-icon btn-light" data-target="athPromo"><em class="icon ni ni-info"></em></a>
+                            <a href="#" class="toggle btn-white btn btn-icon btn-light" data-target="athPromo"><em class="icon ni ni-info"></em></a>
                         </div>
                         <div class="nk-block nk-block-middle nk-auth-body">
                             <div class="brand-logo pb-5">
                                 <a href="{% url 'home:home' %}" class="logo-link">
-                                    <img class="logo-light logo-img logo-img-lg" src="{{ logo.dashboard_ligth.url }}" srcset="{{ logo.dashboard_ligth.url }} 2x" alt="logo">
-                                    <img class="logo-dark logo-img logo-img-lg" src="{{ logo.dashboard_dark.url }}" srcset="{{ logo.dashboard_dark.url }} 2x" alt="logo-dark">
+                                    <img class="logo-light logo-img logo-img-lg" src="{{ logo.home_light.url }}" srcset="{{ logo.home_ligth.url }} 2x" alt="logo">
+                                    <img class="logo-dark logo-img logo-img-lg" src="{{ logo.home_dark.url }}" srcset="{{ logo.home_dark.url }} 2x" alt="logo-dark">
                                 </a>
                             </div>
                             <div class="nk-block-head">
-                              <div class="nk-block-head-content">
-                                  <h5 class="nk-block-title">{% trans "Sign Up" %}</h5>
-                                  <div class="nk-block-des">
-                                      <p>Create New Dashlite Account</p>
-                                  </div>
-                              </div>
-                          </div><!-- .nk-block-head -->
-                          <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
-                          <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
-                            {% csrf_token %}
-                              <div class="form-group">
-                                {{ form|crispy }}
-                                {% if redirect_field_value %}
-                                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-                                {% endif %}
-                              </div>
-                              <div class="mt-5">
-                                  <p class="small text-secondary">By signing up, I agree to the <a href="terms.html">Terms of Service</a></p>
-                              </div>
-                              <div class="form-group">
-                                  <button type="submit" class="btn btn-lg btn-primary btn-block">{% trans "Sign Up" %} &raquo;</button>
-                              </div>
-                          </form>
-                            <div class="text-center pt-4 pb-3">
-                                <h6 class="overline-title overline-title-sap"><span>OR</span></h6>
+                                <div class="nk-block-head-content">
+                                    <h5 class="nk-block-title">{% trans "Welcome, Get Started" %}</h5>
+                                    <div class="nk-block-des">
+                                      <p>{% trans 'all ready have a website ?' %} <a href="{% url 'dashboard' %}">Go to dashboard</a></p>
+                                    </div>
+                                </div>
+                            </div><!-- .nk-block-head -->
+                            <div class="form-group">
+
                             </div>
-                            <ul class="nav justify-center gx-8">
-                                <li class="nav-item"><a class="nav-link" href="#">Facebook</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#">Google</a></li>
-                            </ul>
+                            <div class="form-group">
+                                <label for="btn-1" class="form-label"></label>
+                                <a href="" class="pl-3 ml-4 btn btn-lg btn-outline-primary">Next</a>
+                            </div>
                         </div><!-- .nk-block -->
                         <div class="nk-block nk-auth-footer">
                             <div class="nk-block-between">
@@ -100,20 +83,20 @@
                                             </ul>
                                         </div>
                                     </li>
-                                </ul><!-- nav -->
+                                </ul><!-- .nav -->
                             </div>
                             <div class="mt-3">
                                 <p>&copy; 2019 DashLite. All Rights Reserved.</p>
                             </div>
-                        </div><!-- nk-block -->
-                    </div><!-- nk-split-content -->
-                    <div class="nk-split-content nk-split-stretch bg-lighter d-flex toggle-break-lg toggle-slide toggle-slide-right" data-content="athPromo" data-toggle-screen="lg" data-toggle-overlay="true">
-                        <div class="slider-wrap w-100 w-max-550px p-3 p-sm-5 m-auto">
+                        </div><!-- .nk-block -->
+                    </div><!-- .nk-split-content -->
+                    <div style="background-image:url(https://picsum.photos/1920/1200/?random&gravity=south)" class="nk-split-content nk-split-stretch bg-lighter d-flex toggle-break-lg toggle-slide toggle-slide-right" data-content="athPromo" data-toggle-screen="lg" data-toggle-overlay="true">
+                        <div class="slider-wrap w-100 w-max-550px p-3 p-sm-5 m-auto bg-light rounded-pill">
                             <div class="slider-init" data-slick='{"dots":true, "arrows":false}'>
                                 <div class="slider-item">
                                     <div class="nk-feature nk-feature-center">
                                         <div class="nk-feature-img">
-                                            <img class="round" src="./images/slides/promo-a.png" srcset="./images/slides/promo-a2x.png 2x" alt="">
+                                            <!-- <img class="round" src="https://picsum.photos/1920/1200/?random&gravity=south" srcset="./images/slides/promo-a2x.png 2x" alt=""> -->
                                         </div>
                                         <div class="nk-feature-content py-4 p-sm-5">
                                             <h4>Dashlite</h4>
@@ -124,7 +107,7 @@
                                 <div class="slider-item">
                                     <div class="nk-feature nk-feature-center">
                                         <div class="nk-feature-img">
-                                            <img class="round" src="./images/slides/promo-b.png" srcset="./images/slides/promo-b2x.png 2x" alt="">
+                                            <!-- <img class="round" src="https://picsum.photos/1920/1200/?random&gravity=south" srcset="./images/slides/promo-b2x.png 2x" alt=""> -->
                                         </div>
                                         <div class="nk-feature-content py-4 p-sm-5">
                                             <h4>Dashlite</h4>
@@ -135,7 +118,7 @@
                                 <div class="slider-item">
                                     <div class="nk-feature nk-feature-center">
                                         <div class="nk-feature-img">
-                                            <img class="round" src="./images/slides/promo-c.png" srcset="./images/slides/promo-c2x.png 2x" alt="">
+                                            <!-- <img class="round" src="./images/slides/promo-c.png" srcset="./images/slides/promo-c2x.png 2x" alt=""> -->
                                         </div>
                                         <div class="nk-feature-content py-4 p-sm-5">
                                             <h4>Dashlite</h4>
@@ -147,8 +130,8 @@
                             <div class="slider-dots"></div>
                             <div class="slider-arrows"></div>
                         </div><!-- .slider-wrap -->
-                    </div><!-- nk-split-content -->
-                </div><!-- nk-split -->
+                    </div><!-- .nk-split-content -->
+                </div><!-- .nk-split -->
             </div>
             <!-- wrap @e -->
         </div>
@@ -156,4 +139,5 @@
     </div>
     <!-- main @e -->
 </div>
+ 
 {% endblock %}

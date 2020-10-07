@@ -31,7 +31,7 @@
                     <div class="card-inner">
                         <div class="between-center flex-wrap flex-md-nowrap g-3">
                             <div class="nk-block-text">
-                                <h6>{{ billing.plan }} Plan - <span class="text-base">{% if billing.billed_monthly %}R {{ billing.get_monthly_ammount }} / Monthly{% else %}R {{ billing.ammount }} / Yearly {% endif %}</span></h6>
+                                <h6>{{ billing.plan }} Plan - <span class="text-base">{% if billing.billed_monthly %}R {{ billing.price }} / Monthly{% else %}R {{ billing.amount }} / Yearly {% endif %}</span></h6>
                                 <p class="text-soft">Unlimited access with priority support, 99.95% uptime, powerfull features and more...</p>
                             </div>
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalForm">Change Plan</button>
@@ -74,7 +74,7 @@
                             <div class="nk-block-text">
                                 <h6>Yearly Subscription</h6>
                                 <ul class="list-inline list-col2 text-soft">
-                                    <li>Next payment: <strong class="text-base">R {{ billing.ammount }}</strong> on <strong class="text-base">{% if billing.billed_monthly %}{{ billing.get_next_billing }}{% else %}{{ billing.get_next_billing_yearly }}{% endif %}</strong></li>
+                                    <li>Next payment: <strong class="text-base">R {{ billing.amount }}</strong> on <strong class="text-base">{% if billing.billed_monthly %}{{ billing.get_next_billing }}{% else %}{{ billing.get_next_billing_yearly }}{% endif %}</strong></li>
                                     <li>Last payment made: {{ last_transaction.timestamp }}</li>
                                 </ul>
                             </div>

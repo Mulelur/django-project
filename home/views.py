@@ -1,30 +1,29 @@
 from django.shortcuts import render
 from .models import Plan, DesktopThumbnail, PhoneThumbnail
+from home.pricing.try_web import TryWebEigth
 
 def homeView(request):
-    desktop_imange = DesktopThumbnail.objects.all()
-    phone_image = PhoneThumbnail.objects.all() 
-    try:
-        desktop_imange = DesktopThumbnail.objects.get(id='1')
-    
-        phone_image = PhoneThumbnail.objects.get(id='1')
+    # try:
+    desktop_imange = DesktopThumbnail.objects.get(id='1')
 
-        context = {
-            'desktop': desktop_imange,
-            'phone': phone_image
-        }
-    except:
-        ''
-        context = {}
+    phone_image = PhoneThumbnail.objects.get(title='phone-1')
 
+    context = {
+        'desktop': desktop_imange,
+        'phone': phone_image
+    }
     return render(request, 'home/index.html', context)
+
+    
 
 def pricingView(request):
 
     plan = Plan.objects.all()
+    try_web = TryWebEigth()
 
     context = {
-        'plan': plan
+        'plan': plan,
+        'try': try_web
     }
     return render(request, 'home/pricing.html', context)    
 

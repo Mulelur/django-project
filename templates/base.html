@@ -40,7 +40,7 @@
                 <a class="st-root-link nav-link" href="">Home </a>
                 <a class="st-root-link item-products st-has-dropdown nav-link" data-dropdown="blocks">Services </a>
                 <a class="st-root-link item-products st-has-dropdown nav-link" data-dropdown="pages">Custermaer Service </a>
-                <a class="st-root-link item-company st-has-dropdown nav-link" data-dropdown="components" href="{% url 'projects:projects' %}">Projects </a>
+                <!-- <a class="st-root-link item-company st-has-dropdown nav-link" data-dropdown="components" href="{% url 'projects:projects' %}">Projects </a> -->
                 <a href="{% url 'home:pricing' %}" class="st-root-link item-shop nav-link">Pracing</a>
             </li>
             {% if user.is_authenticated %}
@@ -51,14 +51,21 @@
             <li class="st-nav-section st-nav-mobile nav-item"><button class="st-root-link navbar-toggler" type="button"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button>
                 <div class="st-popup">
                     <div class="st-popup-container"><a class="st-popup-close-button">Close</a>
-                        <div class="st-dropdown-content-group">
-                            <h4 class="text-uppercase regular">Pages</h4><a class="regular text-primary" href="about.html"><i class="far fa-building mr-2"></i> About </a><a class="regular text-success" href="contact.html"><i class="far fa-envelope mr-2"></i> Contact </a><a class="regular text-warning" href="pricing.html"><i class="fas fa-hand-holding-usd mr-2"></i> Pricing </a><a class="regular text-info" href="faqs.html"><i class="far fa-question-circle mr-2"></i> FAQs</a>
-                        </div>
                         <div class="st-dropdown-content-group border-top bw-2">
-                            <h4 class="text-uppercase regular">Components</h4>
+                            <h4 class="text-uppercase regular">Pages</h4>
+                                <div class="row">
+                                    <div class="col mr-4"><a class="regular text-primary" href="about.html"><i class="far fa-building mr-2"></i> About </a></div>
+                                    <div class="col mr-4"><a class="regular text-success" href="contact.html"><i class="far fa-envelope mr-2"></i> Contact </a></div>
+                                    <div class="col mr-4"><a class="regular text-warning" href="{% url 'pricing' %}"><i class="fas fa-hand-holding-usd mr-2"></i> Pricing </a></div>
+                                    <div class="col mr-4"><a class="regular text-info" href="{% url 'article:article_detail' category_slug='faqs' article_slug='faqs' %}"><i class="far fa-question-circle mr-2"></i> FAQs</a></div>
+                                
+                                </div>
+                            </div>
+                        <div class="st-dropdown-content-group border-top bw-2">
+                            <h4 class="text-uppercase regular">Custermaer Service</h4>
                             <div class="row">
-                                <div class="col mr-4"><a target="_blank" href="components/alert.html">Alerts</a> <a target="_blank" href="components/badge.html">Badges</a> <a target="_blank" href="components/button.html">Buttons</a> <a target="_blank" href="components/color.html">Colors</a> <a target="_blank" href="components/accordion.html">Accordion</a> <a target="_blank" href="components/cookie-law.html">Cookielaw</a></div>
-                                <div class="col mr-4"><a target="_blank" href="components/overlay.html">Overlay</a> <a target="_blank" href="components/progress.html">Progress</a> <a target="_blank" href="components/lightbox.html">Lightbox</a> <a target="_blank" href="components/tab.html">Tabs</a> <a target="_blank" href="components/tables.html">Tables</a> <a target="_blank" href="components/typography.html">Typography</a></div>
+                                <div class="col mr-4"><a target="_blank" href="components/alert.html">help</a> </div>
+                                <div class="col mr-4"><a target="_blank" href="components/alert.html">support</a> </div>
                             </div>
                         </div>
                         <div class="st-dropdown-content-group bg-light b-t">
@@ -114,8 +121,8 @@
                                         <a target="_blank" href="{% url 'dashboard' %}">Dashboard</a></li>
                                     <li><a target="_blank" href="{% url 'account_logout' %}">Sing Out</a></li>
                                     {% else %}
-                                    <li><a target="_blank" href="login.html">Login</a></li>
-                                    <li><a target="_blank" href="register.html">Register</a></li>
+                                    <li><a target="_blank" href="{% url 'account_login' %}">Login</a></li>
+                                    <li><a target="_blank" href="{% url 'account_signup' %}">Register</a></li>
                                     {% endif %}
                                 </ul>
                             </div>
@@ -124,14 +131,14 @@
                                     <li>
                                         <h4 class="text-uppercase regular">Help</h4>
                                     </li>
-                                    <li><a target="_blank" href="pricing.html">Support</a></li>
+                                    <li><a target="_blank" href="{% url 'support' %}">Support</a></li>
                                     <li><a target="_blank" href="terms.html">Terms</a></li>
-                                    <li><a target="_blank" href="faqs.html">FAQ</a></li>
+                                    <li><a target="_blank" href="{% url 'article:article_detail' category_slug='faqs' article_slug='faqs' %}">FAQ</a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    <div class="st-dropdown-content-group"><a class="dropdown-item bold" href="about.html"><i class="far fa-building icon"></i> About </a><a class="dropdown-item bold" href="contact.html"><i class="far fa-envelope icon"></i> Contact </a><a class="dropdown-item bold" href="pricing.html"><i class="fas fa-hand-holding-usd icon"></i> Pricing</a></div>
+                    <div class="st-dropdown-content-group"><a class="dropdown-item bold" href=""><i class="far fa-building icon"></i> About </a><a class="dropdown-item bold" href="{% url 'contact' %}"><i class="far fa-envelope icon"></i> Contact </a><a class="dropdown-item bold" href="{% url 'pricing' %}"><i class="fas fa-hand-holding-usd icon"></i> Pricing</a></div>
                 </div>
             </div>
             <div class="st-dropdown-section" data-dropdown="components">

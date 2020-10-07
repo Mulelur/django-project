@@ -1,0 +1,265 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <main>
+        <!-- ./Page header -->
+        <header class="page header bg-primary text-contrast overlay overlay-primary alpha-8 gradient--gradient-purple-blue" style="background-image: url('{% static 'img/bg/waves.jpg' %}')">
+            <div class="container pb-8">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h1 class="regular text-contrast display-4 mb-4">Pick your perfect package</h1>
+                        <p class="lead text-contrast">All packages include a {{ free_try }}-day free trial with all our Power features</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <section class="section block bg-contrast">
+            <div class="container bring-to-front border-top py-4 py-4">
+                <div class="section-heading text-center">
+                    <div class="btn-group btn-group-toggle mt-5 pricing-table-basis" data-toggle="buttons"><label class="btn btn-primary active"><input type="radio" name="pricing-basis" value="monthly" checked="checked"> Monthly</label> <label class="btn btn-primary"><input type="radio" name="pricing-basis" value="yearly"> Yearly</label></div>
+                    <p class="text-muted">Pay annually and get 2 months free</p>
+                </div>
+                <div class="pricing-table pricing-table-table">
+                    <div class="d-md-none">
+                        <div class="btn-group btn-group-toggle pricing-table-tabs mb-3" data-toggle="buttons"><label class="btn btn-primary"><input type="radio" name="pricing-plan" value="1"> Free</label> <label class="btn btn-primary active" checked="checked"><input type="radio" name="pricing-plan" value="2"> Starter</label> <label class="btn btn-primary"><input type="radio" name="pricing-plan" value="3"> Power</label></div>
+                    </div>
+                    <div class="table-wrapper">
+                        <table class="table">
+                            <thead class="expand-mobile">
+                                <tr>
+                                    <th class="title text-left"><span class="hidden bold">Choose Your Plan</span></th>
+                                    <th id="ph-1" class="">
+                                        <p class="h4 pricing-title bold my-0">Personal</p>
+                                        <p class="my-0">For individuals</p>
+                                    </th>
+                                    <th id="ph-2" class="visible-cell overflow-hidden position-relative">
+                                        <p class="h4 pricing-title bold my-0">Starter</p>
+                                        <p class="my-0">For small business</p>
+                                    </th>
+                                    <th id="ph-3" class="">
+                                        <p class="h4 pricing-title bold my-0">Power</p>
+                                        <p class="my-0">For large companies</p>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="pricing-details">
+                                <tr>
+                                    <th><span>Monthly price</span></th>
+                                    <td headers="ph-1" class="">
+                                        <div class="pricing"><span class="pricing-value"><span class="odometer price text-dark" data-monthly="0" data-yearly="0">0</span></span></div>
+                                    </td>
+                                    <td headers="ph-2" class="visible-cell">
+                                        <div class="pricing"><span class="pricing-value"><span class="odometer price text-dark" data-monthly="24" data-yearly="19">24</span></span></div>
+                                    </td>
+                                    <td headers="ph-3" class="">
+                                        <div class="pricing"><span class="pricing-value"><span class="odometer price text-dark" data-monthly="99" data-yearly="79">99</span></span></div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tbody class="pricing-details">
+                                <tr>
+                                    <th id="pc-1">Hosting</th>
+                                    <td headers="ph-2 pc-1" class="visible-cell"><i class="fas fa-check text-success"></i></td>
+                                    <td headers="ph-2 pc-1" class="visible-cell"><i class="fas fa-check text-success"></i></td>
+                                    <td headers="ph-3 pc-1" class=""><i class="fas fa-check text-success"></i></td>
+                                </tr>
+                                <tr>
+                                    <th id="pc-1">Domain</th>
+                                    <td headers="ph-1 pc-1" class=""><i class="fas fa-times"></i></td>
+                                    <td headers="ph-2 pc-1" class="visible-cell"><i class="fas fa-check text-success"></i></td>
+                                    <td headers="ph-3 pc-1" class=""><i class="fas fa-check text-success"></i></td>
+                                </tr>
+                                <tr>
+                                    <th id="pc-1">Always-on recording</th>
+                                    <td headers="ph-1 pc-1" class=""><i class="fas fa-times"></i></td>
+                                    <td headers="ph-2 pc-1" class="visible-cell"><i class="fas fa-check text-success"></i></td>
+                                    <td headers="ph-3 pc-1" class=""><i class="fas fa-check text-success"></i></td>
+                                </tr>
+                                <tr>
+                                    <th id="pc-2">Events</th>
+                                    <td headers="ph-1 pc-2" class="">2</td>
+                                    <td headers="ph-2 pc-2" class="visible-cell">2</td>
+                                    <td headers="ph-3 pc-2" class="">Unlimited</td>
+                                </tr>
+                                <tr>
+                                    <th id="pc-3">Funnels</th>
+                                    <td headers="ph-1 pc-3" class="">1</td>
+                                    <td headers="ph-2 pc-3" class="visible-cell">1</td>
+                                    <td headers="ph-3 pc-3" class="">Unlimited</td>
+                                </tr>
+                                <tr>
+                                    <th id="pc-4">Heatmaps</th>
+                                    <td headers="ph-1 pc-4" class="">3</td>
+                                    <td headers="ph-2 pc-4" class="visible-cell">Unlimited</td>
+                                    <td headers="ph-3 pc-4" class="">Unlimited</td>
+                                </tr>
+                                <tr>
+                                    <th id="pc-4">Storage</th>
+                                    <td headers="ph-1 pc-4" class="">10GB</td>
+                                    <td headers="ph-2 pc-4" class="visible-cell">20GB</td>
+                                    <td headers="ph-3 pc-4" class="">Unlimited</td>
+                                </tr>
+                                <tr>
+                                    <th id="pc-4">Emails</th>
+                                    <td headers="ph-1 pc-4" class="">Unlimited</td>
+                                    <td headers="ph-2 pc-4" class="visible-cell">Unlimited</td>
+                                    <td headers="ph-3 pc-4" class="">Unlimited</td>
+                                </tr>
+                                <tr>
+                                    <th id="pc-5">Sessions/month</th>
+                                    <td headers="ph-1 pc-5" class="">1,500</td>
+                                    <td headers="ph-2 pc-5" class="visible-cell"><select name="sessions_starter" id="sessions_starter" class="form-control" data-toggle="price">
+                                            <option value="5000">5000</option>
+                                            <option value="25000">25,000</option>
+                                            <option value="50000">50,000</option>
+                                        </select></td>
+                                    <td headers="ph-3 pc-5" class=""><select name="sessions_power" id="sessions_power" class="form-control" data-toggle="price">
+                                            <option value="25000">25,000</option>
+                                            <option value="50000">50,000</option>
+                                            <option value="100000">100,000</option>
+                                        </select></td>
+                                </tr>
+                                <tr>
+                                    <th id="pc-6">Data history</th>
+                                    <td headers="ph-1 pc-6" class="">1 month</td>
+                                    <td headers="ph-2 pc-6" class="visible-cell"><select name="data_starter" id="data_starter" class="form-control" data-toggle="price">
+                                            <option value="1">1 month</option>
+                                            <option value="3">3 months</option>
+                                        </select></td>
+                                    <td headers="ph-3 pc-6" class=""><select name="data_power" id="data_power" class="form-control" data-toggle="price">
+                                            <option value="1">1 month</option>
+                                            <option value="3">3 months</option>
+                                            <option value="6">6 months</option>
+                                            <option value="12">12 months</option>
+                                        </select></td>
+                                </tr>
+                            </tbody>
+                            <tbody class="expand-mobile">
+                                <tr>
+                                    <td class="text-left">Prices don't include tax.</td>
+                                    <td headers="ph-1 " class=""><a href="{% url 'buy-plan' %}" class="btn btn-rounded btn-success">Get Free Plan</a></td>
+                                    <td headers="ph-2 " class="visible-cell"><a href="{% url 'buy-plan' %}" class="btn btn-rounded btn-success">Get Starter Plan</a></td>
+                                    <td headers="ph-3 " class=""><a href="{% url 'buy-plan' %}" class="btn btn-rounded btn-success">Get Power Plan</a></td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="4">
+                                        <p class="pricing-disclaimer"><span class="bold">{{ free_try }}-day money-back guarantee.</span> If you're not 100% satisfied, we'll give you your money back. No Question Asked.</p>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="pricing block bg-contrast">
+            <div class="container py-4">
+                <div class="section-heading text-center">
+                    <h2>Not ready to buy?</h2>
+                </div>
+                <div class="border">
+                    <div class="row py-5">
+                        <div class="col-sm-5 mx-auto">
+                            <h4>You can give DashCore a try !!!</h4>
+                            <ul class="list mt-4">
+                                <li><i class="font-regular icon lnr-magic-wand"></i>{{ try.line_1 }}</li>
+                                <li><i class="font-regular icon lnr-database"></i>{{ try.line_2 }}</li>
+                                <li><i class="font-regular icon lnr-heart"></i>{{ try.line_3 }}</li>
+                                <li><i class="font-regular icon lnr-layers"></i>{{ try.line_4 }}</li>
+                                <li><i class="font-regular icon lnr-history"></i>{{ try.line_5 }}</li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-5 mx-auto text-center">
+                            <h4>get your {{ free_try }} day free trial Now !! </h4>
+                            {{ try.get_try_price }}<!-- <a class="btn btn-lg btn-success">Get started NOW</a> --> <a href="#" class="btn btn-rounded btn-primary py-3 px-5">Get started NOW</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="container">
+                <div class="section-heading text-center">
+                    <h2>All our plans include</h2>
+                    <p class="lead text-secondary">Get access to a ton of features out of the box</p>
+                </div>
+                <div class="row gap-y text-center text-md-left">
+                    <div class="col-md-4"><i data-feather="headphones" width="36" height="36" class="stroke-info mr-2 m-0"></i>
+                        <h5 class="bold my-3">First class support</h5>
+                        <p class="my-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci atque beatae dicta dolores hic porro quam voluptatibus.</p>
+                    </div>
+                    <div class="col-md-4"><i data-feather="box" width="36" height="36" class="stroke-info mr-2 m-0"></i>
+                        <h5 class="bold my-3">Code snippets</h5>
+                        <p class="my-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci atque beatae dicta dolores hic porro quam voluptatibus.</p>
+                    </div>
+                    <div class="col-md-4"><i data-feather="headphones" width="36" height="36" class="stroke-info mr-2 m-0"></i>
+                        <h5 class="bold my-3">Full documentation</h5>
+                        <p class="my-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci atque beatae dicta dolores hic porro quam voluptatibus.</p>
+                    </div>
+                    <div class="col-md-4"><i data-feather="lock" width="36" height="36" class="stroke-info mr-2 m-0"></i>
+                        <h5 class="bold my-3">Total control of your code</h5>
+                        <p class="my-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci atque beatae dicta dolores hic porro quam voluptatibus.</p>
+                    </div>
+                    <div class="col-md-4"><i data-feather="airplay" width="36" height="36" class="stroke-info mr-2 m-0"></i>
+                        <h5 class="bold my-3">Responsive design</h5>
+                        <p class="my-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci atque beatae dicta dolores hic porro quam voluptatibus.</p>
+                    </div>
+                    <div class="col-md-4"><i data-feather="monitor" width="36" height="36" class="stroke-info mr-2 m-0"></i>
+                        <h5 class="bold my-3">Browser support</h5>
+                        <p class="my-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci atque beatae dicta dolores hic porro quam voluptatibus.</p>
+                    </div>
+                </div>
+            </div>
+        </section><!-- ./FAQs -->
+        <section class="section">
+            <div class="container bring-to-front">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h2>Do you have <span class="bold">questions</span></h2>
+                        <p class="lead">Not sure how this template can help you? Wonder why you need to buy our theme?</p>
+                        <p class="text-muted">Here are the answers to some of the most common questions we hear from our appreciated customers</p>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="accordion accordion-clean" id="common-faqs-accordion">
+                            <div class="card mb-3">
+                                <div class="card-header"><a href="#" class="card-title btn" data-toggle="collapse" data-target="#q1"><i class="fas fa-angle-down angle"></i> What does the package include?</a></div>
+                                <div id="q1" class="collapse show" data-parent="#common-faqs-accordion">
+                                    <div class="card-body">When you buy Dashcore, you get all you see in the demo but the images. We include SASS files for styling, complete JS files with comments, all HTML variations. Besides we include all mobile PSD mockups.</div>
+                                </div>
+                            </div>
+                            <div class="card mb-3">
+                                <div class="card-header"><a href="#" class="card-title btn" data-toggle="collapse" data-target="#q2"><i class="fas fa-angle-down angle"></i> What is the typical response time for a support question?</a></div>
+                                <div id="q2" class="collapse" data-parent="#common-faqs-accordion">
+                                    <div class="card-body">Since you report us a support question we try to make our best to find out what is going on, depending on the case it could take more or les time, however a standard time could be minutes or hours.</div>
+                                </div>
+                            </div>
+                            <div class="card mb-3">
+                                <div class="card-header"><a href="#" class="card-title btn" data-toggle="collapse" data-target="#q3"><i class="fas fa-angle-down angle"></i> What do I need to know to customize this template?</a></div>
+                                <div id="q3" class="collapse" data-parent="#common-faqs-accordion">
+                                    <div class="card-body">Our documentation give you all you need to customize your copy. However you will need some basic web design knowledge (HTML, Javascript and CSS)</div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header"><a href="#" class="card-title btn" data-toggle="collapse" data-target="#q4"><i class="fas fa-angle-down angle"></i> Can I suggest a new feature?</a></div>
+                                <div id="q4" class="collapse" data-parent="#common-faqs-accordion">
+                                    <div class="card-body">Definitely <span class="bold">Yes</span>, you can contact us to let us know your needs. If your suggestion represents any value to both we can include it as a part of the theme or you can request a custom build by an extra cost. Please note it could take some time in order for the feature to be implemented.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section><!-- ./CTA - Create Account -->
+        <section class="section bg-light edge top-left b-b">
+            <div class="container pt-5">
+                <div class="d-flex align-items-center flex-column flex-md-row">
+                    <div class="text-center text-md-left">
+                        <p class="light mb-0 text-primary lead">Ready to get started?</p>
+                        <h2 class="mt-0">Create an account now</h2>
+                    </div><a href="#" class="btn btn-primary btn-rounded mt-3 mt-md-0 ml-md-auto">Create DashCore account</a>
+                </div>
+            </div>
+        </section><!-- ./Footer - Four Columns -->
+{% endblock %}

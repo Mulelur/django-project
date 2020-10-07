@@ -9,7 +9,7 @@
                 <div class="nk-block-head-content">
                     <h2 class="nk-block-title fw-normal">My Subscriptions</h2>
                     <div class="nk-block-des">
-                        <p>Here is list of package/product that you have subscribed. <span class="text-primary"><em class="icon ni ni-info"></em></span></p>
+                        <p>Here is list of services that you have subscribed. </p>
                     </div>
                 </div>
                 <div class="nk-block-head-content">
@@ -36,15 +36,6 @@
                                                 </div>
                                             </div>
                                             <div class="col-xl-3 col-sm-4">
-                                                <form action="{% url 'auto-renew-toggel' %}" method="POST">
-                                                    {% csrf_token %}
-                                                    
-                                                    <!-- <div class="custom-control custom-switch mr-n2">
-                                                        {{ form_renew.auto_renew }}
-                                                        <label class="custom-control-label" for="activity-log"></label>
-                                                    </div> -->
-                                                    
-                                                </form>
                                             </div>
                                         </div>
                                     </div><!-- .sp-plan-info -->
@@ -57,7 +48,7 @@
                                                 <p><span class="text-soft">Recuring</span> Yes</p>
                                             </li>
                                             <li class="col-6 col-lg-3">
-                                                <p><span class="text-soft">Price</span> {{ user.currency }} {{ b.ammount }}.00/Month</p>
+                                                <p><span class="text-soft">Price</span> {{ user.currency }} {{ b.amount }}.00/Month</p>
                                             </li>
                                         </ul>
                                     </div><!-- .sp-plan-desc -->
@@ -104,20 +95,6 @@
                                                     <h6 class="title"><a href="{% url 'subscriptions-detail' id=b.id %}">{{ b.plan.plan }} Plan <span class="badge badge-{% if b.is_active %}success{% else %}light{% endif %} badge-pill">{% if b.is_active %}Active{% else %}Expird{% endif %}</span></a></h6>
                                                 </div>
                                             </div>
-                                            <div class="col-xl-3 col-sm-4">
-                                                <div class="sp-plan-opt">
-                                                    <div class="custom-control custom-switch">
-                                                        <form action="{% url 'auto-renew-toggel' %}" method="POST">
-                                                            {% csrf_token %}
-                                                            <div class="custom-control custom-switch mr-n2">
-                                                                <!-- <input type="checkbox" class="custom-control-input" checked="" id="activity-log"> -->
-                                                                {{ form_renew }} 
-                                                                <label class="custom-control-label" for="activity-log"></label>
-                                                            </div>
-                                                                                                                   </form>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div><!-- .sp-plan-info -->
                                     <div class="sp-plan-desc card-inner">
@@ -129,7 +106,7 @@
                                                 <p><span class="text-soft">Recuring</span> Yes</p>
                                             </li>
                                             <li class="col-6 col-lg-3">
-                                                <p><span class="text-soft">Price</span> {{ user.currency }} {{ b.ammount }}.00/Year</p>
+                                                <p><span class="text-soft">Price</span> {{ user.currency }} {{ b.amount }}.00/Year</p>
                                             </li>
                                         </ul>
                                     </div><!-- .sp-plan-desc -->

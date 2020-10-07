@@ -29,7 +29,7 @@
           </p>
           <div class="nav mt-5 align-items-center">
             <a
-              href="{% url 'buy-plan' %}"
+              href="{% url 'get_started' %}"
               class="btn btn-rounded btn-lg btn-info shadow mr-3 px-4 text-capitalize"
               >Get Started - It's Free</a
             >
@@ -393,7 +393,7 @@
               <div class="swiper-container" data-sw-navigation="#sw-nav-1" data-sw-navigation-active="active">
                   <div class="swiper-wrapper">
                       <div class="swiper-slide">
-                          <figure class="shadow-box"><img src="{% static 'img/screens/dash/inbox.png' %}" alt="" class="img-responsive rounded"></figure>
+                          <figure class="shadow-box"><img src="{{ desktop.desktop_image.url }}" alt="" class="img-responsive rounded"></figure>
                           <p class="small text-center text-danger">Clean inbox UI design</p>
                       </div>
                       <div class="swiper-slide">
@@ -562,7 +562,7 @@
                     style="background-image: url({% static 'img/testimonials/3.jpg' %});"
                   >
                     <img
-                      src="{% static 'img/testimonials/3.jpg"
+                      src="{% static 'img/testimonials/3.jpg' %}"
                       alt="..."
                       class="img--responsive invisible"
                     />

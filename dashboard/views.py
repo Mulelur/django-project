@@ -7,7 +7,7 @@ from django.core.paginator import Paginator
 from payment.views import get_user_billing
 from buy.forms import ChangePlanForm, SwitchBillingCycleForm, AoutoRenewOnForm
 from article.models import FAQ, Category, FAQsCategory
-from .models import WebSite, Notification
+from .models import WebSite, Notification,TimeLine
 from .forms import (UserRegisterForm,
                      UserChangeRegisterForm,
                      UserChangeDashboardForm,
@@ -29,14 +29,22 @@ def dashboard(request):
     transaction = Transaction.objects.filter(user=user)
     website = WebSite.objects.filter(user=request.user)
     try:
-        billing = Billing.objects.get(User=user, is_active=True)
+        get_billing = Billing.objects.get(User=user, is_active=True)
     except:
-        messages.warning(request, 'You Canceld your Plan')
-        billing = Billing.objects.filter(User=user, is_active=True) 
+        get_billing = Billing.objects.get(User=user, id=id)
+    # try:
+    billing = Billing.objects.get(User=user, is_active=True)
+    timeline = TimeLine.objects.get(user=user)
+    # except:
+    #     messages.warning(request, 'You Canceld your Plan')
+    #     billing = Billing.objects.filter(User=user, is_active=True) 
+    #     timeline = 'default time line'
     context = {
         'website': website,
         'billing': billing,
-        'transaction': transaction
+        'transaction': transaction,
+        'timeline': timeline,
+        'get_billing': get_billing
     }
     
     return render(request, template, context)
