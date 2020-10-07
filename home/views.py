@@ -4,9 +4,9 @@ from home.pricing.try_web import TryWebEigth
 
 def homeView(request):
     # try:
-    desktop_imange = DesktopThumbnail.objects.get(id='1')
+    desktop_imange = DesktopThumbnail.objects.get(title='desktop')
 
-    phone_image = PhoneThumbnail.objects.get(title='phone-1')
+    phone_image = PhoneThumbnail.objects.get(title='phone')
 
     context = {
         'desktop': desktop_imange,
