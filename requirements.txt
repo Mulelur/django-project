@@ -12,7 +12,7 @@ django-ckeditor==5.9.0
 django-crispy-forms==1.9.2
 django-js-asset==1.2.2
 django-timezone-field==4.0
-djangorestframework==3.11.0
+djangorestframework==3.11.2
 idna==2.10
 kombu==4.6.11
 oauthlib==3.1.0
